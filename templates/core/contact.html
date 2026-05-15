@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load static i18n safe_svg %}
+
+{% block title %}{{ block.super }}{% endblock %}
+
+{% block content %}
+         <section class="bg-peach-light/40 dark:bg-[#2a2420] py-16 md:py-24 relative overflow-hidden">
+            <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+            <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto text-center relative z-10">
+               {% trans "Contact Us" as default_page_title %}
+               {% with page_title=active_menu_item.title|default:default_page_title %}
+               <div class="flex items-center justify-center gap-2 text-sm font-medium opacity-80 mb-4 text-[#181411] dark:text-white">
+                  <a class="hover:text-primary transition-colors" href="{% url 'index' %}">{% trans "Home" %}</a>
+                  <span class="material-symbols-outlined text-xs">chevron_right</span>
+                  <span class="text-primary">{{ page_title }}</span>
+               </div>
+               <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#181411] dark:text-white mb-6 font-display">{{ page_title }}</h1>
+               {% endwith %}
+            </div>
+         </section>
+
+         <section class="py-12 bg-white dark:bg-[#1a1614]">
+            <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div class="bg-background-light dark:bg-[#221810] p-8 rounded-2xl flex flex-col items-center text-center border border-transparent hover:border-primary/20 transition-all">
+                     <div class="w-14 h-14 rounded-full bg-peach-light dark:bg-primary/20 flex items-center justify-center text-primary mb-4">
+                        <span class="material-symbols-outlined text-2xl">location_on</span>
+                     </div>
+                     <h3 class="font-bold text-[#181411] dark:text-white mb-2">{% trans "Our Address" %}</h3>
+                     <p class="text-sm text-gray-600 dark:text-gray-400">
+                        {{ contact_page.address }}
+                     </p>
+                     <p class="text-sm text-gray-600 dark:text-gray-400">
+                        {{ contact_page.address_2 }}
+                     </p>
+                  </div>
+                  <div class="bg-background-light dark:bg-[#221810] p-8 rounded-2xl flex flex-col items-center text-center border border-transparent hover:border-primary/20 transition-all">
+                     <div class="w-14 h-14 rounded-full bg-peach-light dark:bg-primary/20 flex items-center justify-center text-primary mb-4">
+                        <span class="material-symbols-outlined text-2xl">call</span>
+                     </div>
+                     <h3 class="font-bold text-[#181411] dark:text-white mb-2">{% trans "Phone Number" %}</h3>
+                     <p class="text-sm text-gray-600 dark:text-gray-400">
+                        {% if contact_page.phone or contact_page.phone_2 %}
+                           {% if contact_page.phone %}{{ contact_page.phone }}{% endif %}{% if contact_page.phone_2 %}<br/>{{ contact_page.phone_2 }}{% endif %}
+                        {% else %}
+                           (555) 123-4567<br/>(555) 123-4568
+                        {% endif %}
+                     </p>
+                  </div>
+                  <div class="bg-background-light dark:bg-[#221810] p-8 rounded-2xl flex flex-col items-center text-center border border-transparent hover:border-primary/20 transition-all">
+                     <div class="w-14 h-14 rounded-full bg-peach-light dark:bg-primary/20 flex items-center justify-center text-primary mb-4">
+                        <span class="material-symbols-outlined text-2xl">mail</span>
+                     </div>
+                     <h3 class="font-bold text-[#181411] dark:text-white mb-2">{% trans "Email Address" %}</h3>
+                     <p class="text-sm text-gray-600 dark:text-gray-400">
+                        {% if contact_page.email or contact_page.email_2 %}
+                           {% if contact_page.email %}{{ contact_page.email }}{% endif %}{% if contact_page.email_2 %}<br/>{{ contact_page.email_2 }}{% endif %}
+                        {% else %}
+                           info@example.com<br/>admissions@example.com
+                        {% endif %}
+                     </p>
+                  </div>
+                  <div class="bg-background-light dark:bg-[#221810] p-8 rounded-2xl flex flex-col items-center text-center border border-transparent hover:border-primary/20 transition-all">
+                     <div class="w-14 h-14 rounded-full bg-peach-light dark:bg-primary/20 flex items-center justify-center text-primary mb-4">
+                        <span class="material-symbols-outlined text-2xl">schedule</span>
+                     </div>
+                     <h3 class="font-bold text-[#181411] dark:text-white mb-2">{% trans "Working Hours" %}</h3>
+                     <p class="text-sm text-gray-600 dark:text-gray-400">
+                        {% trans "Mon - Fri: 8:00 AM - 4:00 PM" as default_working_hours %}
+                        {{ contact_page.working_hours|default:default_working_hours }}
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         <section class="py-16 bg-background-light dark:bg-background-dark">
+            <div class="px-6 md:px-20 lg:px-40 max-w-[1000px] mx-auto">
+               <div class="bg-white dark:bg-[#221810] rounded-2xl shadow-xl shadow-black/5 p-8 md:p-12 border border-gray-100 dark:border-gray-800">
+	                  <div class="text-center mb-10">
+	                     <h2 class="text-3xl font-bold text-[#181411] dark:text-white mb-3">{% trans "Send Us a Message" %}</h2>
+	                     <p class="text-gray-500 dark:text-gray-400">{% trans "Have a question? Fill out the form below and we'll get back to you shortly." %}</p>
+	                  </div>
+	                  {% if request.GET.sent %}
+	                  <div class="mb-6 rounded-xl border border-primary/20 bg-peach-light/40 px-4 py-3 text-sm text-[#181411] dark:text-gray-200">
+	                     {% trans "Thank you! Your message has been sent." %}
+	                  </div>
+	                  {% endif %}
+
+	                  <form class="space-y-6" method="post" novalidate>
+	                     {% csrf_token %}
+	                     {% if contact_form and contact_form.non_field_errors %}
+	                     <div class="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+	                        {{ contact_form.non_field_errors }}
+	                     </div>
+	                     {% endif %}
+
+	                     {% if contact_form %}{{ contact_form.website }}{% endif %}
+	                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+	                        <div class="space-y-2">
+	                           <label class="text-sm font-bold text-[#181411] dark:text-gray-200" for="full-name">{% trans "Full Name" %}</label>
+	                           <input class="w-full rounded-lg border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#2a2420] px-4 py-3 text-sm focus:border-primary focus:ring-primary dark:text-white transition-shadow" id="full-name" name="name" placeholder="John Doe" type="text" value="{% if contact_form %}{{ contact_form.name.value|default:'' }}{% endif %}"/>
+	                           {% if contact_form %}{{ contact_form.name.errors }}{% endif %}
+	                        </div>
+	                        <div class="space-y-2">
+	                           <label class="text-sm font-bold text-[#181411] dark:text-gray-200" for="contact-email">{% trans "Email Address" %}</label>
+	                           <input class="w-full rounded-lg border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#2a2420] px-4 py-3 text-sm focus:border-primary focus:ring-primary dark:text-white transition-shadow" id="contact-email" name="email" placeholder="john@example.com" type="email" value="{% if contact_form %}{{ contact_form.email.value|default:'' }}{% endif %}"/>
+	                           {% if contact_form %}{{ contact_form.email.errors }}{% endif %}
+	                        </div>
+	                     </div>
+	                     <div class="space-y-2">
+	                        <label class="text-sm font-bold text-[#181411] dark:text-gray-200" for="contact-phone">{% trans "Phone Number" %}</label>
+	                        <input class="w-full rounded-lg border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#2a2420] px-4 py-3 text-sm focus:border-primary focus:ring-primary dark:text-white transition-shadow" id="contact-phone" name="phone" placeholder="+992 ..." type="tel" value="{% if contact_form %}{{ contact_form.phone.value|default:'' }}{% endif %}"/>
+	                        {% if contact_form %}{{ contact_form.phone.errors }}{% endif %}
+	                     </div>
+	                     <div class="space-y-2">
+	                        <label class="text-sm font-bold text-[#181411] dark:text-gray-200" for="subject">{% trans "Subject" %}</label>
+	                        {% with selected_subject=contact_form.subject.value|default:'' %}
+	                        <select class="w-full rounded-lg border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#2a2420] px-4 py-3 text-sm focus:border-primary focus:ring-primary dark:text-white" id="subject" name="subject">
+	                           <option value="">{% trans "Select subject" %}</option>
+	                           <option value="General Inquiry" {% if selected_subject == 'General Inquiry' %}selected{% endif %}>{% trans "General Inquiry" %}</option>
+	                           <option value="Admissions" {% if selected_subject == 'Admissions' %}selected{% endif %}>{% trans "Admissions" %}</option>
+	                           <option value="Academics" {% if selected_subject == 'Academics' %}selected{% endif %}>{% trans "Academics" %}</option>
+	                           <option value="Student Support" {% if selected_subject == 'Student Support' %}selected{% endif %}>{% trans "Student Support" %}</option>
+	                           <option value="Other" {% if selected_subject == 'Other' %}selected{% endif %}>{% trans "Other" %}</option>
+	                        </select>
+	                        {% endwith %}
+	                        {% if contact_form %}{{ contact_form.subject.errors }}{% endif %}
+	                     </div>
+	                     <div class="space-y-2">
+	                        <label class="text-sm font-bold text-[#181411] dark:text-gray-200" for="message">{% trans "Message" %}</label>
+	                        <textarea class="w-full rounded-lg border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#2a2420] px-4 py-3 text-sm focus:border-primary focus:ring-primary dark:text-white min-h-[150px] resize-y" id="message" name="message" placeholder="{% trans 'How can we help you?' %}">{% if contact_form %}{{ contact_form.message.value|default:'' }}{% endif %}</textarea>
+	                        {% if contact_form %}{{ contact_form.message.errors }}{% endif %}
+	                     </div>
+	                     <button class="w-full py-4 px-6 bg-primary hover:bg-primary-dark text-white font-bold text-lg rounded-xl shadow-md hover:shadow-lg transition-all transform active:scale-[0.99] flex items-center justify-center gap-2 mt-4" type="submit">
+	                     {% trans "Send Message" %}
+	                     <span class="material-symbols-outlined">send</span>
+	                     </button>
+	                  </form>
+               </div>
+               {% if social_networks %}
+                  <div class="mt-16 text-center">
+                     <h3 class="text-xl font-bold text-[#181411] dark:text-white mb-8">{% trans "Connect With Us" %}</h3>
+                     <div class="flex flex-wrap gap-6 justify-center">
+                        {% for sn in social_networks %}
+                           <a class="group" href="{{ sn.link }}" target="_blank" rel="noopener" title="{{ sn.link }}">
+                              <div class="w-16 h-16 rounded-full bg-peach-light dark:bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-200 shadow-sm">
+                                 {% if sn.svg %}
+                                    <span class="[&_svg]:w-7 [&_svg]:h-7 [&_svg]:fill-current [&_svg]:stroke-current">{{ sn.svg|safe_svg }}</span>
+                                 {% else %}
+                                    <span class="material-symbols-outlined text-3xl">link</span>
+                                 {% endif %}
+                              </div>
+                           </a>
+                        {% endfor %}
+                     </div>
+                  </div>
+               {% endif %}
+            </div>
+         </section>
+         
+         <section class="w-full bg-gray-200 dark:bg-gray-800 h-[450px] relative">
+            <iframe allowfullscreen="" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{{ contact_page.map_iframe_src|default:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3319.897375253568!2d-84.38798248478465!3d33.74899538068945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f5045d6993098d%3A0x66fede2f990b630b!2sAtlanta%2C%20GA!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus' }}" style="border:0; filter: grayscale(0.4) opacity(0.9);" width="100%">
+            </iframe>
+            <div class="absolute inset-0 pointer-events-none border-t border-primary/20"></div>
+         </section>
+
+                  <!-- FAQ Section -->
+<section class="py-16 bg-peach-light/30 dark:bg-[#1f1a16]">
+   <div class="px-6 md:px-20 lg:px-40 max-w-[1000px] mx-auto">
+      <h2 class="text-center text-[#181411] dark:text-white text-3xl font-bold leading-tight tracking-[-0.015em] mb-10">{% trans "Frequently Asked Questions" %}</h2>
+      <div class="space-y-4">
+         {% if faq_items %}
+         {% for f in faq_items %}
+         <div class="bg-white dark:bg-[#2a2420] rounded-lg border border-primary/20 p-6 shadow-sm">
+            <details class="group">
+               <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-[#181411] dark:text-white">
+                  <span>{{ f.question }}</span>
+                  <span class="transition group-open:rotate-180">
+                  <span class="material-symbols-outlined text-primary">expand_more</span>
+                  </span>
+               </summary>
+               <div class="text-gray-600 dark:text-gray-300 mt-3 text-sm leading-relaxed">
+                  {{ f.answer }}
+               </div>
+            </details>
+         </div>
+         {% endfor %}
+         {% else %}
+
+         {% endif %}
+      </div>
+   </div>
+</section>
+{% endblock %}

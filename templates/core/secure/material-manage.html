@@ -1,0 +1,446 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ block.super }}{% endblock %}
+
+{% block content %}
+
+<section class="bg-peach-light/40 dark:bg-[#2a2420] pt-16 pb-24 md:pt-24 md:pb-32 relative overflow-hidden">
+  <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto text-center relative z-10">
+    {% trans "Manage Materials" as default_page_title %}
+    {% with page_title=active_menu_item.title|default:default_page_title %}
+    <div class="flex items-center justify-center gap-2 text-sm font-medium opacity-80 mb-4 text-[#181411] dark:text-white">
+      <a class="hover:text-primary transition-colors" href="{% url 'index' %}">{% trans "Home" %}</a>
+      <span class="material-symbols-outlined text-xs">chevron_right</span>
+      <span class="text-primary">{{ page_title }}</span>
+    </div>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#181411] dark:text-white mb-6 font-display">{{ page_title }}</h1>
+    {% endwith %}
+    <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+      {% trans "Add teacher plans and extra materials for students." %}
+    </p>
+  </div>
+</section>
+
+<section class="py-12 bg-background-light dark:bg-background-dark min-h-[600px]">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto space-y-10">
+
+    {% if request.GET.saved %}
+    <div class="bg-white dark:bg-[#221810] rounded-2xl border border-primary/20 p-4 text-sm text-[#181411] dark:text-gray-200">
+      {% trans "Saved successfully." %}
+    </div>
+    {% endif %}
+
+    {% if not staff_profile %}
+    <div class="bg-white dark:bg-[#221810] rounded-2xl border border-red-200 p-6 text-sm text-red-800">
+      {% trans "Your user is not linked to a Staff profile. Ask admin to connect your account to a teacher profile." %}
+    </div>
+    {% endif %}
+
+    <div class="bg-white dark:bg-[#221810] rounded-2xl shadow-lg shadow-black/5 border border-gray-100 dark:border-gray-800 overflow-hidden">
+      <div class="px-6 md:px-8 pt-6 md:pt-8">
+        <h2 class="text-xl md:text-2xl font-bold text-[#181411] dark:text-white flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">cloud_upload</span>
+          {% trans "Upload Center" %}
+        </h2>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+          {% trans "Create plans/tasks and attach files or links. Published items appear for students in the portal." %}
+        </p>
+      </div>
+
+      <div class="px-6 md:px-8 mt-6 border-b border-gray-100 dark:border-gray-800">
+        <div class="flex gap-8 overflow-x-auto">
+          <button class="py-4 text-sm font-bold whitespace-nowrap border-b-2 {% if active_tab == 'plans' %}border-primary text-primary{% else %}border-transparent text-gray-500 dark:text-gray-400 hover:text-primary{% endif %}" data-tab-btn="plans" type="button">
+            {% trans "Lesson Plans" %}
+          </button>
+          <button class="py-4 text-sm font-bold whitespace-nowrap border-b-2 {% if active_tab == 'tasks' %}border-primary text-primary{% else %}border-transparent text-gray-500 dark:text-gray-400 hover:text-primary{% endif %}" data-tab-btn="tasks" type="button">
+            {% trans "Extra Tasks" %}
+          </button>
+          <button class="py-4 text-sm font-bold whitespace-nowrap border-b-2 {% if active_tab == 'uploads' %}border-primary text-primary{% else %}border-transparent text-gray-500 dark:text-gray-400 hover:text-primary{% endif %}" data-tab-btn="uploads" type="button">
+            {% trans "My Uploads" %}
+          </button>
+        </div>
+      </div>
+
+      <div class="p-6 md:p-8 space-y-10">
+        <div data-tab-panel="plans" class="{% if active_tab != 'plans' %}hidden{% endif %}">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="rounded-2xl border border-gray-100 dark:border-gray-800 bg-background-light dark:bg-[#1a1614] p-6">
+              <h3 class="font-bold text-[#181411] dark:text-white flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">edit_document</span>
+                {% trans "Create Lesson Plan" %}
+              </h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">{% trans "Visible on the Plans page when published." %}</p>
+
+              <form method="post" class="mt-5 space-y-4" novalidate>
+                {% csrf_token %}
+                <input type="hidden" name="action" value="create_plan"/>
+                {% if plan_form %}
+                {% if plan_form.non_field_errors %}<div class="text-sm text-red-600">{{ plan_form.non_field_errors }}</div>{% endif %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Class" %}</label>
+                    {{ plan_form.grade }}
+                    {{ plan_form.grade.errors }}
+                  </div>
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Subject" %}</label>
+                    {{ plan_form.subject }}
+                    {{ plan_form.subject.errors }}
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Title (RU)" %}</label>
+                  {{ plan_form.title_ru }}
+                  {{ plan_form.title_ru.errors }}
+                </div>
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Title (TG)" %}</label>
+                  {{ plan_form.title_tg }}
+                  {{ plan_form.title_tg.errors }}
+                </div>
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Title (EN)" %}</label>
+                  {{ plan_form.title_en }}
+                  {{ plan_form.title_en.errors }}
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Date" %}</label>
+                    {{ plan_form.date }}
+                    {{ plan_form.date.errors }}
+                  </div>
+                  <div class="flex items-center gap-2 pt-6">
+                    {{ plan_form.is_published }}
+                    <label class="text-sm text-gray-700 dark:text-gray-200">{% trans "Published" %}</label>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Description (RU)" %}</label>
+                    {{ plan_form.description_ru }}
+                    {{ plan_form.description_ru.errors }}
+                  </div>
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Description (TG)" %}</label>
+                    {{ plan_form.description_tg }}
+                    {{ plan_form.description_tg.errors }}
+                  </div>
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Description (EN)" %}</label>
+                    {{ plan_form.description_en }}
+                    {{ plan_form.description_en.errors }}
+                  </div>
+                </div>
+                {% endif %}
+
+                <button class="w-full bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-xl font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2" type="submit">
+                  <span class="material-symbols-outlined text-[20px]">check</span>
+                  {% trans "Save Plan" %}
+                </button>
+              </form>
+            </div>
+
+            <div class="rounded-2xl border border-gray-100 dark:border-gray-800 bg-background-light dark:bg-[#1a1614] p-6">
+              <h3 class="font-bold text-[#181411] dark:text-white flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">attach_file</span>
+                {% trans "Add Material to Plan" %}
+              </h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">{% trans "Upload a file or paste a link." %}</p>
+
+              <form method="post" enctype="multipart/form-data" class="mt-5 space-y-4" novalidate>
+                {% csrf_token %}
+                <input type="hidden" name="action" value="add_plan_material"/>
+                {% if plan_material_form %}
+                {% if plan_material_form.non_field_errors %}<div class="text-sm text-red-600">{{ plan_material_form.non_field_errors }}</div>{% endif %}
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Lesson plan" %}</label>
+                  {{ plan_material_form.lesson_plan }}
+                  {{ plan_material_form.lesson_plan.errors }}
+                </div>
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Title (RU, optional)" %}</label>
+                  {{ plan_material_form.title_ru }}
+                  {{ plan_material_form.title_ru.errors }}
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Title (TG, optional)" %}</label>
+                    {{ plan_material_form.title_tg }}
+                    {{ plan_material_form.title_tg.errors }}
+                  </div>
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Title (EN, optional)" %}</label>
+                    {{ plan_material_form.title_en }}
+                    {{ plan_material_form.title_en.errors }}
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "File (optional)" %}</label>
+                  {{ plan_material_form.file }}
+                  {{ plan_material_form.file.errors }}
+                </div>
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "YouTube link (optional)" %}</label>
+                  {{ plan_material_form.youtube_link }}
+                  {{ plan_material_form.youtube_link.errors }}
+                </div>
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "External link (optional)" %}</label>
+                  {{ plan_material_form.external_link }}
+                  {{ plan_material_form.external_link.errors }}
+                </div>
+                {% endif %}
+
+                <button class="w-full bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-xl font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2" type="submit">
+                  <span class="material-symbols-outlined text-[20px]">upload</span>
+                  {% trans "Upload" %}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div data-tab-panel="tasks" class="{% if active_tab != 'tasks' %}hidden{% endif %}">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="rounded-2xl border border-gray-100 dark:border-gray-800 bg-background-light dark:bg-[#1a1614] p-6">
+              <h3 class="font-bold text-[#181411] dark:text-white flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">assignment</span>
+                {% trans "Create Extra Task" %}
+              </h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">{% trans "Visible in Resources when published." %}</p>
+
+              <form method="post" class="mt-5 space-y-4" novalidate>
+                {% csrf_token %}
+                <input type="hidden" name="action" value="create_assignment"/>
+                {% if assignment_form %}
+                {% if assignment_form.non_field_errors %}<div class="text-sm text-red-600">{{ assignment_form.non_field_errors }}</div>{% endif %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Class" %}</label>
+                    {{ assignment_form.grade }}
+                    {{ assignment_form.grade.errors }}
+                  </div>
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Subject (optional)" %}</label>
+                    {{ assignment_form.subject }}
+                    {{ assignment_form.subject.errors }}
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Title (RU)" %}</label>
+                  {{ assignment_form.title_ru }}
+                  {{ assignment_form.title_ru.errors }}
+                </div>
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Title (TG)" %}</label>
+                  {{ assignment_form.title_tg }}
+                  {{ assignment_form.title_tg.errors }}
+                </div>
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Title (EN)" %}</label>
+                  {{ assignment_form.title_en }}
+                  {{ assignment_form.title_en.errors }}
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Assigned at" %}</label>
+                    {{ assignment_form.assigned_at }}
+                    {{ assignment_form.assigned_at.errors }}
+                  </div>
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Due at" %}</label>
+                    {{ assignment_form.due_at }}
+                    {{ assignment_form.due_at.errors }}
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  {{ assignment_form.is_published }}
+                  <label class="text-sm text-gray-700 dark:text-gray-200">{% trans "Published" %}</label>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Description (RU)" %}</label>
+                    {{ assignment_form.description_ru }}
+                    {{ assignment_form.description_ru.errors }}
+                  </div>
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Description (TG)" %}</label>
+                    {{ assignment_form.description_tg }}
+                    {{ assignment_form.description_tg.errors }}
+                  </div>
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Description (EN)" %}</label>
+                    {{ assignment_form.description_en }}
+                    {{ assignment_form.description_en.errors }}
+                  </div>
+                </div>
+                {% endif %}
+
+                <button class="w-full bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-xl font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2" type="submit">
+                  <span class="material-symbols-outlined text-[20px]">check</span>
+                  {% trans "Save Task" %}
+                </button>
+              </form>
+            </div>
+
+            <div class="rounded-2xl border border-gray-100 dark:border-gray-800 bg-background-light dark:bg-[#1a1614] p-6">
+              <h3 class="font-bold text-[#181411] dark:text-white flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">attach_file</span>
+                {% trans "Add Material to Task" %}
+              </h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">{% trans "Upload a file or paste a link." %}</p>
+
+              <form method="post" enctype="multipart/form-data" class="mt-5 space-y-4" novalidate>
+                {% csrf_token %}
+                <input type="hidden" name="action" value="add_assignment_material"/>
+                {% if assignment_material_form %}
+                {% if assignment_material_form.non_field_errors %}<div class="text-sm text-red-600">{{ assignment_material_form.non_field_errors }}</div>{% endif %}
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Extra task" %}</label>
+                  {{ assignment_material_form.assignment }}
+                  {{ assignment_material_form.assignment.errors }}
+                </div>
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Title (RU, optional)" %}</label>
+                  {{ assignment_material_form.title_ru }}
+                  {{ assignment_material_form.title_ru.errors }}
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Title (TG, optional)" %}</label>
+                    {{ assignment_material_form.title_tg }}
+                    {{ assignment_material_form.title_tg.errors }}
+                  </div>
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "Title (EN, optional)" %}</label>
+                    {{ assignment_material_form.title_en }}
+                    {{ assignment_material_form.title_en.errors }}
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "File (optional)" %}</label>
+                  {{ assignment_material_form.file }}
+                  {{ assignment_material_form.file.errors }}
+                </div>
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "YouTube link (optional)" %}</label>
+                  {{ assignment_material_form.youtube_link }}
+                  {{ assignment_material_form.youtube_link.errors }}
+                </div>
+                <div class="space-y-1">
+                  <label class="text-xs font-bold text-gray-600 dark:text-gray-300">{% trans "External link (optional)" %}</label>
+                  {{ assignment_material_form.external_link }}
+                  {{ assignment_material_form.external_link.errors }}
+                </div>
+                {% endif %}
+
+                <button class="w-full bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-xl font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2" type="submit">
+                  <span class="material-symbols-outlined text-[20px]">upload</span>
+                  {% trans "Upload" %}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div data-tab-panel="uploads" class="{% if active_tab != 'uploads' %}hidden{% endif %}">
+          <div class="overflow-x-auto rounded-2xl border border-gray-100 dark:border-gray-800">
+            <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
+              <thead class="bg-gray-50 dark:bg-[#2a2420] text-[#181411] dark:text-white font-bold uppercase text-xs tracking-wider border-b border-gray-100 dark:border-gray-700">
+                <tr>
+                  <th class="px-6 py-4">{% trans "File / Link" %}</th>
+                  <th class="px-6 py-4">{% trans "Subject" %}</th>
+                  <th class="px-6 py-4">{% trans "Type" %}</th>
+                  <th class="px-6 py-4">{% trans "Target Class" %}</th>
+                  <th class="px-6 py-4">{% trans "Uploaded" %}</th>
+                  <th class="px-6 py-4 text-right">{% trans "Actions" %}</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100 dark:divide-gray-800 bg-white dark:bg-[#221810]">
+                {% for u in uploads %}
+                <tr class="hover:bg-gray-50 dark:hover:bg-[#2a2420]/50 transition-colors group">
+                  <td class="px-6 py-4 font-medium text-[#181411] dark:text-white">
+                    <div class="flex items-center gap-3">
+                      <div class="w-8 h-8 rounded bg-peach-light/50 dark:bg-primary/10 text-primary flex items-center justify-center">
+                        <span class="material-symbols-outlined text-[18px]">{{ u.icon|default:"description" }}</span>
+                      </div>
+                      <span class="truncate max-w-[260px]">{{ u.file_name }}</span>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4">{% if u.subject %}{{ u.subject.name }}{% else %}{% trans "General" %}{% endif %}</td>
+                  <td class="px-6 py-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">{{ u.kind }}</span>
+                  </td>
+                  <td class="px-6 py-4">{% blocktrans with grade=u.grade %}Grade {{ grade }}{% endblocktrans %}</td>
+                  <td class="px-6 py-4">{{ u.created_at|date:"DATE_FORMAT" }}</td>
+                  <td class="px-6 py-4 text-right">
+                    <div class="flex justify-end gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
+                      <a class="p-1.5 rounded hover:bg-primary/10 text-gray-500 hover:text-primary transition-colors" href="{{ u.admin_change_url }}" title="{% trans 'Edit' %}">
+                        <span class="material-symbols-outlined text-[18px]">edit</span>
+                      </a>
+                      <a class="p-1.5 rounded hover:bg-red-50 text-gray-500 hover:text-red-500 transition-colors" href="{{ u.admin_delete_url }}" title="{% trans 'Delete' %}">
+                        <span class="material-symbols-outlined text-[18px]">delete</span>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td class="px-6 py-10 text-center text-gray-500" colspan="6">{% trans "No uploads yet." %}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          {% if page_obj and page_obj.paginator.num_pages > 1 %}
+          <div class="mt-4 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="text-xs text-gray-500">{% blocktrans with page=page_obj.number site_content=page_obj.paginator.num_pages %}Page {{ page }} of {{ site_content }}{% endblocktrans %}</div>
+            <div class="flex gap-2">
+              {% if page_obj.has_previous %}
+              <a class="px-3 py-2 text-xs font-medium rounded border border-gray-200 dark:border-gray-700 hover:bg-white dark:hover:bg-[#2a2420] text-gray-600 dark:text-gray-300" href="?page={{ page_obj.previous_page_number }}{{ querystring }}">{% trans "Previous" %}</a>
+              {% endif %}
+              {% if page_obj.has_next %}
+              <a class="px-3 py-2 text-xs font-medium rounded border border-gray-200 dark:border-gray-700 hover:bg-white dark:hover:bg-[#2a2420] text-gray-600 dark:text-gray-300" href="?page={{ page_obj.next_page_number }}{{ querystring }}">{% trans "Next" %}</a>
+              {% endif %}
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const buttons = Array.from(document.querySelectorAll("[data-tab-btn]"));
+    const panels = Array.from(document.querySelectorAll("[data-tab-panel]"));
+    if (!buttons.length || !panels.length) return;
+
+    const setActive = (key) => {
+      panels.forEach((panel) => {
+        panel.classList.toggle("hidden", panel.getAttribute("data-tab-panel") !== key);
+      });
+
+      const url = new URL(window.location.href);
+      url.searchParams.set("tab", key);
+      window.history.replaceState({}, "", url.toString());
+
+      buttons.forEach((btn) => {
+        const active = btn.getAttribute("data-tab-btn") === key;
+        btn.classList.toggle("border-primary", active);
+        btn.classList.toggle("text-primary", active);
+        btn.classList.toggle("border-transparent", !active);
+      });
+    };
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => setActive(btn.getAttribute("data-tab-btn")));
+    });
+  })();
+</script>
+
+{% endblock %}

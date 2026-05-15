@@ -1,0 +1,724 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ block.super }}{% endblock %}
+{% block extra_head %}
+<style>
+  .campus-map-surface {
+    position: relative;
+    border-radius: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: hidden;
+  }
+
+  .campus-map-surface img {
+    width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .campus-preview {
+    border-radius: 0;
+    border: 0;
+    overflow: hidden;
+    background: transparent;
+    color: #181411;
+    box-shadow: none;
+  }
+
+  .dark .campus-preview {
+    background: transparent;
+    color: #f8efe6;
+  }
+
+  .campus-preview img {
+    width: 100%;
+    height: 9rem;
+    object-fit: cover;
+    display: block;
+  }
+
+  .campus-zone-hit {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--w);
+    height: var(--h);
+    background: rgba(10, 10, 10, 0.02);
+    cursor: pointer;
+    z-index: 10;
+    pointer-events: auto;
+    transition: background 160ms ease, border-color 160ms ease;
+  }
+
+  .campus-zone-hit::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1.05rem;
+    height: 1.05rem;
+    border-radius: 50%;
+    border: 2px solid rgba(240, 139, 66, 0.95);
+    background: rgba(255, 255, 255, 0.97);
+    pointer-events: none;
+    box-shadow: 0 0 0 2px rgba(24, 20, 17, 0.22);
+    animation: campusPulse 2s ease-out infinite;
+  }
+
+  .dark .campus-zone-hit::after {
+    border-color: rgba(255, 255, 255, 0.85);
+  }
+
+  .campus-zone-hit:hover,
+  .campus-zone-hit:focus-visible,
+  .campus-zone-hit--active {
+    background: rgba(240, 139, 66, 0.16);
+    border-color: rgba(240, 139, 66, 0.85);
+  }
+
+  .campus-zone-hit--disabled,
+  .campus-zone-hit--disabled:hover,
+  .campus-zone-hit--disabled:focus-visible {
+    background: transparent;
+    border-color: transparent;
+    cursor: not-allowed;
+    outline: none;
+  }
+
+  .campus-zone-hit--disabled::after {
+    display: none;
+  }
+
+  @keyframes campusPulse {
+    0% { box-shadow: 0 0 0 2px rgba(24, 20, 17, 0.22), 0 0 0 0 rgba(240, 139, 66, 0.35); }
+    70% { box-shadow: 0 0 0 2px rgba(24, 20, 17, 0.22), 0 0 0 10px rgba(240, 139, 66, 0); }
+    100% { box-shadow: 0 0 0 2px rgba(24, 20, 17, 0.22), 0 0 0 0 rgba(240, 139, 66, 0); }
+  }
+
+  .campus-zone-hit:focus-visible {
+    outline: 2px solid rgba(240, 139, 66, 0.95);
+    outline-offset: -2px;
+  }
+
+  .campus-hover-card {
+    position: absolute;
+    z-index: 30;
+    width: min(14rem, calc(100% - 1rem));
+    border-radius: 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    padding: 0.65rem;
+    pointer-events: none;
+  }
+
+  .dark .campus-hover-card {
+    background: rgba(22, 18, 15, 0.96);
+    border-color: rgba(255, 255, 255, 0.16);
+  }
+
+  .campus-hover-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #181411;
+    margin: 0 0 0.45rem 0;
+  }
+
+  .dark .campus-hover-title {
+    color: #f6ede4;
+  }
+
+  .campus-hover-photos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+
+  .campus-hover-photos img {
+    width: 100%;
+    height: 3.1rem;
+    object-fit: cover;
+    border-radius: 0.45rem;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+  }
+
+  .campus-part-btn {
+    border-radius: 9999px;
+    border: 1px solid rgba(24, 20, 17, 0.12);
+    background: rgba(255, 255, 255, 0.92);
+    color: #181411;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.2;
+    padding: 0.45rem 0.8rem;
+    transition: all 150ms ease;
+  }
+
+  .campus-part-btn:hover,
+  .campus-part-btn:focus-visible {
+    border-color: rgba(240, 139, 66, 0.8);
+    color: #c06019;
+    background: rgba(240, 139, 66, 0.12);
+    outline: none;
+  }
+
+  .campus-part-btn--active {
+    border-color: rgba(240, 139, 66, 1);
+    background: rgba(240, 139, 66, 0.2);
+    color: #b55611;
+  }
+
+  .dark .campus-part-btn {
+    background: rgba(31, 26, 22, 0.9);
+    border-color: rgba(255, 255, 255, 0.14);
+    color: #f6ede4;
+  }
+
+  @media (min-width: 1280px) {
+    #campus-map-root.campus-map-layout-split {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    }
+  }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+         <section class="py-16 md:py-24 bg-peach-light/40 dark:bg-[#2a2420]">
+            <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+               <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+                  <div class="w-full md:w-2/5 lg:w-2/5">
+                     <div class="relative group">
+                        <div class="absolute -inset-4 bg-primary/10 rounded-full blur-xl group-hover:bg-primary/20 transition-all duration-500"></div>
+                        <div class="relative aspect-[3/4] w-full rounded-2xl overflow-hidden shadow-xl border-[6px] border-white dark:border-white/5">
+                           {% if school_content and school_content.info_image %}
+                              {% trans "About school" as default_about_school %}
+                              <img alt="{{ school_content.big_info_title|default:default_about_school }}" class="w-full h-full object-cover transform transition-transform duration-700 hover:scale-105" src="{{ school_content.info_image.url }}"/>
+                           {% else %}
+                              <div class="w-full h-full bg-gradient-to-br from-primary/20 to-peach-light flex items-center justify-center">
+                                 <span class="material-symbols-outlined text-primary text-[64px] opacity-70">school</span>
+                              </div>
+                           {% endif %}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="w-full md:w-3/5 lg:w-3/5">
+                     <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#181411] dark:text-white mb-8 font-display leading-tight">
+                        {{ school_content.big_info_title }}
+                     </h2>
+                     <div class="relative">
+                        <div class="space-y-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic">
+                           <p class="text-[#181411] dark:text-gray-300 mb-8 text-lg text-justify">
+                              {{ school_content.big_info_text }}
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         {% if education_types %}
+         <section class="py-16 md:py-24 bg-white dark:bg-background-dark">
+            <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+               <div class="text-center mb-10">
+                  <h2 class="text-[#181411] dark:text-white text-3xl md:text-4xl font-bold leading-tight">
+                     {% trans "Types of Education" %}
+                  </h2>
+                  <p class="text-gray-600 dark:text-gray-300 mt-3">
+                     {% trans "Explore the formats of learning we offer." %}
+                  </p>
+               </div>
+
+               <div class="flex flex-wrap justify-center gap-3 mb-10" data-education-tabs>
+                  {% for item in education_types %}
+                  <button
+                    type="button"
+                    class="px-5 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-sm font-semibold text-[#181411] dark:text-gray-200 hover:border-primary hover:text-primary transition-colors"
+                    data-education-tab="{{ forloop.counter0 }}"
+                  >
+                    {{ item.title }}
+                  </button>
+                  {% endfor %}
+               </div>
+
+               <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                  <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-[#1e1a16]">
+                     <img
+                       alt=""
+                       class="w-full h-[320px] md:h-[420px] object-cover"
+                       data-education-image
+                       src="{% if education_types.0.image %}{{ education_types.0.image.url }}{% endif %}"
+                     />
+                  </div>
+                  <div>
+                     <div data-education-content>
+                        {% for item in education_types %}
+                        <div
+                          data-education-panel="{{ forloop.counter0 }}"
+                          data-image-src="{% if item.image %}{{ item.image.url }}{% endif %}"
+                          class="{% if not forloop.first %}hidden{% endif %}"
+                        >
+                           <h3 class="text-2xl md:text-3xl font-bold text-[#181411] dark:text-white mb-4">
+                              {{ item.title }}
+                           </h3>
+                           <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+                              {{ item.text }}
+                           </p>
+                        </div>
+                        {% endfor %}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         {% endif %}
+
+         <section class="py-16 md:py-24 bg-white dark:bg-background-dark">
+            <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+               <div class="grid grid-cols-1 md:grid-cols-1 gap-12 lg:gap-20">
+                  {% for slogan in slogans %}
+                     <div class="flex flex-col gap-6 p-8 rounded-2xl bg-cream dark:bg-[#1f1a16] border border-primary/10 relative overflow-hidden group hover:shadow-lg transition-all duration-300">
+                        <div class="absolute -right-6 -top-6 w-32 h-32 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors"></div>
+                        <div class="flex items-center gap-4">
+                           <h2 class="text-4xl font-bold text-[#181411] dark:text-white">{{ slogan.title }}</h2>
+                        </div>
+                        <p class="text-[#897261] dark:text-gray-300 leading-relaxed text-3xl">
+                           {{ slogan.text }}
+                        </p>
+                     </div>
+                  {% empty %}
+                     <div class="flex flex-col gap-6 p-8 rounded-2xl bg-cream dark:bg-[#1f1a16] border border-primary/10">
+                        <p class="text-gray-500 dark:text-gray-400">{% trans "No slogans yet." %}</p>
+                     </div>
+                  {% endfor %}
+               </div>
+            </div>
+         </section>
+
+         <section class="py-16 md:py-24 bg-peach-light/40 dark:bg-[#2a2420]">
+            <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+               <div class="flex items-end justify-between gap-6 mb-10">
+                  <div>
+                     <h2 class="text-black text-3xl md:text-4xl font-bold leading-tight">{% trans "Graduates Worldwide" %}</h2>
+                  </div>
+               </div>
+               <script id="graduates-globe-i18n" type="application/json">
+               {                 "featuredLabel": "{% filter escapejs %}{% trans "Featured Journey" %}{% endfilter %}",
+                 "selectPromptTitle": "{% filter escapejs %}{% trans "Select a glowing pin" %}{% endfilter %}",
+                 "selectPromptSubtitle": "{% filter escapejs %}{% trans "to preview graduates and universities." %}{% endfilter %}",
+                 "featuredDefault": "{% filter escapejs %}{% trans "Explore graduate destinations worldwide and see where alumni continue their studies." %}{% endfilter %}",
+                 "graduatesHere": "{% filter escapejs %}{% trans "Graduates here" %}{% endfilter %}",
+                 "noGraduates": "{% filter escapejs %}{% trans "No graduates have been added for this destination yet." %}{% endfilter %}",
+                 "loadError": "{% filter escapejs %}{% trans "Could not load destinations." %}{% endfilter %}",
+                 "loading": "{% filter escapejs %}{% trans "Loading..." %}{% endfilter %}",
+                 "pinHint": "{% filter escapejs %}{% trans "Tap a pin to preview" %}{% endfilter %}",
+                 "destinationsCount": "{% filter escapejs %}{% trans "Destinations: " %}{% endfilter %}",
+                 "pupilsCount": "{% filter escapejs %}{% trans "Pupils: " %}{% endfilter %}",
+                 "pupilsTitle": "{% filter escapejs %}{% trans "Pupils" %}{% endfilter %}",
+                 "infoTitle": "{% filter escapejs %}{% trans "Information" %}{% endfilter %}",
+                 "close": "{% filter escapejs %}{% trans "Close" %}{% endfilter %}",
+                 "next": "{% filter escapejs %}{% trans "Next" %}{% endfilter %}",
+                 "previous": "{% filter escapejs %}{% trans "Previous" %}{% endfilter %}",
+                 "zoomIn": "{% filter escapejs %}{% trans "Zoom in" %}{% endfilter %}",
+                 "zoomOut": "{% filter escapejs %}{% trans "Zoom out" %}{% endfilter %}",
+                 "gradYear": "{% filter escapejs %}{% trans "Class of " %}{% endfilter %}",
+                 "unknownGraduate": "{% filter escapejs %}{% trans "Graduate" %}{% endfilter %}",
+                 "unknownLocation": "{% filter escapejs %}{% trans "Unknown location" %}{% endfilter %}",
+                 "openAssistant": "{% filter escapejs %}{% trans "Open assistant for " %}{% endfilter %}",
+                 "viewOnGlobe": "{% filter escapejs %}{% trans "View on globe" %}{% endfilter %}",
+                 "globeAria": "{% filter escapejs %}{% trans "3D globe showing graduate destinations" %}{% endfilter %}"
+               }
+               </script>
+               <div
+                 id="graduates-globe-root"
+                 data-api-url="{% url 'api-graduate-destinations' %}"
+                 data-earth-map-url="{% static 'core/textures/planets/earth_atmos_2048.jpg' %}"
+                 data-earth-normal-url="{% static 'core/textures/planets/earth_normal_2048.jpg' %}"
+                 data-earth-specular-url="{% static 'core/textures/planets/earth_specular_2048.jpg' %}"
+                 data-i18n-script-id="graduates-globe-i18n"
+               >
+                  <div class="rounded-3xl bg-white/5 border border-white/10 p-8 text-white/80">
+                     {% trans "Loading..." %}
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         <section class="py-16 md:py-24 bg-white dark:bg-background-dark">
+            <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+               <div class="max-w-4xl mb-10 md:mb-12">
+                  <h2 class="text-[#181411] dark:text-white text-3xl md:text-5xl font-bold leading-tight">{% trans "Campus Map" %}</h2>
+                  <p class="text-gray-600 dark:text-gray-300 text-base md:text-lg mt-4">
+                     {% trans "Click the map buttons placed on each zone. Then choose a building part to view its information." %}
+                  </p>
+               </div>
+
+               {{ campus_map_data|json_script:"campus-map-zones" }}
+
+               <div class="grid grid-cols-1 gap-7 md:gap-10" id="campus-map-root" data-default-zone="">
+                  <div>
+                     <div class="campus-map-surface" data-campus-map>
+                        <img alt="{% trans 'Updated school campus plan' %}" src="{% static 'core/images/campus/school-plan-v2.png' %}"/>
+                        {% for zone in campus_map_zones %}
+                           <button
+                             type="button"
+                             class="campus-zone-hit{% if not zone.is_clickable %} campus-zone-hit--disabled{% endif %}"
+                             data-campus-zone-hit="{{ zone.zone }}"
+                             style="--x: {{ zone.x_pct }}%; --y: {{ zone.y_pct }}%; --w: {{ zone.width_pct }}%; --h: {{ zone.height_pct }}%;"
+                             {% if not zone.is_clickable %}disabled aria-disabled="true"{% endif %}
+                           >
+                              <span class="sr-only">{{ zone.title|default:zone.get_zone_display }}</span>
+                           </button>
+                        {% endfor %}
+                        <div class="campus-hover-card hidden" data-campus-hover-card>
+                           <p class="campus-hover-title" data-campus-hover-title></p>
+                           <div class="campus-hover-photos" data-campus-hover-photos></div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <aside class="campus-preview overflow-hidden hidden" data-campus-detail-panel>
+                     <img alt="" class="w-full h-52 object-cover bg-[#181411]/5 dark:bg-white/10 hidden" data-campus-detail-image src=""/>
+                     <div class="p-6 md:p-8">
+                        <h3 class="text-2xl md:text-3xl font-bold text-[#181411] dark:text-white leading-tight" data-campus-detail-title></h3>
+                        <p class="text-gray-600 dark:text-gray-300 mt-4 leading-relaxed" data-campus-detail-description></p>
+                        <div class="flex flex-wrap gap-2" data-campus-part-buttons></div>
+
+                        <div class="hidden mt-6" data-campus-part-detail>
+                           <img alt="" class="w-full h-44 object-cover rounded-xl hidden mb-4" data-campus-part-image src=""/>
+                           <h5 class="text-xl font-semibold text-[#181411] dark:text-white" data-campus-part-title></h5>
+                           <p class="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed" data-campus-part-description></p>
+                        </div>
+                     </div>
+                  </aside>
+               </div>
+            </div>
+         </section>
+
+         <section class="py-16 bg-peach-light/30 dark:bg-[#251e19]">
+            <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+               <div class="text-center max-w-2xl mx-auto mb-16">
+                  <h2 class="text-[#181411] dark:text-white text-3xl md:text-4xl font-bold leading-tight">{% trans "Wall of Fame" %}</h2>
+               </div>
+               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {% for r in competition_winners %}
+                     <div class="bg-white dark:bg-[#1e1e1e] rounded-xl p-6 shadow-md border border-gray-100 dark:border-gray-800 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <div class="w-24 h-24 rounded-full overflow-hidden mb-4 ring-4 ring-peach-light dark:ring-primary/20">
+                           {% if r.student.image %}
+                              <img alt="{{ r.student.full_name }}" class="w-full h-full object-cover" src="{{ r.student.image.url }}"/>
+                           {% else %}
+                              <div class="w-full h-full bg-primary/10 flex items-center justify-center">
+                                 <span class="text-primary font-bold text-3xl">{{ r.student.full_name|slice:":1" }}</span>
+                              </div>
+                           {% endif %}
+                        </div>
+                        <h3 class="text-xl font-bold text-[#181411] dark:text-white">{{ r.student.full_name }}</h3>
+                        <p class="text-primary font-medium text-sm mb-4">
+                           {% if r.student.school_class %}{{ r.student.school_class }}{% else %}{{ r.year }}{% endif %}
+                        </p>
+                        <div class="w-full h-px bg-gray-100 dark:bg-gray-800 mb-4"></div>
+                        <p class="text-gray-600 dark:text-gray-300 font-bold text-lg leading-tight">
+                           {{ r.title }}{% if r.year %} <span class="font-medium text-sm text-gray-500 dark:text-gray-400">({{ r.year }})</span>{% endif %}
+                           {% if r.result_place %}<br/> <span class="text-yellow-500">{{ r.result_place }}</span>{% endif %}
+                        </p>
+                     </div>
+                  {% empty %}
+                     <p class="text-center text-gray-500 dark:text-gray-400 col-span-full">{% trans "No competition results yet." %}</p>
+                  {% endfor %}
+               </div>
+            </div>
+         </section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script defer src="{% static 'core/vendor/react/react.production.min.js' %}"></script>
+<script defer src="{% static 'core/vendor/react-dom/react-dom.production.min.js' %}"></script>
+<script>
+  (function () {
+    const tabsRoot = document.querySelector("[data-education-tabs]");
+    const panels = document.querySelectorAll("[data-education-panel]");
+    const image = document.querySelector("[data-education-image]");
+    if (!tabsRoot || !panels.length) return;
+
+    const buttons = Array.from(tabsRoot.querySelectorAll("[data-education-tab]"));
+    const setActive = (index) => {
+      panels.forEach((panel) => panel.classList.add("hidden"));
+      const active = panels[index];
+      if (active) active.classList.remove("hidden");
+      buttons.forEach((btn) => btn.classList.remove("border-primary", "text-primary"));
+      const btn = buttons[index];
+      if (btn) btn.classList.add("border-primary", "text-primary");
+
+      if (image && active) {
+        const imgSrc = active.getAttribute("data-image-src");
+        if (imgSrc) image.src = imgSrc;
+      }
+    };
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = Number(btn.getAttribute("data-education-tab") || 0);
+        setActive(idx);
+      });
+    });
+
+    setActive(0);
+  })();
+</script>
+<script type="module">
+  const root = document.getElementById("graduates-globe-root");
+  const showMessage = (title, message) => {
+    if (!root) return;
+    root.innerHTML = `
+      <div class="rounded-3xl bg-white/5 border border-white/10 p-8 text-white/80">
+        <div class="font-bold text-white mb-2">${title}</div>
+        <div class="text-sm text-white/70 leading-relaxed">${message}</div>
+      </div>
+    `;
+  };
+
+  const waitForGlobals = (timeoutMs = 8000) =>
+    new Promise((resolve, reject) => {
+      const start = Date.now();
+      const tick = () => {
+        if (window.React && window.ReactDOM && window.THREE) return resolve();
+        if (Date.now() - start > timeoutMs) return reject(new Error("Deps not loaded"));
+        setTimeout(tick, 50);
+      };
+      tick();
+    });
+
+  import("{% static 'core/vendor/three/three.module.js' %}")
+    .then((THREE) => {
+      window.THREE = THREE;
+      return waitForGlobals();
+    })
+    .then(() => {
+      const s = document.createElement("script");
+      s.src = "{% static 'core/js/graduates-globe.js' %}";
+      s.defer = true;
+      document.head.appendChild(s);
+    })
+    .catch(() => {
+      showMessage(
+        "3D globe unavailable",
+        "Required scripts failed to load. Check that static files are served (and not blocked by a Content-Security-Policy).",
+      );
+    });
+</script>
+<script>
+  (() => {
+    const root = document.getElementById("campus-map-root");
+    const zonesScript = document.getElementById("campus-map-zones");
+    if (!root || !zonesScript) return;
+
+    let zones;
+    try {
+      zones = JSON.parse(zonesScript.textContent || "{}");
+    } catch (_err) {
+      return;
+    }
+    const zoneHits = Array.from(root.querySelectorAll("[data-campus-zone-hit]"));
+    const detailPanel = root.querySelector("[data-campus-detail-panel]");
+    const detailImage = root.querySelector("[data-campus-detail-image]");
+    const detailTitle = root.querySelector("[data-campus-detail-title]");
+    const detailDescription = root.querySelector("[data-campus-detail-description]");
+    const partButtonsWrap = root.querySelector("[data-campus-part-buttons]");
+    const partDetailWrap = root.querySelector("[data-campus-part-detail]");
+    const partImage = root.querySelector("[data-campus-part-image]");
+    const partTitle = root.querySelector("[data-campus-part-title]");
+    const partDescription = root.querySelector("[data-campus-part-description]");
+    const mapSurface = root.querySelector("[data-campus-map]");
+    const hoverCard = root.querySelector("[data-campus-hover-card]");
+    const hoverTitle = root.querySelector("[data-campus-hover-title]");
+    const hoverPhotos = root.querySelector("[data-campus-hover-photos]");
+
+    if (!zoneHits.length) return;
+
+    const hasZoneInformation = (zone) => {
+      if (!zone) return false;
+      const hasText = Boolean((zone.title || "").trim() || (zone.description || "").trim());
+      const hasImage = Boolean(zone.image);
+      const hasParts = Array.isArray(zone.parts) && zone.parts.length > 0;
+      return hasText || hasImage || hasParts;
+    };
+
+    const clearPartDetail = () => {
+      if (!partDetailWrap || !partTitle || !partDescription || !partImage) return;
+      partTitle.textContent = "";
+      partDescription.textContent = "";
+      partImage.src = "";
+      partImage.alt = "";
+      partImage.classList.add("hidden");
+      partDetailWrap.classList.add("hidden");
+    };
+
+    const clearZoneDetail = () => {
+      if (!detailTitle || !detailDescription || !detailImage || !partButtonsWrap) return;
+      detailTitle.textContent = "";
+      detailDescription.textContent = "";
+      detailImage.src = "";
+      detailImage.alt = "";
+      detailImage.classList.add("hidden");
+      partButtonsWrap.innerHTML = "";
+      clearPartDetail();
+    };
+
+    const hideDetailPanel = () => {
+      clearZoneDetail();
+      detailPanel?.classList.add("hidden");
+      root.classList.remove("campus-map-layout-split");
+    };
+
+    const showDetailPanel = () => {
+      detailPanel?.classList.remove("hidden");
+      root.classList.add("campus-map-layout-split");
+    };
+
+    const collectHoverPhotos = (zone) => {
+      if (!zone) return [];
+      const photos = [];
+      if (zone.image) photos.push(zone.image);
+      const parts = Array.isArray(zone.parts) ? zone.parts : [];
+      parts.forEach((part) => {
+        if (part?.image) photos.push(part.image);
+      });
+      return Array.from(new Set(photos)).slice(0, 4);
+    };
+
+    const hideHoverCard = () => {
+      if (!hoverCard) return;
+      hoverCard.classList.add("hidden");
+    };
+
+    const showHoverCard = (zoneId, zoneButton) => {
+      const zone = zones[zoneId];
+      if (!zone || !mapSurface || !hoverCard || !hoverTitle || !hoverPhotos) return;
+
+      const title = (zone.title || "").trim() || zoneId;
+      hoverTitle.textContent = title;
+      const photos = collectHoverPhotos(zone);
+      hoverPhotos.innerHTML = "";
+      photos.forEach((photoUrl, index) => {
+        const img = document.createElement("img");
+        img.src = photoUrl;
+        img.alt = `${title} photo ${index + 1}`;
+        img.loading = "lazy";
+        hoverPhotos.appendChild(img);
+      });
+      hoverPhotos.classList.toggle("hidden", photos.length === 0);
+
+      hoverCard.classList.remove("hidden");
+
+      const mapRect = mapSurface.getBoundingClientRect();
+      const hitRect = zoneButton.getBoundingClientRect();
+      const cardRect = hoverCard.getBoundingClientRect();
+
+      let left = hitRect.right - mapRect.left + 10;
+      let top = hitRect.top - mapRect.top - 6;
+
+      if (left + cardRect.width > mapRect.width - 8) {
+        left = hitRect.left - mapRect.left - cardRect.width - 10;
+      }
+      if (left < 8) left = 8;
+      if (top + cardRect.height > mapRect.height - 8) {
+        top = mapRect.height - cardRect.height - 8;
+      }
+      if (top < 8) top = 8;
+
+      hoverCard.style.left = `${left}px`;
+      hoverCard.style.top = `${top}px`;
+    };
+
+    const setActivePart = (part, buttonEl) => {
+      if (!part || !partDetailWrap || !partTitle || !partDescription || !partImage || !partButtonsWrap) return;
+
+      Array.from(partButtonsWrap.querySelectorAll(".campus-part-btn")).forEach((btn) => {
+        btn.classList.toggle("campus-part-btn--active", btn === buttonEl);
+      });
+
+      partTitle.textContent = part.title || "";
+      partDescription.textContent = part.description || "";
+      if (part.image) {
+        partImage.src = part.image;
+        partImage.alt = part.title || "";
+        partImage.classList.remove("hidden");
+      } else {
+        partImage.src = "";
+        partImage.alt = "";
+        partImage.classList.add("hidden");
+      }
+      partDetailWrap.classList.remove("hidden");
+    };
+
+    const setActiveZone = (zoneId) => {
+      const zone = zones[zoneId];
+      if (!zone || zone.is_clickable === false || !detailTitle || !detailDescription || !detailImage || !partButtonsWrap)
+        return;
+
+      zoneHits.forEach((hit) => {
+        const active = hit.getAttribute("data-campus-zone-hit") === zoneId;
+        hit.classList.toggle("campus-zone-hit--active", active);
+        hit.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+
+      if (!hasZoneInformation(zone)) {
+        hideDetailPanel();
+        return;
+      }
+
+      showDetailPanel();
+
+      detailTitle.textContent = zone.title || "";
+      detailDescription.textContent = zone.description || "";
+      if (zone.image) {
+        detailImage.src = zone.image;
+        detailImage.alt = zone.title || "";
+        detailImage.classList.remove("hidden");
+      } else {
+        detailImage.src = "";
+        detailImage.alt = "";
+        detailImage.classList.add("hidden");
+      }
+
+      partButtonsWrap.innerHTML = "";
+      clearPartDetail();
+
+      const parts = Array.isArray(zone.parts) ? zone.parts : [];
+      parts.forEach((part, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "campus-part-btn";
+        btn.textContent = part.title || `Part ${idx + 1}`;
+        btn.addEventListener("click", () => setActivePart(part, btn));
+        partButtonsWrap.appendChild(btn);
+      });
+    };
+
+    zoneHits.forEach((hit) => {
+      const zoneId = hit.getAttribute("data-campus-zone-hit");
+      if (!zoneId || zones[zoneId]?.is_clickable === false) return;
+
+      hit.addEventListener("click", () => setActiveZone(zoneId));
+      hit.addEventListener("mouseenter", () => showHoverCard(zoneId, hit));
+      hit.addEventListener("focus", () => showHoverCard(zoneId, hit));
+      hit.addEventListener("mouseleave", hideHoverCard);
+      hit.addEventListener("blur", hideHoverCard);
+    });
+
+    hideDetailPanel();
+    hideHoverCard();
+
+  })();
+</script>
+{% endblock %}

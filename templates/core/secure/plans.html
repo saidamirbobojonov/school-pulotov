@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ block.super }}{% endblock %}
+
+{% block content %}
+
+<section class="bg-peach-light/40 dark:bg-[#2a2420] pt-16 pb-24 md:pt-24 md:pb-32 relative overflow-hidden">
+  <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto text-center relative z-10">
+    {% trans "Plans" as default_page_title %}
+    {% with page_title=active_menu_item.title|default:default_page_title %}
+    <div class="flex items-center justify-center gap-2 text-sm font-medium opacity-80 mb-4 text-[#181411] dark:text-white">
+      <a class="hover:text-primary transition-colors" href="{% url 'index' %}">{% trans "Home" %}</a>
+      <span class="material-symbols-outlined text-xs">chevron_right</span>
+      <span class="text-primary">{{ page_title }}</span>
+    </div>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#181411] dark:text-white mb-6 font-display">{{ page_title }}</h1>
+    {% endwith %}
+    <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+      {% trans "Review lesson plans and download supporting materials." %}
+    </p>
+  </div>
+</section>
+
+<div class="px-6 md:px-20 lg:px-40 -mt-16 relative z-20 mb-16">
+  <div class="max-w-[1440px] mx-auto bg-white dark:bg-[#1f1a16] p-4 md:p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800">
+    <form class="flex flex-col lg:flex-row gap-4 items-center" method="get">
+      <div class="relative flex-1 w-full">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">search</span>
+        <input class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none transition-all" name="q" placeholder="{% trans 'Search plans...' %}" type="text" value="{{ search_query }}"/>
+      </div>
+
+      {% if grades %}
+      <div class="relative w-full lg:w-1/4">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">school</span>
+        <select class="w-full pl-12 pr-10 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none appearance-none cursor-pointer transition-all" name="class">
+          <option value="">{% trans "All Classes" %}</option>
+          {% for g in grades %}
+          <option value="{{ g }}" {% if selected_grade|stringformat:"s" == g|stringformat:"s" %}selected{% endif %}>{% blocktrans with grade=g %}Grade {{ grade }}{% endblocktrans %}</option>
+          {% endfor %}
+        </select>
+        <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">expand_more</span>
+      </div>
+      {% endif %}
+
+      <div class="relative w-full lg:w-1/4">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">category</span>
+        <select class="w-full pl-12 pr-10 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none appearance-none cursor-pointer transition-all" name="subject">
+          <option value="">{% trans "All Subjects" %}</option>
+          {% for s in subjects %}
+          <option value="{{ s.pk }}" {% if active_subject|stringformat:"s" == s.pk|stringformat:"s" %}selected{% endif %}>{{ s.name }}</option>
+          {% endfor %}
+        </select>
+        <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">expand_more</span>
+      </div>
+
+      <button class="w-full lg:w-auto px-8 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl transition-colors shadow-md shadow-primary/20 flex items-center justify-center gap-2" type="submit">
+        <span>{% trans "Search" %}</span>
+      </button>
+    </form>
+
+    {% if needs_profile %}
+    <div class="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+      {% trans "Your account is not linked to a student profile. Ask admin to connect your user to a Student (class) record." %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<section class="py-12 md:py-16 bg-background-light dark:bg-[#1a1614] min-h-[600px]">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+    <div class="flex flex-col xl:flex-row gap-10">
+      <div class="w-full xl:w-2/3 flex flex-col gap-6">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-[#181411] dark:text-white flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary">edit_document</span>
+            {% trans "Lesson Plans" %}
+          </h2>
+          {% if page_obj %}
+          <div class="text-sm text-gray-500 dark:text-gray-400">
+            {% blocktrans with start=page_obj.start_index end=page_obj.end_index total=total_plans %}Showing {{ start }}–{{ end }} of {{ total }}{% endblocktrans %}
+          </div>
+          {% endif %}
+        </div>
+
+        {% if plans %}
+        <div class="space-y-6">
+          {% for plan in plans %}
+          <div class="bg-white dark:bg-[#221810] rounded-2xl border border-gray-100 dark:border-gray-800 p-6 md:p-8 shadow-sm hover:shadow-md transition-all">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+              <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-3 text-sm text-gray-500 dark:text-gray-400 mb-2">
+                  {% if plan.date %}
+                  <span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[18px] text-primary">event</span>{{ plan.date|date:"DATE_FORMAT" }}</span>
+                  {% endif %}
+                  <span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[18px] text-primary">category</span>{{ plan.subject.name }}</span>
+                  <span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[18px] text-primary">school</span>{% blocktrans with grade=plan.grade %}Grade {{ grade }}{% endblocktrans %}</span>
+                  {% if plan.teacher %}
+                  <span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[18px] text-primary">person</span>{{ plan.teacher.full_name }}</span>
+                  {% endif %}
+                </div>
+                <h3 class="text-2xl font-bold text-[#181411] dark:text-white">{{ plan.title }}</h3>
+                {% if plan.description %}
+                <p class="text-sm text-gray-600 dark:text-gray-300 mt-3 leading-relaxed">
+                  {{ plan.description|striptags|truncatechars:320 }}
+                </p>
+                {% endif %}
+              </div>
+              <div class="shrink-0 text-sm text-gray-500 dark:text-gray-400">
+                {% blocktrans count count=plan.materials.count %}{{ count }} material{% plural %}{{ count }} materials{% endblocktrans %}
+              </div>
+            </div>
+
+            {% if plan.materials.all %}
+            <div class="mt-6 pt-6 border-t border-gray-100 dark:border-gray-800">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {% for m in plan.materials.all %}
+                <div class="flex items-center justify-between gap-3 rounded-xl bg-background-light dark:bg-[#1a1614] border border-gray-100 dark:border-gray-800 px-4 py-3">
+                  <div class="min-w-0">
+                    {% trans "Material" as default_material %}
+                    <div class="text-sm font-bold text-[#181411] dark:text-white truncate">{{ m.title|default:default_material }}</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400 truncate">
+                      {% if m.file %}{% trans "File" %}{% elif m.youtube_link %}{% trans "YouTube" %}{% else %}{% trans "Link" %}{% endif %}
+                    </div>
+                  </div>
+                  {% if m.file %}
+                  <a class="shrink-0 inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-primary text-white text-xs font-bold hover:bg-primary-dark transition-colors" href="{{ m.file.url }}" target="_blank" rel="noopener noreferrer">
+                    <span class="material-symbols-outlined text-[16px]">download</span>
+                    {% trans "Download" %}
+                  </a>
+                  {% elif m.youtube_link %}
+                  <a class="shrink-0 inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-peach-light dark:bg-primary/20 text-primary-dark dark:text-primary text-xs font-bold hover:bg-peach-light/80 dark:hover:bg-primary/30 transition-colors" href="{{ m.youtube_link }}" target="_blank" rel="noopener noreferrer">
+                    <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                    {% trans "Open" %}
+                  </a>
+                  {% else %}
+                  <a class="shrink-0 inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 text-xs font-bold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" href="{{ m.external_link }}" target="_blank" rel="noopener noreferrer">
+                    <span class="material-symbols-outlined text-[16px]">link</span>
+                    {% trans "Open" %}
+                  </a>
+                  {% endif %}
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="rounded-2xl bg-white dark:bg-[#221810] border border-gray-100 dark:border-gray-800 p-10 text-center text-gray-600 dark:text-gray-300">
+          {% trans "No plans found." %}
+        </div>
+        {% endif %}
+
+        {% if page_obj and page_obj.paginator.num_pages > 1 %}
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-gray-100 dark:border-gray-800">
+          <div class="text-sm text-gray-500 dark:text-gray-400">{% blocktrans with page=page_obj.number site_content=page_obj.paginator.num_pages %}Page {{ page }} of {{ site_content }}{% endblocktrans %}</div>
+          <div class="flex items-center gap-2 flex-wrap justify-center">
+            {% if page_obj.has_previous %}
+            <a class="px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm" href="?page={{ page_obj.previous_page_number }}{{ querystring }}">{% trans "Prev" %}</a>
+            {% endif %}
+            {% for n in page_obj.paginator.page_range %}
+            {% if n == page_obj.number %}
+            <span class="px-3 py-2 rounded-lg bg-primary text-white text-sm font-bold">{{ n }}</span>
+            {% else %}
+            <a class="px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm" href="?page={{ n }}{{ querystring }}">{{ n }}</a>
+            {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <a class="px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm" href="?page={{ page_obj.next_page_number }}{{ querystring }}">{% trans "Next" %}</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+      <aside class="w-full xl:w-1/3 space-y-6">
+        <div class="bg-white dark:bg-[#221810] rounded-2xl border border-gray-100 dark:border-gray-800 p-6">
+          <h3 class="font-bold text-[#181411] dark:text-white flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">tips_and_updates</span>
+            {% trans "Tips" %}
+          </h3>
+          <ul class="mt-4 space-y-3 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><span class="material-symbols-outlined text-primary text-[18px]">search</span>{% trans "Use search to find a topic fast." %}</li>
+            <li class="flex gap-2"><span class="material-symbols-outlined text-primary text-[18px]">download</span>{% trans "Materials may be files or links." %}</li>
+            <li class="flex gap-2"><span class="material-symbols-outlined text-primary text-[18px]">school</span>{% trans "If you are a student, only your class plans are shown." %}</li>
+          </ul>
+        </div>
+
+        <div class="bg-white dark:bg-[#221810] rounded-2xl border border-gray-100 dark:border-gray-800 p-6">
+          <h3 class="font-bold text-[#181411] dark:text-white flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">filter_alt</span>
+            {% trans "Active Filters" %}
+          </h3>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs">
+            {% if search_query %}
+            <span class="px-3 py-1 rounded-full bg-peach-light/60 dark:bg-primary/20 text-primary-dark dark:text-primary">{% blocktrans with q=search_query %}q: {{ q }}{% endblocktrans %}</span>
+            {% endif %}
+            {% if active_subject %}
+            <span class="px-3 py-1 rounded-full bg-peach-light/60 dark:bg-primary/20 text-primary-dark dark:text-primary">{% trans "subject" %}</span>
+            {% endif %}
+            {% if selected_grade %}
+            <span class="px-3 py-1 rounded-full bg-peach-light/60 dark:bg-primary/20 text-primary-dark dark:text-primary">{% blocktrans with grade=selected_grade %}grade: {{ grade }}{% endblocktrans %}</span>
+            {% endif %}
+            {% if not search_query and not active_subject and not selected_grade %}
+            <span class="text-gray-500 dark:text-gray-400">{% trans "No filters applied." %}</span>
+            {% endif %}
+          </div>
+          {% if search_query or active_subject or selected_grade %}
+          <div class="mt-5">
+            <a class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary-dark transition-colors" href="{% url 'plans' %}">
+              <span class="material-symbols-outlined text-[18px]">restart_alt</span>
+              {% trans "Clear" %}
+            </a>
+          </div>
+          {% endif %}
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

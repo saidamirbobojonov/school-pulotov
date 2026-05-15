@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ block.super }}{% endblock %}
+
+{% block content %}
+
+<section class="bg-peach-light/40 dark:bg-[#2a2420] py-16 md:py-24 relative overflow-hidden min-h-[400px] flex items-center">
+  {% if club.image %}
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ club.image.url }}');"></div>
+  <div class="absolute inset-0 bg-black/55"></div>
+  {% else %}
+  <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  {% endif %}
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto relative z-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-display {% if club.image %}text-orange-100{% else %}text-[#181411] dark:text-white{% endif %}">
+        {{ club.name }}
+      </h1>
+      {% if club.leader %}
+      <p class="{% if club.image %}text-orange-100/90{% else %}text-gray-600 dark:text-gray-300{% endif %}">
+        {% trans "Leader:" %} <span class="font-bold">{{ club.leader.full_name }}</span>
+      </p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<div class="max-w-[1440px] mx-auto w-full px-6 md:px-20 lg:px-40 py-16">
+  <div class="flex flex-col lg:flex-row gap-16">
+    <article class="w-full lg:w-2/3">
+      {% if club.description %}
+      <div class="font-serif text-lg md:text-xl leading-loose text-gray-700 dark:text-gray-300 space-y-8">
+        {{ club.description|linebreaks }}
+      </div>
+      {% endif %}
+
+      {% if club.schedule_text %}
+      <div class="mt-12">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-2 h-6 bg-primary rounded-full"></div>
+          <h2 class="text-2xl font-bold text-[#181411] dark:text-white">{% trans "Schedule" %}</h2>
+        </div>
+        <div class="text-gray-600 dark:text-gray-300">{{ club.schedule_text|linebreaks }}</div>
+      </div>
+      {% endif %}
+
+      {% if gallery_images %}
+      <div class="mt-14">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-2 h-6 bg-primary rounded-full"></div>
+          <h2 class="text-2xl font-bold text-[#181411] dark:text-white">{% trans "Gallery" %}</h2>
+        </div>
+        <div class="relative" data-carousel data-carousel-autoplay="5000" tabindex="0">
+          <div class="relative aspect-[4/3] rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 bg-gray-100 dark:bg-white/5">
+            {% for item in gallery_images %}
+            <button class="absolute inset-0 transition-opacity duration-500 opacity-0 pointer-events-none" type="button" data-carousel-slide data-lightbox-item data-lightbox-group="club-gallery" data-lightbox-src="{{ item.image.url }}">
+              <img alt="{{ item.caption|default:club.name }}" class="w-full h-full object-cover" src="{{ item.image.url }}"/>
+              {% if item.caption %}
+              <span class="hidden" data-lightbox-caption>{{ item.caption }}</span>
+              <div class="absolute bottom-0 left-0 right-0 p-4 text-left text-sm text-white bg-gradient-to-t from-black/70 to-transparent">
+                {{ item.caption }}
+              </div>
+              {% endif %}
+            </button>
+            {% endfor %}
+          </div>
+
+          <button class="absolute left-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full bg-black/30 hover:bg-black/40 border border-white/10 text-white w-11 h-11 transition-colors" type="button" data-carousel-prev aria-label="{% trans 'Previous' %}">
+            <span class="material-symbols-outlined">chevron_left</span>
+          </button>
+          <button class="absolute right-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full bg-black/30 hover:bg-black/40 border border-white/10 text-white w-11 h-11 transition-colors" type="button" data-carousel-next aria-label="{% trans 'Next' %}">
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
+
+          <div class="mt-4 flex items-center gap-2 overflow-x-auto no-scrollbar py-1" data-carousel-thumbs>
+            {% for item in gallery_images %}
+            <button class="h-14 w-20 shrink-0 rounded-lg overflow-hidden ring-2 ring-transparent hover:ring-primary/60 transition" type="button" data-carousel-thumb aria-label="{{ forloop.counter }}">
+              <img alt="{{ item.caption|default:club.name }}" class="h-full w-full object-cover" src="{{ item.image.url }}"/>
+            </button>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </article>
+
+    <aside class="w-full lg:w-1/3">
+      <div class="sticky top-24 space-y-8">
+        <div class="bg-white dark:bg-[#1f1a16] rounded-2xl p-6 border border-gray-100 dark:border-gray-800">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="font-bold text-lg text-[#181411] dark:text-white">{% trans "More Clubs" %}</h3>
+            <a class="text-primary font-bold text-sm hover:underline flex items-center gap-1" href="{% url 'clubs' %}">
+              {% trans "View All" %} <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+          <div class="space-y-5">
+            {% for c in more_clubs %}
+            <a class="group flex gap-4 items-start" href="{% url 'club-detail' c.slug %}">
+              <div class="w-24 h-20 rounded-xl overflow-hidden bg-gray-100 dark:bg-white/5 shrink-0">
+                {% if c.image %}
+                <img alt="{{ c.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ c.image.url }}"/>
+                {% endif %}
+              </div>
+              <div>
+                <h4 class="font-bold text-[#181411] dark:text-white text-sm leading-snug group-hover:text-primary transition-colors">{{ c.name }}</h4>
+              </div>
+            </a>
+            {% empty %}
+            <div class="text-sm text-gray-500 dark:text-gray-400">{% trans "No more clubs." %}</div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+{% endblock %}

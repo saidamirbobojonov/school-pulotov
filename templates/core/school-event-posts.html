@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{{ activity.name }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<section class="relative w-full h-[500px] md:h-[600px] overflow-hidden" id="activityHeroSlider">
+  {% if hero_posts %}
+  {% for post in hero_posts %}
+  <div class="absolute inset-0 transition-opacity duration-700 {% if forloop.first %}opacity-100{% else %}opacity-0{% endif %}" data-activity-hero-slide="{{ forloop.counter0 }}">
+    {% if post.cover %}
+    <img alt="{{ post.title }}" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" decoding="async"{% if forloop.first %} loading="eager" fetchpriority="high"{% else %} loading="lazy"{% endif %} src="{{ post.cover.url }}"/>
+    {% elif post.event.image %}
+    <img alt="{{ post.title }}" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" decoding="async"{% if forloop.first %} loading="eager" fetchpriority="high"{% else %} loading="lazy"{% endif %} src="{{ post.event.image.url }}"/>
+    {% else %}
+    <div class="absolute inset-0 bg-gradient-to-r from-[#1d140f] to-[#4b2e1e]"></div>
+    {% endif %}
+    <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/15"></div>
+    <div class="relative h-full layout-container px-6 md:px-20 lg:px-40 flex flex-col justify-center max-w-[1400px] mx-auto">
+      <div class="max-w-[700px] space-y-6">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-orange-100 text-xs font-bold uppercase tracking-wide">
+        <h1 class="text-white text-4xl md:text-5xl font-bold leading-tight drop-shadow-sm">
+          {{ post.title }}
+        </h1>
+        <p class="text-orange-100/90 text-base md:text-lg leading-relaxed drop-shadow-sm">
+          {{ post.body|striptags|truncatechars:220|default:activity.description }}
+        </p>
+        <div class="flex flex-wrap gap-3 pt-2">
+          <a class="h-11 px-6 rounded-lg bg-primary hover:bg-primary-dark text-white font-bold transition-colors inline-flex items-center justify-center" href="{% url detail_url_name post.event_id %}">
+            {% trans "Open Event" %}
+          </a>
+          <a class="h-11 px-6 rounded-lg bg-white/10 hover:bg-white/20 border border-white/25 text-white font-bold transition-colors inline-flex items-center justify-center" href="#activity-overview">
+            {% trans "Overview" %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+    {% for post in hero_posts %}
+    <button class="h-2.5 w-2.5 rounded-full bg-white/40 hover:bg-white/80 transition" data-activity-hero-dot="{{ forloop.counter0 }}" type="button"></button>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="absolute inset-0 bg-gradient-to-r from-[#1d140f] to-[#4b2e1e]"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+  <div class="relative h-full layout-container px-6 md:px-20 lg:px-40 flex flex-col justify-center max-w-[1400px] mx-auto">
+    <div class="max-w-[650px] space-y-6">
+      <h1 class="text-white text-4xl md:text-5xl font-bold leading-tight drop-shadow-sm">
+        {{ activity.name }}
+      </h1>
+      <p class="text-orange-100/90 text-lg md:text-xl leading-relaxed drop-shadow-sm">
+        {{ activity.description }}
+      </p>
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+<section class="py-16 md:py-24 bg-peach-light/40 dark:bg-[#2a2420]" id="activity-overview">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+    <div class="max-w-5xl">
+      <div class="flex items-center justify-between gap-4 mb-4">
+        <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          {% trans "Overview" %}
+        </span>
+        <span class="text-sm text-gray-600 dark:text-gray-300">
+          {% blocktrans count count=posts_count %}{{ count }} post{% plural %}{{ count }} posts{% endblocktrans %}
+        </span>
+      </div>
+      {% if activity_nav_buttons %}
+      <div class="mb-8">
+        {% if activity_nav_parent_title %}
+        <p class="text-sm font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-3">
+          {{ activity_nav_parent_title }}
+        </p>
+        {% endif %}
+        <div class="flex flex-wrap gap-2">
+          {% for item in activity_nav_buttons %}
+          <a class="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium border transition-colors {% if item.is_active %}bg-primary text-white border-primary{% else %}bg-white dark:bg-white/5 text-[#181411] dark:text-gray-200 border-primary/25 hover:bg-peach-light/70 dark:hover:bg-white/10{% endif %}" href="{{ item.url }}">
+            {{ item.title }}
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#181411] dark:text-white mb-8 font-display leading-tight">
+        {{ activity.overview_title }}
+      </h2>
+      <div class="relative">
+        <div class="space-y-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic">
+          <p class="text-[#181411] dark:text-gray-300 mb-8 text-lg text-justify">
+            {{ activity.overview_text }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-white dark:bg-background-dark min-h-[45vh]">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <h2 class="text-[#181411] dark:text-white text-3xl font-bold leading-tight tracking-[-0.015em]">{% trans "Gallery" %}</h2>
+    </div>
+
+    {% if gallery_items %}
+    <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+      {% for item in gallery_items %}
+      <button class="break-inside-avoid relative group rounded-xl overflow-hidden w-full text-left focus:outline-none focus:ring-2 focus:ring-primary/70" type="button" data-lightbox-item data-lightbox-group="activity-gallery" data-lightbox-src="{{ item.url }}">
+        <img alt="{{ item.alt }}" class="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-700" src="{{ item.url }}"/>
+        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+          <span class="material-symbols-outlined text-white text-4xl">visibility</span>
+        </div>
+        {% if item.caption %}<span class="hidden" data-lightbox-caption>{{ item.caption }}</span>{% endif %}
+      </button>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="rounded-2xl p-8 border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1f1a16] text-center">
+      <p class="text-gray-600 dark:text-gray-300">{% trans "Gallery will appear here after photos are added in this album." %}</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+  (function () {
+    const slider = document.getElementById("activityHeroSlider");
+    if (!slider) return;
+    const slides = Array.from(slider.querySelectorAll("[data-activity-hero-slide]"));
+    const dots = Array.from(slider.querySelectorAll("[data-activity-hero-dot]"));
+    if (slides.length <= 1) return;
+
+    let index = 0;
+    let timerId = null;
+
+    function show(i) {
+      index = (i + slides.length) % slides.length;
+      slides.forEach((el, idx) => el.classList.toggle("opacity-100", idx === index));
+      slides.forEach((el, idx) => el.classList.toggle("opacity-0", idx !== index));
+      dots.forEach((dot, idx) => dot.classList.toggle("bg-white/90", idx === index));
+      dots.forEach((dot, idx) => dot.classList.toggle("bg-white/40", idx !== index));
+    }
+
+    function startAuto() {
+      if (timerId) window.clearInterval(timerId);
+      timerId = window.setInterval(() => show(index + 1), 7000);
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const next = Number(dot.getAttribute("data-activity-hero-dot") || 0);
+        show(next);
+        startAuto();
+      });
+    });
+
+    show(0);
+    startAuto();
+  })();
+</script>
+{% endblock %}

@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ block.super }}{% endblock %}
+
+{% block content %}
+
+<section class="bg-peach-light/40 dark:bg-[#2a2420] pt-16 pb-24 md:pt-24 md:pb-32 relative overflow-hidden">
+  <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto text-center relative z-10">
+    {% trans "Extracurricular Schedules" as default_page_title %}
+    {% with page_title=active_menu_item.title|default:default_page_title %}
+    <div class="flex items-center justify-center gap-2 text-sm font-medium opacity-80 mb-4 text-[#181411] dark:text-white">
+      <a class="hover:text-primary transition-colors" href="{% url 'index' %}">{% trans "Home" %}</a>
+      <span class="material-symbols-outlined text-xs">chevron_right</span>
+      <span class="text-primary">{{ page_title }}</span>
+    </div>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#181411] dark:text-white mb-6 font-display">{{ page_title }}</h1>
+    {% endwith %}
+    <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+      {% trans "Upcoming extracurricular schedules for your class." %}
+    </p>
+  </div>
+</section>
+
+<div class="px-6 md:px-20 lg:px-40 -mt-16 relative z-20 mb-16">
+  <div class="max-w-[1440px] mx-auto bg-white dark:bg-[#1f1a16] p-4 md:p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800">
+    <form class="flex flex-col lg:flex-row gap-4 items-center" method="get">
+      <div class="relative flex-1 w-full">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">search</span>
+        <input class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none transition-all" name="q" placeholder="{% trans 'Search schedules...' %}" type="text" value="{{ search_query }}"/>
+      </div>
+
+      {% if grades %}
+      <div class="relative w-full lg:w-1/4">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">school</span>
+        <select class="w-full pl-12 pr-10 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none appearance-none cursor-pointer transition-all" name="class">
+          <option value="">{% trans "All Classes" %}</option>
+          {% for g in grades %}
+          <option value="{{ g }}" {% if selected_grade|stringformat:"s" == g|stringformat:"s" %}selected{% endif %}>{% blocktrans with grade=g %}Grade {{ grade }}{% endblocktrans %}</option>
+          {% endfor %}
+        </select>
+        <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">expand_more</span>
+      </div>
+      {% endif %}
+
+      <button class="w-full lg:w-auto px-8 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl transition-colors shadow-md shadow-primary/20 flex items-center justify-center gap-2" type="submit">
+        <span>{% trans "Search" %}</span>
+      </button>
+    </form>
+
+    {% if needs_profile %}
+    <div class="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+      {% trans "Your account is not linked to a student profile. Ask admin to connect your user to a Student (class) record." %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<section class="py-12 md:py-16 bg-background-light dark:bg-[#1a1614] min-h-[600px]">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+    <div class="flex flex-col xl:flex-row gap-10">
+      <div class="w-full xl:w-2/3 flex flex-col gap-6">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-[#181411] dark:text-white flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary">event_available</span>
+            {% trans "Upcoming Schedules" %}
+          </h2>
+          {% if page_obj %}
+          <div class="text-sm text-gray-500 dark:text-gray-400">
+            {% blocktrans with start=page_obj.start_index end=page_obj.end_index total=total_schedules %}Showing {{ start }}–{{ end }} of {{ total }}{% endblocktrans %}
+          </div>
+          {% endif %}
+        </div>
+
+        {% if schedules %}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {% for schedule in schedules %}
+          <div class="group bg-white dark:bg-[#1f1a16] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 flex flex-col h-full p-6">
+            <div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-3">
+              <span class="material-symbols-outlined text-[14px]">event</span>
+              <span>{{ schedule.when|date:"DATETIME_FORMAT" }}</span>
+            </div>
+            <h3 class="text-xl font-bold text-[#181411] dark:text-white mb-3 group-hover:text-primary transition-colors">{{ schedule.title }}</h3>
+            <div class="mt-auto flex items-center justify-between gap-4 text-xs text-gray-500 dark:text-gray-400">
+              {% if schedule.place %}
+              <span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-primary">location_on</span>{{ schedule.place }}</span>
+              {% else %}
+              <span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-primary">location_on</span>—</span>
+              {% endif %}
+              <span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-primary">school</span>{% blocktrans with grade=schedule.grade %}Grade {{ grade }}{% endblocktrans %}</span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="rounded-2xl bg-white dark:bg-[#221810] border border-gray-100 dark:border-gray-800 p-10 text-center text-gray-600 dark:text-gray-300">
+          {% trans "No upcoming extracurricular schedules found." %}
+        </div>
+        {% endif %}
+
+        {% if page_obj and page_obj.paginator.num_pages > 1 %}
+        <div class="flex justify-center pt-6 border-t border-gray-100 dark:border-gray-800">
+          <nav class="flex items-center gap-2 flex-wrap justify-center">
+            {% if page_obj.has_previous %}
+            <a class="size-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-peach-light hover:text-primary hover:border-primary transition-colors" href="?page={{ page_obj.previous_page_number }}{{ querystring }}">
+              <span class="material-symbols-outlined">chevron_left</span>
+            </a>
+            {% endif %}
+            {% for n in page_obj.paginator.page_range %}
+            {% if n == page_obj.number %}
+            <span class="size-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold shadow-sm">{{ n }}</span>
+            {% else %}
+            <a class="size-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-peach-light hover:text-primary hover:border-primary transition-colors" href="?page={{ n }}{{ querystring }}">{{ n }}</a>
+            {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <a class="size-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-peach-light hover:text-primary hover:border-primary transition-colors" href="?page={{ page_obj.next_page_number }}{{ querystring }}">
+              <span class="material-symbols-outlined">chevron_right</span>
+            </a>
+            {% endif %}
+          </nav>
+        </div>
+        {% endif %}
+      </div>
+
+      <aside class="w-full xl:w-1/3 space-y-6">
+        <div class="bg-white dark:bg-[#221810] rounded-2xl border border-gray-100 dark:border-gray-800 p-6">
+          <h3 class="font-bold text-[#181411] dark:text-white flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">info</span>
+            {% trans "Notes" %}
+          </h3>
+          <ul class="mt-4 space-y-3 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><span class="material-symbols-outlined text-primary text-[18px]">schedule</span>{% trans "Dates and times are in local school time." %}</li>
+            <li class="flex gap-2"><span class="material-symbols-outlined text-primary text-[18px]">search</span>{% trans "Use search to find an activity by title/place." %}</li>
+            <li class="flex gap-2"><span class="material-symbols-outlined text-primary text-[18px]">school</span>{% trans "If you are a student, only your class is shown." %}</li>
+          </ul>
+        </div>
+
+        <div class="bg-white dark:bg-[#221810] rounded-2xl border border-gray-100 dark:border-gray-800 p-6">
+          <h3 class="font-bold text-[#181411] dark:text-white flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">filter_alt</span>
+            {% trans "Active Filters" %}
+          </h3>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs">
+            {% if search_query %}
+            <span class="px-3 py-1 rounded-full bg-peach-light/60 dark:bg-primary/20 text-primary-dark dark:text-primary">{% blocktrans with q=search_query %}q: {{ q }}{% endblocktrans %}</span>
+            {% endif %}
+            {% if selected_grade %}
+            <span class="px-3 py-1 rounded-full bg-peach-light/60 dark:bg-primary/20 text-primary-dark dark:text-primary">{% blocktrans with grade=selected_grade %}grade: {{ grade }}{% endblocktrans %}</span>
+            {% endif %}
+            {% if not search_query and not selected_grade %}
+            <span class="text-gray-500 dark:text-gray-400">{% trans "No filters applied." %}</span>
+            {% endif %}
+          </div>
+          {% if search_query or selected_grade %}
+          <div class="mt-5">
+            <a class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary-dark transition-colors" href="{% url 'extracurricular-schedules' %}">
+              <span class="material-symbols-outlined text-[18px]">restart_alt</span>
+              {% trans "Clear" %}
+            </a>
+          </div>
+          {% endif %}
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

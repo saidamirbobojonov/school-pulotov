@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{{ block.super }}{% endblock %}
+
+{% block content %}
+{% trans "Students Community" as default_page_title %}
+{% with hero=heroes.0 %}
+{% with page_title=active_menu_item.title|default:hero.title|default:default_page_title %}
+<section class="bg-peach-light/40 dark:bg-[#2a2420] pt-16 pb-24 md:pt-24 md:pb-32 relative overflow-hidden">
+  <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto text-center relative z-10">
+    <div class="flex items-center justify-center gap-2 text-sm font-medium opacity-80 mb-4 text-[#181411] dark:text-white">
+      <a class="hover:text-primary transition-colors" href="{% url 'index' %}">{% trans "Home" %}</a>
+      <span class="material-symbols-outlined text-xs">chevron_right</span>
+      <span class="text-primary">{{ page_title }}</span>
+    </div>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#181411] dark:text-white mb-6 font-display">{{ page_title }}</h1>
+  </div>
+</section>
+{% endwith %}
+{% endwith %}
+
+<section class="py-16 bg-white dark:bg-background-dark">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+    <div class="flex flex-col md:flex-row items-center gap-12">
+      <div class="w-full md:w-1/2">
+        <div class="inline-flex items-center gap-3 mb-6">
+          <span class="h-px w-8 bg-primary"></span>
+        </div>
+        {% trans "Growing student leadership together" as default_mission_title %}
+        <h2 class="text-3xl font-bold text-[#181411] dark:text-white mb-6 leading-tight">{{ community_page.mission_title|default:default_mission_title }}</h2>
+        <div class="space-y-4 text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+          {% if community_page and community_page.mission_text %}
+            <p>{{ community_page.mission_text|linebreaksbr }}</p>
+          {% endif %}
+          {% if community_page and community_page.mission_text_2 %}
+            <p>{{ community_page.mission_text_2|linebreaksbr }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-background-light dark:bg-[#251e19]">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-[#181411] dark:text-white text-3xl md:text-4xl font-bold mt-2">{% trans "Community Members" %}</h2>
+      <p class="text-gray-500 dark:text-gray-400 mt-4 max-w-2xl mx-auto">
+        {% if community_page and community_page.members_intro %}
+          {{ community_page.members_intro }}
+        {% endif %}
+      </p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {% for member in community_members %}
+      {% with student=member.student %}
+      <div class="bg-white dark:bg-[#1e1e1e] rounded-xl overflow-hidden shadow-sm group hover:shadow-lg transition-all duration-300 border border-primary/5">
+        <div class="aspect-square overflow-hidden">
+          {% if student.image %}
+            <img alt="{{ student.full_name }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="{{ student.image.url }}"/>
+          {% else %}
+            <div class="w-full h-full bg-gradient-to-br from-primary/20 to-peach-light flex items-center justify-center">
+              <span class="text-primary font-bold text-5xl">{{ student.full_name|slice:":1" }}</span>
+            </div>
+          {% endif %}
+        </div>
+        <div class="p-6 text-center">
+          <h3 class="font-bold text-lg text-[#181411] dark:text-white">{{ student.full_name }}</h3>
+          {% if member.role_title %}
+            <p class="text-primary font-medium text-sm">{{ member.role_title }}</p>
+          {% endif %}
+          {% if student.school_class %}
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ student.school_class }}</p>
+          {% endif %}
+        </div>
+      </div>
+      {% endwith %}
+      {% empty %}
+      <div class="col-span-full bg-white dark:bg-[#1e1e1e] rounded-xl p-8 border border-primary/5 text-center">
+        <p class="text-gray-500 dark:text-gray-400">{% trans "No community members yet." %}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

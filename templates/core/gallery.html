@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static i18n responsive_images schoolname_nav %}
+
+{% block title %}{{ block.super }}{% endblock %}
+
+{% block content %}
+
+<section class="bg-peach-light/40 dark:bg-[#2a2420] py-16 md:py-24 relative overflow-hidden">
+  <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto text-center relative z-10">
+    {% trans "Gallery" as default_page_title %}
+    {% with page_title=active_menu_item.title|default:default_page_title %}
+    <div class="flex items-center justify-center gap-2 text-sm font-medium opacity-80 mb-4 text-[#181411] dark:text-white">
+      <a class="hover:text-primary transition-colors" href="{% url 'index' %}">{% trans "Home" %}</a>
+      <span class="material-symbols-outlined text-xs">chevron_right</span>
+      <span class="text-primary">{{ page_title }}</span>
+    </div>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#181411] dark:text-white mb-6 font-display">{{ page_title }}</h1>
+    {% endwith %}
+  </div>
+</section>
+
+{% if not active_album %}
+<section class="py-12 md:py-20 bg-white dark:bg-[#1a1614]">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for album in gallery_albums %}
+      <a class="group relative overflow-hidden rounded-2xl bg-gray-100 dark:bg-white/5 shadow-md hover:shadow-xl transition-all duration-300" href="?album={{ album.slug }}">
+        <div class="aspect-[4/3] overflow-hidden">
+          {% if album.cover %}
+          {% responsive_candidates album.cover.image as album_cover %}
+          <img alt="{{ album.title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" decoding="async" loading="lazy" sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" src="{{ album_cover.src }}"{% if album_cover.srcset %} srcset="{{ album_cover.srcset }}"{% endif %}/>
+          {% else %}
+          <div class="w-full h-full bg-gradient-to-br from-primary/10 via-white to-peach-light/40 dark:from-white/5 dark:to-[#2a2420]"></div>
+          {% endif %}
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-90"></div>
+        <div class="absolute inset-x-0 bottom-0 p-6">
+          <div class="flex items-center justify-between gap-2 text-white">
+            <h3 class="text-xl font-bold">{{ album.title }}</h3>
+            <span class="text-xs uppercase tracking-wider bg-white/15 px-2 py-1 rounded-full">{{ album.count }}</span>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% else %}
+<section class="sticky top-[108px] z-40 bg-white dark:bg-[#1a1614] py-4 px-6 md:px-20 lg:px-40">
+  <div class="max-w-[1440px] mx-auto flex items-center justify-between gap-4">
+    <a class="px-6 py-2 rounded-full text-sm font-bold transition-all active:scale-95 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-200 hover:border-primary hover:text-primary hover:bg-peach-light/20" href="{% url 'gallery' %}">
+      {% trans "All Albums" %}
+    </a>
+    <div class="text-sm text-gray-500 dark:text-gray-300">
+      {% for album in gallery_albums %}
+        {% if album.slug == active_album %}
+          {{ album.title }}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="py-12 md:py-20 bg-white dark:bg-[#1a1614]">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+	    {% if gallery_images %}
+	    <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+	      {% for img in gallery_images %}
+	      <button class="break-inside-avoid relative group rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all duration-300 bg-gray-100 dark:bg-white/5 w-full text-left focus:outline-none focus:ring-2 focus:ring-primary/70" type="button" data-lightbox-item data-lightbox-group="gallery" data-lightbox-src="{{ img.image.url }}">
+	        {% trans "Gallery image" as default_gallery_image %}
+	        {% responsive_candidates img.image as gallery_img %}
+	        <img alt="{{ img.caption|default:default_gallery_image }}" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110" decoding="async" loading="lazy" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" src="{{ gallery_img.src }}"{% if gallery_img.srcset %} srcset="{{ gallery_img.srcset }}"{% endif %}/>
+	        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+	          <span class="material-symbols-outlined text-white text-4xl drop-shadow-lg">zoom_in</span>
+	        </div>
+	        {% if img.caption %}<span class="hidden" data-lightbox-caption>{{ img.caption }}</span>{% endif %}
+	        {% if img.caption %}
+	        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+	          <p class="text-primary font-bold text-xs uppercase tracking-wider mb-1">{{ img.album.title }}</p>
+	          <h3 class="text-white font-bold text-lg">{{ img.caption }}</h3>
+	        </div>
+	        {% endif %}
+	      </button>
+	      {% endfor %}
+	    </div>
+	    {% else %}
+    <div class="py-16 text-center text-gray-600 dark:text-gray-300">
+      {% trans "No gallery images yet." %}
+    </div>
+    {% endif %}
+
+    {% if is_paginated and page_obj %}
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-10 mt-10 border-t border-gray-100 dark:border-gray-800">
+      <div class="text-sm text-gray-500 dark:text-gray-400">
+        {% blocktrans with page=page_obj.number site_content=paginator.num_pages %}Page {{ page }} of {{ site_content }}{% endblocktrans %}
+      </div>
+      <div class="flex items-center gap-2 flex-wrap justify-center">
+        {% if page_obj.has_previous %}
+        <a class="px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm" href="?page={{ page_obj.previous_page_number }}{{ querystring }}">{% trans "Prev" %}</a>
+        {% endif %}
+        {% for n in paginator.page_range %}
+          {% if n == page_obj.number %}
+          <span class="px-3 py-2 rounded-lg bg-primary text-white text-sm font-bold">{{ n }}</span>
+          {% else %}
+          <a class="px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm" href="?page={{ n }}{{ querystring }}">{{ n }}</a>
+          {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <a class="px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm" href="?page={{ page_obj.next_page_number }}{{ querystring }}">{% trans "Next" %}</a>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

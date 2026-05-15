@@ -1,0 +1,25 @@
+{% load i18n %}
+
+<div class="shrink-0">
+    <{% if site_dropdown %}span{% else %}a href="{% url "admin:index" %}"{% endif %}>
+    {% if site_logo.light and site_logo.dark %}
+        <img src="{{ site_logo.dark }}" alt="{% trans 'Home' %}" class="h-8 hidden mr-4 dark:block"/>
+
+        <img src="{{ site_logo.light }}" alt="{% trans 'Home' %}" class="block h-8 mr-4 dark:hidden" />
+    {% else %}
+        <img src="{{ site_logo }}" class="h-8 mr-4" alt="{% trans 'Home' %}" />
+    {% endif %}
+    </{% if site_dropdown %}span{% else %}a{% endif %}>
+</div>
+
+<div class="flex flex-col gap-1.5 grow justify-center min-w-0">
+    <div class="text-important leading-none tracking-tight *:truncate {% if site_subheader %}xl:text-sm{% else %}xl:text-base{% endif %}">
+        {{ branding }}
+    </div>
+
+    {% if site_subheader %}
+        <div class="font-normal leading-none text-subtle text-xs">
+            {{ site_subheader }}
+        </div>
+    {% endif %}
+</div>

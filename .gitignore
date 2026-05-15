@@ -1,0 +1,35 @@
+# Environment
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Django
+staticfiles/
+media/
+# db.sqlite3 is intentionally committed so Railway has demo data on first deploy.
+# Note: Railway's filesystem is ephemeral — data changed via admin will reset on redeploy.
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Gunicorn
+gunicorn.sock
+*.sock

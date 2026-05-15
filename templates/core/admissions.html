@@ -1,0 +1,327 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ block.super }}{% endblock %}
+
+{% block content %}
+
+<section class="bg-peach-light/40 dark:bg-[#2a2420] py-16 md:py-24 relative overflow-hidden">
+  <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto text-center relative z-10">
+    {% trans "Admissions" as default_page_title %}
+    {% with page_title=active_menu_item.title|default:default_page_title %}
+    <div class="flex items-center justify-center gap-2 text-sm font-medium opacity-80 mb-4 text-[#181411] dark:text-white">
+      <a class="hover:text-primary transition-colors" href="{% url 'index' %}">{% trans "Home" %}</a>
+      <span class="material-symbols-outlined text-xs">chevron_right</span>
+      <span class="text-primary">{{ page_title }}</span>
+    </div>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#181411] dark:text-white mb-6 font-display">
+      {{ page_title }}
+    </h1>
+    {% endwith %}
+  </div>
+</section>
+
+<section class="py-16 bg-white dark:bg-background-dark">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+    <div class="mb-12 text-center">
+      <h2 class="text-3xl font-bold text-[#181411] dark:text-white mb-4">
+        {% trans "Admissions Process" as default_process_title %}
+        {{ admissions_page.process_title|default:default_process_title }}
+      </h2>
+    </div>
+
+    {% if admission_steps %}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+      <div class="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-peach-light dark:bg-primary/20 -z-10"></div>
+      {% for step in admission_steps %}
+      <div class="flex flex-col items-center text-center">
+        <div class="w-24 h-24 rounded-full bg-peach-light dark:bg-primary/20 flex items-center justify-center text-primary mb-6 shadow-sm ring-4 ring-white dark:ring-[#221810]">
+          <span class="material-symbols-outlined text-[40px]">{{ step.icon }}</span>
+        </div>
+        <h3 class="text-xl font-bold text-[#181411] dark:text-white mb-2">{{ forloop.counter }}. {{ step.title }}</h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm px-4">{{ step.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+      <div class="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-peach-light dark:bg-primary/20 -z-10"></div>
+
+      <div class="flex flex-col items-center text-center">
+        <div class="w-24 h-24 rounded-full bg-peach-light dark:bg-primary/20 flex items-center justify-center text-primary mb-6 shadow-sm ring-4 ring-white dark:ring-[#221810]">
+          <span class="material-symbols-outlined text-[40px]">edit_document</span>
+        </div>
+        <h3 class="text-xl font-bold text-[#181411] dark:text-white mb-2">{% trans "1. Apply" %}</h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm px-4">{% trans "Complete the application form and submit necessary documents." %}</p>
+      </div>
+
+      <div class="flex flex-col items-center text-center">
+        <div class="w-24 h-24 rounded-full bg-peach-light dark:bg-primary/20 flex items-center justify-center text-primary mb-6 shadow-sm ring-4 ring-white dark:ring-[#221810]">
+          <span class="material-symbols-outlined text-[40px]">groups</span>
+        </div>
+        <h3 class="text-xl font-bold text-[#181411] dark:text-white mb-2">{% trans "2. Interview" %}</h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm px-4">{% trans "Meet with our admissions counselors for a friendly conversation about your goals." %}</p>
+      </div>
+
+      <div class="flex flex-col items-center text-center">
+        <div class="w-24 h-24 rounded-full bg-peach-light dark:bg-primary/20 flex items-center justify-center text-primary mb-6 shadow-sm ring-4 ring-white dark:ring-[#221810]">
+          <span class="material-symbols-outlined text-[40px]">school</span>
+        </div>
+        <h3 class="text-xl font-bold text-[#181411] dark:text-white mb-2">{% trans "3. Enrollment" %}</h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm px-4">{% trans "Receive your acceptance letter and join us for orientation week." %}</p>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if admissions_page and admissions_page.application_pdf %}
+    <div class="mt-12 flex justify-center">
+      <button class="px-8 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl transition-colors shadow-md shadow-primary/20 flex items-center justify-center gap-2"
+              type="button"
+              data-admissions-pdf-open>
+        <span class="material-symbols-outlined">picture_as_pdf</span>
+        {% trans "Our regulations" %}
+      </button>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="py-16 md:py-24 bg-background-light dark:bg-[#1a1614]">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+      <!-- Left: Form -->
+      <div class="lg:col-span-2">
+        <div class="bg-white dark:bg-[#221810] rounded-2xl shadow-lg shadow-black/5 p-8 md:p-12 border border-gray-100 dark:border-gray-800">
+          <div class="flex items-center gap-4 mb-8">
+            <div class="p-3 bg-peach-light/50 dark:bg-primary/10 rounded-xl text-primary">
+              <span class="material-symbols-outlined text-[28px]">assignment_add</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-[#181411] dark:text-white">
+              {% trans "Application Form" as default_application_form %}
+              {{ admissions_page.form_title|default:default_application_form }}
+            </h2>
+          </div>
+
+          {% if request.GET.submitted %}
+          <div class="mb-6 rounded-xl border border-primary/20 bg-peach-light/40 px-4 py-3 text-sm text-[#181411] dark:text-gray-200">
+            {% trans "Thank you! Your application has been submitted." %}
+          </div>
+          {% endif %}
+
+          <form class="space-y-6" method="post" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+
+            {% if application_form and application_form.non_field_errors %}
+            <div class="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+              {{ application_form.non_field_errors }}
+            </div>
+            {% endif %}
+
+            {% if application_form %}{{ application_form.website }}{% endif %}
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-sm font-bold text-[#181411] dark:text-gray-200" for="student-name">{% trans "Student Name" %}</label>
+                <input class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none transition-all" id="student-name" name="student_name" placeholder="{% trans 'Full name' %}" type="text" value="{% if application_form %}{{ application_form.student_name.value|default:'' }}{% endif %}"/>
+                {% if application_form %}{{ application_form.student_name.errors }}{% endif %}
+              </div>
+
+              <div class="space-y-2">
+                <label class="text-sm font-bold text-[#181411] dark:text-gray-200" for="parent-name">{% trans "Parent/Guardian Name" %}</label>
+                <input class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none transition-all" id="parent-name" name="parent_name" placeholder="{% trans 'Full name' %}" type="text" value="{% if application_form %}{{ application_form.parent_name.value|default:'' }}{% endif %}"/>
+                {% if application_form %}{{ application_form.parent_name.errors }}{% endif %}
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-sm font-bold text-[#181411] dark:text-gray-200" for="email">{% trans "Email Address" %}</label>
+                <input class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none transition-all" id="email" name="email" placeholder="{% trans 'name@example.com' %}" type="email" value="{% if application_form %}{{ application_form.email.value|default:'' }}{% endif %}"/>
+                {% if application_form %}{{ application_form.email.errors }}{% endif %}
+              </div>
+
+              <div class="space-y-2">
+                <label class="text-sm font-bold text-[#181411] dark:text-gray-200" for="phone">{% trans "Phone Number" %}</label>
+                <input class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none transition-all" id="phone" name="phone" placeholder="+992 ..." type="tel" value="{% if application_form %}{{ application_form.phone.value|default:'' }}{% endif %}"/>
+                {% if application_form %}{{ application_form.phone.errors }}{% endif %}
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-sm font-bold text-[#181411] dark:text-gray-200" for="grade">{% trans "Applying for Grade" %}</label>
+              <select class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none transition-all" id="grade" name="grade">
+                <option value="">{% trans "Select grade" %}</option>
+                {% with selected_grade=application_form.grade.value|default:'' %}
+                <option value="1" {% if selected_grade == '1' %}selected{% endif %}>1</option>
+                <option value="2" {% if selected_grade == '2' %}selected{% endif %}>2</option>
+                <option value="3" {% if selected_grade == '3' %}selected{% endif %}>3</option>
+                <option value="4" {% if selected_grade == '4' %}selected{% endif %}>4</option>
+                <option value="5" {% if selected_grade == '5' %}selected{% endif %}>5</option>
+                <option value="6" {% if selected_grade == '6' %}selected{% endif %}>6</option>
+                <option value="7" {% if selected_grade == '7' %}selected{% endif %}>7</option>
+                <option value="8" {% if selected_grade == '8' %}selected{% endif %}>8</option>
+                <option value="9" {% if selected_grade == '9' %}selected{% endif %}>9</option>
+                <option value="10" {% if selected_grade == '10' %}selected{% endif %}>10</option>
+                <option value="11" {% if selected_grade == '11' %}selected{% endif %}>11</option>
+                {% endwith %}
+              </select>
+              {% if application_form %}{{ application_form.grade.errors }}{% endif %}
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-sm font-bold text-[#181411] dark:text-gray-200" for="note">{% trans "Message (optional)" %}</label>
+              <textarea class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none transition-all min-h-[120px] resize-y" id="note" name="note" placeholder="{% trans 'Anything we should know?' %}">{% if application_form %}{{ application_form.note.value|default:'' }}{% endif %}</textarea>
+              {% if application_form %}{{ application_form.note.errors }}{% endif %}
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-sm font-bold text-[#181411] dark:text-gray-200">{% trans "Documents" %}</label>
+              <div class="border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-2xl p-8 bg-gray-50 dark:bg-white/5">
+                <div class="text-center">
+                  <span class="material-symbols-outlined text-primary text-4xl mb-3">upload_file</span>
+                  <p class="text-sm font-medium text-gray-700 dark:text-gray-300">{% trans "Upload files (PDF/DOC up to 10MB)" %}</p>
+                  <div class="mt-4">
+                    <input class="block w-full text-sm text-gray-600 dark:text-gray-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary file:text-white hover:file:bg-primary-dark" name="documents" type="file" multiple/>
+                  </div>
+                  {% if application_form %}{{ application_form.documents.errors }}{% endif %}
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4">
+              <button class="w-full py-4 px-6 bg-primary hover:bg-primary-dark text-white font-bold text-lg rounded-xl shadow-md hover:shadow-lg transition-all transform active:scale-[0.99] flex items-center justify-center gap-2" type="submit">
+                {% trans "Submit Application" %}
+                <span class="material-symbols-outlined">send</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right: Sidebar -->
+      <div class="lg:col-span-1 space-y-8">
+        <div class="bg-peach-light/30 dark:bg-[#221810] rounded-2xl p-8 border border-peach-light dark:border-primary/20">
+          <h3 class="text-xl font-bold text-[#181411] dark:text-white mb-6 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">event</span>
+            {% trans "Important Dates" as default_important_dates %}
+            {{ admissions_page.dates_title|default:default_important_dates }}
+          </h3>
+
+          {% if admission_dates %}
+          <ul class="space-y-6">
+            {% for d in admission_dates %}
+            <li class="relative pl-6 border-l-2 {% if d.is_active %}border-primary/30{% else %}border-gray-300 dark:border-gray-700{% endif %} pb-1">
+              <div class="absolute -left-[5px] top-1 w-2.5 h-2.5 rounded-full {% if d.is_active %}bg-primary{% else %}bg-gray-300 dark:bg-gray-600{% endif %}"></div>
+              <p class="text-xs font-bold {% if d.is_active %}text-primary{% else %}text-gray-500{% endif %} uppercase tracking-wide mb-1">{{ d.label }}</p>
+              <p class="text-[#181411] dark:text-gray-200 font-medium">{{ d.date_text }}</p>
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <ul class="space-y-6">
+            <li class="relative pl-6 border-l-2 border-primary/30 pb-1">
+              <div class="absolute -left-[5px] top-1 w-2.5 h-2.5 rounded-full bg-primary"></div>
+              <p class="text-xs font-bold text-primary uppercase tracking-wide mb-1">{% trans "Applications Open" %}</p>
+              <p class="text-[#181411] dark:text-gray-200 font-medium">{% trans "September 1st" %}</p>
+            </li>
+            <li class="relative pl-6 border-l-2 border-primary/30 pb-1">
+              <div class="absolute -left-[5px] top-1 w-2.5 h-2.5 rounded-full bg-primary"></div>
+              <p class="text-xs font-bold text-primary uppercase tracking-wide mb-1">{% trans "Deadline" %}</p>
+              <p class="text-[#181411] dark:text-gray-200 font-medium">{% trans "January 31st" %}</p>
+            </li>
+          </ul>
+          {% endif %}
+        </div>
+
+        <div class="bg-cream dark:bg-[#221810] rounded-2xl p-8 border border-gray-100 dark:border-gray-800">
+          <h3 class="text-xl font-bold text-[#181411] dark:text-white mb-4">
+            {% trans "Have Questions?" as default_questions_title %}
+            {{ admissions_page.questions_title|default:default_questions_title }}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+            {% trans "Contact our admissions office or check the FAQ for quick answers." as default_questions_text %}
+            {{ admissions_page.questions_text|default:default_questions_text }}
+          </p>
+          <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+            <p class="text-xs text-gray-500 mb-2">{% trans "Admissions Office" %}</p>
+            <p class="font-bold text-[#181411] dark:text-white flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-sm">mail</span>
+              {% if admissions_page and admissions_page.office_email %}
+                {{ admissions_page.office_email }}
+              {% elif contact_page and contact_page.email %}
+                {{ contact_page.email }}
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% if admissions_page and admissions_page.application_pdf %}
+<div class="hidden fixed inset-0 z-50" data-admissions-pdf-modal aria-hidden="true">
+  <div class="fixed inset-0 bg-black/60 backdrop-blur-[2px]" data-admissions-pdf-backdrop></div>
+  <div class="absolute left-1/2 -translate-x-1/2 top-[10vh] w-[92vw] max-w-5xl h-[80vh] bg-white dark:bg-[#221810] rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden flex flex-col">
+    <div class="flex items-center justify-between gap-4 px-5 py-4 border-b border-gray-200 dark:border-gray-800 shrink-0">
+      <div class="flex items-center gap-2 min-w-0">
+        <span class="material-symbols-outlined text-primary">description</span>
+        <h3 class="font-bold text-[#181411] dark:text-white truncate">{% trans "Our regulations" %}</h3>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <a class="px-3 py-2 rounded-lg text-sm font-bold border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-200 hover:border-primary hover:text-primary transition-colors"
+           href="{{ admissions_page.application_pdf.url }}#zoom=100"
+           target="_blank"
+           rel="noopener">
+          {% trans "Open in new tab" %}
+        </a>
+        <button class="w-10 h-10 rounded-lg flex items-center justify-center border border-gray-200 dark:border-white/10 hover:border-primary hover:text-primary transition-colors text-gray-600 dark:text-gray-200"
+                type="button"
+                data-admissions-pdf-close
+                aria-label="{% trans 'Close' %}">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+    </div>
+    <div class="bg-gray-50 dark:bg-[#1a1614] grow overflow-hidden">
+      <iframe class="w-full h-full"
+              title="{% trans 'Our regulations' %}"
+              src="{{ admissions_page.application_pdf.url }}#zoom=100"></iframe>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% block extra_scripts %}
+<script>
+  (function () {
+    const openBtn = document.querySelector("[data-admissions-pdf-open]");
+    const modal = document.querySelector("[data-admissions-pdf-modal]");
+    if (!openBtn || !modal) return;
+
+    const backdrop = modal.querySelector("[data-admissions-pdf-backdrop]");
+    const closeBtn = modal.querySelector("[data-admissions-pdf-close]");
+
+    const setOpen = (open) => {
+      modal.classList.toggle("hidden", !open);
+      modal.setAttribute("aria-hidden", open ? "false" : "true");
+      document.documentElement.classList.toggle("overflow-hidden", open);
+    };
+
+    openBtn.addEventListener("click", () => setOpen(true));
+    if (backdrop) backdrop.addEventListener("click", () => setOpen(false));
+    if (closeBtn) closeBtn.addEventListener("click", () => setOpen(false));
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      if (modal.classList.contains("hidden")) return;
+      setOpen(false);
+    });
+  })();
+</script>
+{% endblock %}
+
+{% endblock %}

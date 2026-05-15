@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ block.super }}{% endblock %}
+
+{% block content %}
+
+<section class="bg-peach-light/40 dark:bg-[#2a2420] pt-16 pb-24 md:pt-24 md:pb-32 relative overflow-hidden">
+  <div class="absolute top-0 left-0 -translate-y-1/2 -translate-x-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 right-0 translate-y-1/3 translate-x-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl"></div>
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto text-center relative z-10">
+    {% trans "Clubs & Extracurricular Activities" as default_page_title %}
+    {% with page_title=active_menu_item.title|default:default_page_title %}
+    <div class="flex items-center justify-center gap-2 text-sm font-medium opacity-80 mb-4 text-[#181411] dark:text-white">
+      <a class="hover:text-primary transition-colors" href="{% url 'index' %}">{% trans "Home" %}</a>
+      <span class="material-symbols-outlined text-xs">chevron_right</span>
+      <span class="text-primary">{{ page_title }}</span>
+    </div>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#181411] dark:text-white mb-6 font-display">{{ page_title }}</h1>
+    {% endwith %}
+  </div>
+</section>
+
+<div class="px-6 md:px-20 lg:px-40 -mt-16 relative z-20 mb-16">
+  <div class="max-w-[1440px] mx-auto bg-white dark:bg-[#1f1a16] p-4 md:p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800">
+    <form class="flex flex-col md:flex-row gap-4 items-center" method="get">
+      <div class="relative flex-1 w-full">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">search</span>
+        <input class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none transition-all" name="q" placeholder="{% trans 'Search by club name, teacher, schedule...' %}" type="text" value="{{ search_query }}"/>
+      </div>
+      <button class="w-full md:w-auto px-8 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl transition-colors shadow-md shadow-primary/20 flex items-center justify-center gap-2" type="submit">
+        <span>{% trans "Search" %}</span>
+      </button>
+      {% if search_query %}
+      <a class="w-full md:w-auto px-6 py-3 rounded-xl border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-center font-bold" href="{% url 'clubs' %}">
+        {% trans "Clear" %}
+      </a>
+      {% endif %}
+    </form>
+  </div>
+</div>
+
+<section class="py-12 md:py-20 bg-background-light dark:bg-background-dark">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+
+    {% if page_obj.object_list %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for club in page_obj.object_list %}
+      <div class="group bg-white dark:bg-[#1e1e1e] rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+        <div class="h-56 overflow-hidden relative bg-gray-100 dark:bg-white/5">
+          {% if club.image %}
+          <img alt="{{ club.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ club.image.url }}"/>
+          {% else %}
+          <div class="w-full h-full bg-gradient-to-br from-primary/20 to-peach-light/40"></div>
+          {% endif %}
+        </div>
+        <div class="p-6 flex flex-col flex-grow">
+          <h3 class="text-xl font-bold text-[#181411] dark:text-white mb-2 group-hover:text-primary transition-colors">{{ club.name }}</h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
+            {{ club.description|default:""|striptags|truncatechars:160 }}
+          </p>
+          <a class="inline-flex items-center justify-center px-4 py-2 bg-peach-light dark:bg-[#332e2b] text-primary-dark dark:text-primary font-bold text-sm rounded-lg hover:bg-primary hover:text-white transition-all w-full" href="{% url 'club-detail' club.slug %}">
+            {% trans "View Details" %}
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="py-16 text-center text-gray-600 dark:text-gray-300">
+      {% trans "No clubs found." %}
+    </div>
+    {% endif %}
+
+    {% if page_obj.paginator.num_pages > 1 %}
+    <div class="flex justify-center mt-12">
+      <nav class="flex items-center gap-2 flex-wrap justify-center">
+        {% if page_obj.has_previous %}
+        <a class="size-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-peach-light hover:text-primary hover:border-primary transition-colors" href="?page={{ page_obj.previous_page_number }}{{ querystring }}">
+          <span class="material-symbols-outlined">chevron_left</span>
+        </a>
+        {% endif %}
+        {% for n in page_obj.paginator.page_range %}
+          {% if n == page_obj.number %}
+          <span class="size-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold shadow-sm">{{ n }}</span>
+          {% else %}
+          <a class="size-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-peach-light hover:text-primary hover:border-primary transition-colors" href="?page={{ n }}{{ querystring }}">{{ n }}</a>
+          {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <a class="size-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 hover:bg-peach-light hover:text-primary hover:border-primary transition-colors" href="?page={{ page_obj.next_page_number }}{{ querystring }}">
+          <span class="material-symbols-outlined">chevron_right</span>
+        </a>
+        {% endif %}
+      </nav>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+
+{% endblock %}

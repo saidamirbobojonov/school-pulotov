@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{{ block.super }}{% endblock %}
+
+{% block content %}
+
+<section class="bg-peach-light/40 dark:bg-[#2a2420] py-16 md:py-24 relative overflow-hidden">
+  <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto text-center relative z-10">
+    {% trans "Methodical Materials" as default_page_title %}
+    {% with page_title=active_menu_item.title|default:default_page_title %}
+    <div class="flex items-center justify-center gap-2 text-sm font-medium opacity-80 mb-4 text-[#181411] dark:text-white">
+      <a class="hover:text-primary transition-colors" href="{% url 'index' %}">{% trans "Home" %}</a>
+      <span class="material-symbols-outlined text-xs">chevron_right</span>
+      <span class="text-primary">{{ page_title }}</span>
+    </div>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#181411] dark:text-white mb-4 font-display">
+      {{ page_title }}
+    </h1>
+    {% endwith %}
+  </div>
+</section>
+
+<section class="py-16 bg-white dark:bg-background-dark">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+    {% if materials %}
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      {% for material in materials %}
+      <div class="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-[#221810] shadow-sm hover:shadow-md transition-shadow p-6">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-peach-light/50 dark:bg-primary/10 text-primary flex items-center justify-center">
+            <span class="material-symbols-outlined">description</span>
+          </div>
+          <div class="min-w-0">
+            <h3 class="text-lg font-bold text-[#181411] dark:text-white truncate">{{ material.title }}</h3>
+          </div>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 dark:border-gray-700 text-sm font-semibold text-[#181411] dark:text-gray-200 hover:border-primary hover:text-primary transition-colors"
+             href="{{ material.file.url }}" target="_blank" rel="noopener">
+            <span class="material-symbols-outlined text-base">visibility</span>
+            {% trans "View" %}
+          </a>
+          <a class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-colors"
+             href="{{ material.file.url }}" download>
+            <span class="material-symbols-outlined text-base">download</span>
+            {% trans "Download" %}
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="rounded-2xl border border-dashed border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-white/5 p-10 text-center">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-peach-light/50 dark:bg-primary/10 text-primary flex items-center justify-center mb-4">
+        <span class="material-symbols-outlined">menu_book</span>
+      </div>
+      <h3 class="text-lg font-bold text-[#181411] dark:text-white">{% trans "No materials yet" %}</h3>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

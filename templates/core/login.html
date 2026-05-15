@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ block.super }}{% endblock %}
+
+{% block content %}
+
+         <div class="flex flex-col lg:flex-row min-h-[calc(100vh-140px)]">
+            <div class="relative w-full lg:w-1/2 min-h-[300px] lg:min-h-full">
+               <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAxirJGvT_eBu-R80Lt0I9Ves8GMUPHPoqoSTStEQBo-OiuTt-w_svXsEtwe1NTB9fmGbEPDrONCYMuu01Ps__5YY6IY5qHiQB9ine7fApPV_2f2cATxMngb0Uw2_StbP5sYlPYtqz3UjaTTxksg8nEGHzL--v52aGe-5IKNM5BeSQ5difZiK4ngUFPXbAU-8YGi-UMXIPaS22cmkh88j8pjFs0v_xPSBo72xciXNIr4KLfIHd98EmQpeyc1ywBkoKjdnuhHjGjPMKv');"></div>
+               <div class="absolute inset-0 bg-primary/40 mix-blend-multiply"></div>
+               <div class="absolute inset-0 bg-black/10"></div>
+               <div class="relative z-10 h-full flex flex-col justify-center items-center text-center p-12 text-white">
+                  <div class="bg-white/20 p-4 rounded-full mb-6 backdrop-blur-sm">
+                     <span class="material-symbols-outlined text-4xl text-white">auto_stories</span>
+                  </div>
+                  <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold font-display leading-tight max-w-lg drop-shadow-md">{% blocktrans %}"Unlocking a world of knowledge."{% endblocktrans %}</h2>
+               </div>
+            </div>
+            <div class="w-full lg:w-1/2 bg-white dark:bg-[#1a1614] flex flex-col justify-center items-center p-6 md:p-12 lg:p-20">
+               <div class="w-full max-w-md space-y-8">
+                  <div class="text-center">
+                     <div class="mx-auto h-16 w-16 text-primary mb-4 bg-peach-light/30 rounded-full flex items-center justify-center">
+                        <svg class="w-10 h-10" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                           <path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+                        </svg>
+                     </div>
+                     <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">{% trans "Welcome Back" %}</h2>
+                     <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{% trans "Please access your portal below" %}</p>
+                  </div>
+                  <div class="border-b border-gray-200 dark:border-gray-700 w-full">
+                     <div aria-label="Tabs" class="flex -mb-px w-full">
+                        <button class="w-1/2 text-center border-b-2 border-primary text-primary py-4 px-1 text-sm font-bold uppercase tracking-wider transition-colors hover:bg-peach-light/10" id="tab-student" type="button">
+                        {% trans "Students" %}
+                        </button>
+                        <button class="w-1/2 text-center border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-200 py-4 px-1 text-sm font-bold uppercase tracking-wider transition-colors" id="tab-staff" type="button">
+                        {% trans "Staff" %}
+                        </button>
+                     </div>
+                  </div>
+                  <form action="{% url 'login' %}" class="mt-8 space-y-6 w-full" method="post">
+                     {% csrf_token %}
+                     {% if next %}<input name="next" type="hidden" value="{{ next }}"/>{% endif %}
+                     {% if form.errors %}
+                        <div class="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-900/40 dark:bg-red-900/20 dark:text-red-200">
+                           {% if form.non_field_errors %}
+                              {{ form.non_field_errors|striptags }}
+                           {% else %}
+                              {% trans "Invalid username or password." %}
+                           {% endif %}
+                        </div>
+                     {% endif %}
+                     <div class="space-y-5">
+                        <div id="student-grade-field">
+                           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="grade">{% trans "Grade" %}</label>
+                           <div class="mt-1 relative rounded-md shadow-sm">
+                              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                 <span class="material-symbols-outlined text-gray-400 text-[20px]">school</span>
+	                              </div>
+	                              <select class="focus:ring-primary focus:border-primary block w-full pl-10 sm:text-sm border-gray-300 rounded-lg py-3 dark:bg-white/5 dark:border-white/10 dark:text-white" id="grade" name="grade">
+	                                 {% with selected_grade=form.grade.value %}
+	                                 <option value="">{% trans "Select your grade" %}</option>
+	                                 {% for g in grades %}
+	                                 <option value="{{ g }}" {% if selected_grade|stringformat:"s" == g|stringformat:"s" %}selected{% endif %}>
+	                                   {% blocktrans with grade=g %}Grade {{ grade }}{% endblocktrans %}
+	                                 </option>
+	                                 {% endfor %}
+	                                 {% endwith %}
+	                              </select>
+	                           </div>
+	                        </div>
+                        <div id="staff-username-field" hidden>
+                           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="username">{% trans "Username" %}</label>
+                           <div class="mt-1 relative rounded-md shadow-sm">
+                              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                 <span class="material-symbols-outlined text-gray-400 text-[20px]">person</span>
+                              </div>
+                              <input class="focus:ring-primary focus:border-primary block w-full pl-10 sm:text-sm border-gray-300 rounded-lg py-3 dark:bg-white/5 dark:border-white/10 dark:text-white" id="username" name="username" placeholder="{% trans 'Enter your username' %}" type="text"/>
+                           </div>
+                        </div>
+                        <div>
+                           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="password">{% trans "Password" %}</label>
+                           <div class="mt-1 relative rounded-md shadow-sm">
+                              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                 <span class="material-symbols-outlined text-gray-400 text-[20px]">lock</span>
+                              </div>
+                              <input class="focus:ring-primary focus:border-primary block w-full pl-10 sm:text-sm border-gray-300 rounded-lg py-3 dark:bg-white/5 dark:border-white/10 dark:text-white" id="password" name="password" placeholder="{% trans 'Enter your password' %}" type="password"/>
+                           </div>
+                        </div>
+                     </div>
+                     <div>
+                        <button class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-lg text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all shadow-md hover:shadow-lg" type="submit">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                        <span class="material-symbols-outlined text-white/80 group-hover:text-white transition-colors">login</span>
+                        </span>
+                        {% trans "Sign In" %}
+                        </button>
+                     </div>
+                  </form>
+                  <script>
+                     (function () {
+                        const tabStudent = document.getElementById("tab-student");
+                        const tabStaff = document.getElementById("tab-staff");
+                        const studentGradeField = document.getElementById("student-grade-field");
+                        const staffUsernameField = document.getElementById("staff-username-field");
+                        const gradeInput = document.getElementById("grade");
+                        const usernameInput = document.getElementById("username");
+
+                        function setMode(mode) {
+                           const isStudent = mode === "student";
+                           studentGradeField.hidden = !isStudent;
+                           staffUsernameField.hidden = isStudent;
+                           gradeInput.disabled = !isStudent;
+                           usernameInput.disabled = isStudent;
+
+                           tabStudent.classList.toggle("border-primary", isStudent);
+                           tabStudent.classList.toggle("text-primary", isStudent);
+                           tabStudent.classList.toggle("border-transparent", !isStudent);
+                           tabStudent.classList.toggle("text-gray-500", !isStudent);
+
+                           tabStaff.classList.toggle("border-primary", !isStudent);
+                           tabStaff.classList.toggle("text-primary", !isStudent);
+                           tabStaff.classList.toggle("border-transparent", isStudent);
+                           tabStaff.classList.toggle("text-gray-500", isStudent);
+
+                           if (isStudent) {
+                              usernameInput.value = "";
+                           } else {
+                              gradeInput.value = "";
+                           }
+                        }
+
+                        tabStudent.addEventListener("click", function () { setMode("student"); });
+                        tabStaff.addEventListener("click", function () { setMode("staff"); });
+                        setMode("student");
+                     })();
+                  </script>
+               </div>
+            </div>
+         </div>
+
+{% endblock %}

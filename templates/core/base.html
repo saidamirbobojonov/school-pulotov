@@ -1,0 +1,746 @@
+{% load static schoolname_nav safe_svg i18n responsive_images %}
+{% get_current_language as CURRENT_LANGUAGE_CODE %}
+<!doctype html>
+<html class="light" lang="{{ CURRENT_LANGUAGE_CODE|default:'en' }}">
+   <head>
+      <meta charset="utf-8"/>
+      <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+      <title>{% block title %}{% if active_menu_item %}{{ active_menu_item.title }} - {% endif %}{% if school_info %}{{ school_info.name }}{% else %}{% trans "School" %}{% endif %}{% endblock %}</title>
+      <link rel="dns-prefetch" href="//cdn.tailwindcss.com"/>
+      <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
+      <link rel="dns-prefetch" href="//fonts.gstatic.com"/>
+      <link crossorigin rel="preconnect" href="https://cdn.tailwindcss.com"/>
+      <!-- Google Fonts: Lexend -->
+      <link crossorigin rel="preconnect" href="https://fonts.googleapis.com"/>
+	  {% if school_info and school_info.image %}
+	  <link href="{% responsive_url school_info.image 64 %}" rel="icon" sizes="64x64" type="image/png"/>
+	  {% endif %}
+      <link crossorigin rel="preconnect" href="https://fonts.gstatic.com"/>
+      <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+      <!-- Material Symbols -->
+      <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+      {% block extra_head %}{% endblock %}
+      <script>
+         (function () {
+            try {
+               if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+               document.documentElement.classList.add("reveal-ready");
+            } catch (e) {}
+         })();
+      </script>
+      <!-- Tailwind CSS with Plugins -->
+      <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+      <!-- Theme Configuration -->
+      <script id="tailwind-config">
+         tailwind.config = {
+             darkMode: "class",
+             theme: {
+                 extend: {
+                     colors: {
+                         "primary": "#f08b42",
+                         "primary-dark": "#d66e25",
+                         "cream": "#fff8f0",
+                         "peach-light": "#ffebd6",
+                         "background-light": "#f8f7f6",
+                         "background-dark": "#221810",
+                     },
+                     fontFamily: {
+                         "display": ["Lexend", "sans-serif"]
+                     },
+                     borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                 },
+             },
+         }
+      </script>
+      <style>
+         /* Custom scrollbar hiding for horizontal scroll areas */
+         .no-scrollbar::-webkit-scrollbar {
+         display: none;
+         }
+         .no-scrollbar {
+         -ms-overflow-style: none;
+         scrollbar-width: none;
+         }
+
+         html.reveal-ready section {
+         opacity: 0;
+         transform: translateY(14px);
+         transition: opacity 650ms cubic-bezier(.2,.8,.2,1), transform 650ms cubic-bezier(.2,.8,.2,1);
+         will-change: opacity, transform;
+         }
+         html.reveal-ready section.reveal-visible {
+         opacity: 1;
+         transform: none;
+         }
+         @media (prefers-reduced-motion: reduce) {
+         html.reveal-ready section {
+         opacity: 1;
+         transform: none;
+         transition: none;
+         }
+         }
+      </style>
+   </head>
+   <body class="bg-background-light dark:bg-background-dark font-display text-[#181411] dark:text-white overflow-x-hidden w-full">
+      <!-- Sticky Header Wrapper -->
+      <div class="sticky top-0 z-50 w-full shadow-sm">
+         <!-- Top Utility Bar -->
+         <div class="bg-primary text-white text-md py-2 px-4 md:px-10 flex justify-between items-center">
+	            <div class="flex items-center gap-6">
+	               <span class="flex items-center gap-1">
+	               <span class="material-symbols-outlined text-[16px]">call</span>
+	               {% if contact_page.phone %}
+	                  <a class="hover:text-white/80 transition-colors" href="tel:{{ contact_page.phone }}">{{ contact_page.phone }}</a>{% if contact_page.phone_2 %} / <a class="hover:text-white/80 transition-colors" href="tel:{{ contact_page.phone_2 }}">{{ contact_page.phone_2 }}</a>{% endif %}
+	               {% elif contact_page.phone_2 %}
+	                  <a class="hover:text-white/80 transition-colors" href="tel:{{ contact_page.phone_2 }}">{{ contact_page.phone_2 }}</a>
+	               {% else %}
+	                  <a class="hover:text-white/80 transition-colors" href="tel:(555) 123-4567">(555) 123-4567</a>
+	               {% endif %}
+	               </span>
+	               <span class="flex items-center gap-1 hidden lg:flex">
+	               <span class="material-symbols-outlined text-[16px]">mail</span>
+	               {% if contact_page.email %}
+	                  <a class="hover:text-white/80 transition-colors" href="mailto:{{ contact_page.email }}">{{ contact_page.email }}</a>{% if contact_page.email_2 %} / <a class="hover:text-white/80 transition-colors" href="mailto:{{ contact_page.email_2 }}">{{ contact_page.email_2 }}</a>{% endif %}
+	               {% elif contact_page.email_2 %}
+	                  <a class="hover:text-white/80 transition-colors" href="mailto:{{ contact_page.email_2 }}">{{ contact_page.email_2 }}</a>
+	               {% else %}
+	               {% endif %}
+	               </span>
+	               <span class="flex items-center gap-1 hidden lg:flex">
+	               <span class="material-symbols-outlined text-[16px]">schedule</span>
+                  {% trans "Mon - Fri: 8:00 AM - 4:00 PM" as default_working_hours %}
+	               {{ contact_page.working_hours|default:default_working_hours }}
+               </span>
+            </div>
+	            <div class="flex items-center gap-4">
+	               <div class="relative group cursor-pointer flex items-center gap-1 hover:text-white/80 transition-colors after:content-[''] after:absolute after:inset-x-0 after:top-full after:h-2">
+	                  <span class="material-symbols-outlined text-[16px]">language</span>
+	                  {% get_language_info for CURRENT_LANGUAGE_CODE as current_language_info %}
+		                  <span class="font-medium">{{ current_language_info.name_local|capfirst }}</span>
+	                  <span class="material-symbols-outlined text-[16px]">expand_more</span>
+	                  <div class="absolute top-full right-0 mt-1 hidden group-hover:block group-focus-within:block bg-white text-[#181411] shadow-lg rounded py-1 min-w-[140px] z-50 border border-gray-100">
+	                     {% get_available_languages as AVAILABLE_LANGUAGES %}
+	                     {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+	                     {% for language in languages %}
+	                     <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+	                        <input name="language" type="hidden" value="{{ language.code }}"/>
+	                        <input name="next" type="hidden" value="{{ request.get_full_path }}"/>
+	                        <button class="block w-full px-3 py-1 hover:bg-gray-100 text-xs text-left {% if language.code == CURRENT_LANGUAGE_CODE %}font-bold text-primary{% endif %}" type="submit">{{ language.name_local|capfirst }}</button>
+	                     </form>
+	                     {% endfor %}
+	                  </div>
+	               </div>
+	               {% if user.is_authenticated %}
+               <div class="relative group after:content-[''] after:absolute after:inset-x-0 after:top-full after:h-2">
+                  <button class="hover:text-white/80 transition-colors flex items-center gap-1" type="button">
+                  <span class="material-symbols-outlined text-[16px]">account_circle</span>
+                  <span class="font-medium">{{ user.get_short_name|default:user.username }}</span>
+                  <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                  </button>
+                  <div class="absolute top-full right-0 mt-1 hidden group-hover:block group-focus-within:block bg-white text-[#181411] shadow-lg rounded py-2 min-w-[180px] z-50 border border-gray-100">
+	                     <div class="px-3 pb-2 border-b border-gray-100">
+	                        <div class="text-xs text-gray-500">{% trans "Signed in as" %}</div>
+	                        <div class="text-sm font-bold truncate">{{ user.username }}</div>
+	                        {% if user.role %}
+	                        <div class="text-xs text-gray-500 mt-0.5">{{ user.role }}</div>
+	                        {% endif %}
+	                     </div>
+	                     {% if portal_menu_items %}
+	                     {% for item in portal_menu_items %}
+	                     {% with children=item.children.all %}
+	                     <a class="block px-3 py-2 hover:bg-gray-100 text-xs" href="{{ item.get_url }}">{{ item.title }}</a>
+	                     {% if children|length %}
+	                     {% for child in children %}
+	                     <a class="block pl-6 pr-3 py-2 hover:bg-gray-100 text-xs text-gray-700" href="{{ child.get_url }}">{{ child.title }}</a>
+	                     {% endfor %}
+	                     {% endif %}
+	                     {% endwith %}
+	                     {% endfor %}
+	                     {% else %}
+	                     <a class="block px-3 py-2 hover:bg-gray-100 text-xs" href="/portal/resources/">{% trans "Portal" %}</a>
+	                     {% endif %}
+	                     {% if user.is_staff %}
+	                     <a class="block px-3 py-2 hover:bg-gray-100 text-xs" href="/admin/">{% trans "Admin" %}</a>
+	                     {% endif %}
+	                     <form action="{% url 'logout' %}" method="post">
+	                        {% csrf_token %}
+	                        <button class="block w-full text-left px-3 py-2 hover:bg-gray-100 text-xs" type="submit">{% trans "Logout" %}</button>
+                     </form>
+                  </div>
+               </div>
+               {% else %}
+               <a class="hover:text-orange-100 flex items-center gap-1" href="{% url 'login' %}">
+               <span class="material-symbols-outlined text-[16px]">lock</span>
+               {% trans "Login" %}
+               </a>
+               {% endif %}
+            </div>
+         </div>
+         <!-- Main Navigation -->
+         <header class="bg-white dark:bg-[#1a1614] border-b border-[#f4f2f0] dark:border-[#332e2b] px-4 md:px-10 py-3 flex items-center justify-between whitespace-nowrap">
+            <div class="flex items-center">
+               <a class="flex items-center space-x-3 group" href="{% url 'index' %}">
+                  {% if school_info and school_info.image %}
+                  {% responsive_candidates school_info.image "64,128,256" as school_logo %}
+                  <img alt="{{ school_info.name }}" class="h-14 w-14 rounded-lg object-contain bg-white/5" decoding="async" height="56" loading="eager" sizes="56px" src="{{ school_logo.src }}"{% if school_logo.srcset %} srcset="{{ school_logo.srcset }}"{% endif %} width="56"/>
+                  {% else %}
+                  <div class="size-8 text-primary">
+                     <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+                     </svg>
+                  </div>
+                  {% endif %}
+                  <h4 class="text-xl md:text-2xl font-bold text-gray-800 leading-tight">
+                     <span class="block text-base md:text-md font-medium text-gray-600 text-sm">
+                     {{ school_info.name|before_quotes }}
+                     </span>
+                     <span class="block">
+                     {{ school_info.name|with_quotes }}
+                     </span>
+                  </h4>
+               </a>
+            </div>
+            <div class="hidden min-[1026px]:flex flex-1 justify-end gap-6 items-center">
+               <nav class="flex items-center gap-6">
+                  {% if menu_items %}
+                  {% for item in menu_items %}
+                  {% with children=item.children.all %}
+                  {% if children|length %}
+                  <div class="relative group after:content-[''] after:absolute after:inset-x-0 after:top-full after:h-3">
+                     {% if active_menu_item %}
+                     <a class="text-sm font-small transition-colors {% if active_menu_item.id == item.id or active_menu_item.parent_id == item.id %}text-primary{% else %}text-[#181411] dark:text-gray-200 hover:text-primary{% endif %} flex items-center gap-1" href="{{ item.get_url }}">
+                     {{ item.title }} <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                     </a>
+                     {% else %}
+                     <a class="text-sm font-medium transition-colors text-[#181411] dark:text-gray-200 hover:text-primary flex items-center gap-1" href="{{ item.get_url }}">
+                     {{ item.title }} <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                     </a>
+                     {% endif %}
+                     <div class="absolute top-full left-0 mt-2 hidden group-hover:block group-focus-within:block bg-white dark:bg-[#1a1614] shadow-lg rounded-lg p-3 min-w-[320px] max-w-[min(720px,calc(100vw-2rem))] z-50 border border-gray-100 dark:border-white/10">
+                        <div class="flex flex-wrap gap-2">
+                           {% for child in children %}
+                           <a class="inline-flex items-center rounded-full px-3 py-1.5 text-md text-[#181411] dark:text-gray-200 bg-peach-light/50 dark:bg-white/5 hover:bg-peach-light dark:hover:bg-white/10 border border-primary/20 dark:border-white/10 whitespace-nowrap transition-colors" href="{{ child.get_url }}">{{ child.title }}</a>
+                           {% endfor %}
+                        </div>
+                     </div>
+                  </div>
+                  {% else %}
+                  {% if active_menu_item %}
+                  <a class="text-sm font-medium transition-colors {% if active_menu_item.id == item.id or active_menu_item.parent_id == item.id %}text-primary{% else %}text-[#181411] dark:text-gray-200 hover:text-primary{% endif %}" href="{{ item.get_url }}">
+                  {{ item.title }}
+                  </a>
+                  {% else %}
+                  <a class="text-sm font-medium transition-colors text-[#181411] dark:text-gray-200 hover:text-primary" href="{{ item.get_url }}">
+                  {{ item.title }}
+                  </a>
+                  {% endif %}
+                  {% endif %}
+                  {% endwith %}
+                  {% endfor %}
+                  {% else %}
+                  {% endif %}
+               </nav>
+            </div>
+            <!-- Mobile/Tablet Menu -->
+            <button aria-controls="mobile-nav" aria-expanded="false" class="min-[1026px]:hidden inline-flex items-center justify-center rounded-lg p-2 text-[#181411] dark:text-white hover:bg-peach-light/40 dark:hover:bg-white/5 transition-colors" data-mobile-nav-toggle type="button">
+            <span class="material-symbols-outlined" data-mobile-nav-icon>menu</span>
+            </button>
+	         </header>
+	         <div class="min-[1026px]:hidden hidden fixed inset-0 z-[60]" data-mobile-nav-overlay>
+	            <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" data-mobile-nav-backdrop></div>
+	            <div class="absolute top-0 right-0 h-full w-full max-w-[420px] bg-white dark:bg-[#1a1614] border-l border-[#f4f2f0] dark:border-[#332e2b] shadow-2xl transform translate-x-full transition-transform duration-200" id="mobile-nav" role="dialog" aria-modal="true" aria-label="{% trans 'Mobile navigation' %}">
+	               <div class="flex items-center justify-between gap-3 px-4 md:px-6 py-4 border-b border-[#f4f2f0] dark:border-[#332e2b]">
+	                  <div class="flex items-center gap-3">
+	                     <span class="material-symbols-outlined text-primary">menu</span>
+	                     <div class="font-bold text-[#181411] dark:text-white">{% trans "Menu" %}</div>
+	                  </div>
+	                  <button class="inline-flex items-center justify-center rounded-lg p-2 text-[#181411] dark:text-white hover:bg-peach-light/40 dark:hover:bg-white/5 transition-colors" data-mobile-nav-close type="button" aria-label="{% trans 'Close menu' %}">
+	                  <span class="material-symbols-outlined">close</span>
+	                  </button>
+	               </div>
+	               <div class="px-4 md:px-6 py-4 overflow-y-auto h-[calc(100%-64px)]">
+	                  <nav class="space-y-2">
+	                     {% if menu_items %}
+	                     {% for item in menu_items %}
+	                     {% with children=item.children.all %}
+	                     {% if children|length %}
+	                     <div class="rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#1a1614] overflow-hidden">
+	                        <div class="flex items-center justify-between gap-3 px-4 py-3">
+	                           <a class="text-sm font-bold text-[#181411] dark:text-white hover:text-primary transition-colors" href="{{ item.get_url }}">{{ item.title }}</a>
+	                           <button aria-controls="mobile-submenu-{{ item.id }}" aria-expanded="false" class="shrink-0 rounded-lg p-2 hover:bg-peach-light/40 dark:hover:bg-white/5 transition-colors" data-mobile-submenu-toggle type="button">
+	                           <span class="material-symbols-outlined text-[20px]">expand_more</span>
+	                           </button>
+	                        </div>
+	                        <div class="hidden border-t border-gray-200 dark:border-white/10 px-2 py-2" id="mobile-submenu-{{ item.id }}">
+	                           <div class="flex flex-col">
+	                              {% for child in children %}
+	                              <a class="px-3 py-2 rounded-lg text-sm text-[#181411] dark:text-gray-200 hover:bg-peach-light/40 dark:hover:bg-white/5 transition-colors" href="{{ child.get_url }}">{{ child.title }}</a>
+	                              {% endfor %}
+	                           </div>
+	                        </div>
+	                     </div>
+	                     {% else %}
+	                     <a class="block rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#1a1614] px-4 py-3 text-sm font-bold text-[#181411] dark:text-white hover:text-primary hover:border-primary/40 transition-colors" href="{{ item.get_url }}">{{ item.title }}</a>
+	                     {% endif %}
+	                     {% endwith %}
+	                     {% endfor %}
+	                     {% endif %}
+	                  </nav>
+	                  <!-- Removed Contact Us button for mobile -->
+	               </div>
+	            </div>
+	         </div>
+      </div>
+      <!-- Main Content Area -->
+      <main class="flex flex-col w-full">
+         {% block content %}
+         {% endblock %}
+      </main>
+	      <!-- Footer -->
+	      <footer class="bg-[#221810] text-cream py-16 px-6 md:px-20 lg:px-40 border-t border-primary/30">
+	         <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+	            <!-- Brand -->
+	            <div class="flex flex-col gap-4">
+	               <div class="flex items-center gap-2 text-primary">
+	                  {% if school_info and school_info.image %}
+	                  {% responsive_candidates school_info.image "64,128,256" as school_logo_footer %}
+	                  <img alt="{{ school_info.name }}" class="h-20 w-20 rounded-2xl object-contain bg-white px-2 pt-2 pb-2 mr-2" decoding="async" height="80" loading="eager" sizes="80px" src="{{ school_logo_footer.src }}"{% if school_logo_footer.srcset %} srcset="{{ school_logo_footer.srcset }}"{% endif %} width="80"/>
+                      <span class="text-xl font-bold text-white">{{ school_info.name }}</span>
+	                  {% endif %}
+	               </div>
+	            </div>
+	            <!-- Footer Links -->
+	            <div class="flex flex-col gap-4">
+	               <h4 class="text-primary font-bold text-sm uppercase tracking-wider">{% trans "Quick Links" %}</h4>
+	               {% for item in footer_menu_items %}
+	               <a class="text-gray-300 hover:text-white text-sm" href="{{ item.get_url }}">{{ item.title }}</a>
+	               {% empty %}
+	               {% endfor %}
+	            </div>
+	            <!-- Social Links -->
+	            <div class="flex flex-col gap-4">
+	               <h4 class="text-primary font-bold text-sm uppercase tracking-wider">{% trans "Stay Connected" %}</h4>
+	               <div class="flex gap-4 mt-2">
+	                  {% for sn in social_networks %}
+	                  <a class="text-gray-400 hover:text-primary" href="{{ sn.link }}" rel="noopener noreferrer" target="_blank">
+	                  {% if sn.svg %}{{ sn.svg|safe_svg }}{% else %}<span class="material-symbols-outlined">public</span>{% endif %}
+	                  </a>
+	                  {% empty %}
+	                  {% endfor %}
+	               </div>
+	            </div>
+	         </div>
+	         <div class="max-w-[1440px] mx-auto mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+	            <p>© {% if school_info %}{{ school_info.name }}{% else %}{% trans "School" %}{% endif %} {% trans "2026. All rights reserved." %}</p>
+	         </div>
+	      </footer>
+
+	      <!-- Lightbox (Gallery) -->
+	      <div class="fixed inset-0 z-[80] hidden" data-lightbox-modal aria-hidden="true">
+	         <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-lightbox-backdrop></div>
+	         <div class="relative h-full w-full flex items-center justify-center p-4">
+	            <button class="absolute top-4 right-4 inline-flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white w-11 h-11 transition-colors" type="button" data-lightbox-close aria-label="{% trans 'Close' %}">
+	               <span class="material-symbols-outlined">close</span>
+	            </button>
+
+	            <button class="absolute left-4 md:left-8 inline-flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white w-11 h-11 transition-colors disabled:opacity-30 disabled:hover:bg-white/10" type="button" data-lightbox-prev aria-label="{% trans 'Previous' %}">
+	               <span class="material-symbols-outlined">chevron_left</span>
+	            </button>
+
+	            <figure class="max-w-[1100px] w-full flex flex-col items-center justify-center">
+	               <img class="max-h-[78vh] w-auto max-w-full rounded-2xl shadow-2xl border border-white/10 bg-black" data-lightbox-img alt=""/>
+	               <figcaption class="mt-4 text-center text-sm text-gray-200 max-w-[90ch]" data-lightbox-caption></figcaption>
+	            </figure>
+
+	            <button class="absolute right-4 md:right-8 inline-flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white w-11 h-11 transition-colors disabled:opacity-30 disabled:hover:bg-white/10" type="button" data-lightbox-next aria-label="{% trans 'Next' %}">
+	               <span class="material-symbols-outlined">chevron_right</span>
+	            </button>
+	         </div>
+	      </div>
+
+		      <script>
+		         (() => {
+		             const mobileToggle = document.querySelector("[data-mobile-nav-toggle]");
+	             const mobileNav = document.getElementById("mobile-nav");
+	             const overlay = document.querySelector("[data-mobile-nav-overlay]");
+	             const backdrop = document.querySelector("[data-mobile-nav-backdrop]");
+	             const closeButton = document.querySelector("[data-mobile-nav-close]");
+	             const icon = document.querySelector("[data-mobile-nav-icon]");
+	             const submenuToggles = Array.from(document.querySelectorAll("[data-mobile-submenu-toggle]"));
+	             const openClass = "translate-x-full";
+	             let closeTimer = null;
+
+	             const setMobileOpen = (open) => {
+	                 if (!mobileToggle || !mobileNav || !overlay) return;
+	                 if (closeTimer) {
+	                     window.clearTimeout(closeTimer);
+	                     closeTimer = null;
+	                 }
+	                 mobileToggle.setAttribute("aria-expanded", String(open));
+	                 if (icon) icon.textContent = open ? "close" : "menu";
+	                 if (open) {
+	                     overlay.classList.remove("hidden");
+	                     document.body.classList.add("overflow-hidden");
+	                     window.requestAnimationFrame(() => {
+	                         mobileNav.classList.remove(openClass);
+	                     });
+	                 } else {
+	                     mobileNav.classList.add(openClass);
+	                     document.body.classList.remove("overflow-hidden");
+	                     closeTimer = window.setTimeout(() => {
+	                         overlay.classList.add("hidden");
+	                     }, 220);
+	                 }
+	                 if (!open) {
+	                     submenuToggles.forEach((toggle) => {
+	                         const id = toggle.getAttribute("aria-controls");
+	                         if (!id) return;
+                         const submenu = document.getElementById(id);
+                         toggle.setAttribute("aria-expanded", "false");
+                         submenu?.classList.add("hidden");
+                     });
+                 }
+             };
+
+	             if (mobileToggle && mobileNav && overlay) {
+	                 mobileToggle.addEventListener("click", () => {
+	                     setMobileOpen(mobileNav.classList.contains(openClass));
+	                 });
+	
+	                 mobileNav.addEventListener("click", (event) => {
+	                     const target = event.target;
+	                     if (!(target instanceof Element)) return;
+	                     if (target.closest("a")) setMobileOpen(false);
+	                 });
+
+	                 document.addEventListener("click", (event) => {
+	                     if (overlay.classList.contains("hidden")) return;
+	                     const target = event.target;
+	                     if (!(target instanceof Node)) return;
+	                     if (mobileNav.contains(target) || mobileToggle.contains(target)) return;
+	                     setMobileOpen(false);
+	                 });
+
+	                 backdrop?.addEventListener("click", () => setMobileOpen(false));
+	                 closeButton?.addEventListener("click", () => setMobileOpen(false));
+
+	                 window.addEventListener("keydown", (event) => {
+	                     if (event.key === "Escape") setMobileOpen(false);
+	                 });
+
+	                 window.matchMedia("(min-width: 1026px)").addEventListener("change", (event) => {
+	                     if (event.matches) setMobileOpen(false);
+	                 });
+	             }
+
+		             submenuToggles.forEach((toggle) => {
+	                 toggle.addEventListener("click", () => {
+	                     const id = toggle.getAttribute("aria-controls");
+	                     if (!id) return;
+	                     const submenu = document.getElementById(id);
+	                     if (!submenu) return;
+	                     const open = submenu.classList.contains("hidden");
+	                     toggle.setAttribute("aria-expanded", String(open));
+	                     submenu.classList.toggle("hidden", !open);
+	                 });
+	             });
+	         })();
+
+	         (() => {
+	           const modal = document.querySelector("[data-lightbox-modal]");
+	           if (!modal) return;
+
+	           const backdrop = modal.querySelector("[data-lightbox-backdrop]");
+	           const img = modal.querySelector("[data-lightbox-img]");
+	           const caption = modal.querySelector("[data-lightbox-caption]");
+	           const closeBtn = modal.querySelector("[data-lightbox-close]");
+	           const prevBtn = modal.querySelector("[data-lightbox-prev]");
+	           const nextBtn = modal.querySelector("[data-lightbox-next]");
+
+	           if (!img || !caption || !closeBtn || !prevBtn || !nextBtn) return;
+
+	           let currentGroup = "default";
+	           let currentIndex = 0;
+	           let items = [];
+	           let lastActiveEl = null;
+
+	           const readItem = (el) => {
+	             const elImg = el.querySelector("img");
+	             const src = el.dataset.lightboxSrc || (elImg ? elImg.getAttribute("src") : "");
+	             const alt = el.dataset.lightboxAlt || (elImg ? elImg.getAttribute("alt") : "") || "";
+	             const embedded = el.querySelector("[data-lightbox-caption]");
+	             const text = el.dataset.lightboxCaption || (embedded ? (embedded.textContent || "").trim() : "") || "";
+	             return { src, alt, text };
+	           };
+
+	           const collect = (group) => {
+	             const selector = `[data-lightbox-item][data-lightbox-group=\"${CSS.escape(group)}\"]`;
+	             return Array.from(document.querySelectorAll(selector)).map(readItem).filter((it) => it.src);
+	           };
+
+	           const setOpen = (open) => {
+	             modal.classList.toggle("hidden", !open);
+	             modal.setAttribute("aria-hidden", open ? "false" : "true");
+	             document.body.classList.toggle("overflow-hidden", open);
+	             if (!open) {
+	               img.setAttribute("src", "");
+	               img.setAttribute("alt", "");
+	               caption.textContent = "";
+	               if (lastActiveEl && typeof lastActiveEl.focus === "function") lastActiveEl.focus();
+	               lastActiveEl = null;
+	             }
+	           };
+
+	           const render = () => {
+	             const it = items[currentIndex];
+	             if (!it) return;
+	             img.setAttribute("src", it.src);
+	             img.setAttribute("alt", it.alt || "");
+	             caption.textContent = it.text || "";
+	             prevBtn.disabled = items.length <= 1;
+	             nextBtn.disabled = items.length <= 1;
+	           };
+
+	           const openAt = (group, index, triggerEl) => {
+	             currentGroup = group || "default";
+	             items = collect(currentGroup);
+	             if (!items.length) return;
+	             currentIndex = Math.max(0, Math.min(index, items.length - 1));
+	             lastActiveEl = triggerEl || document.activeElement;
+	             setOpen(true);
+	             render();
+	           };
+
+	           const move = (delta) => {
+	             if (items.length <= 1) return;
+	             currentIndex = (currentIndex + delta + items.length) % items.length;
+	             render();
+	           };
+
+		           const close = () => setOpen(false);
+		           const activate = (el) => {
+		             if (!el) return;
+		             const group = el.dataset.lightboxGroup || "default";
+		             const selector = `[data-lightbox-item][data-lightbox-group=\"${CSS.escape(group)}\"]`;
+		             const els = Array.from(document.querySelectorAll(selector));
+		             const idx = els.indexOf(el);
+		             openAt(group, idx >= 0 ? idx : 0, el);
+		           };
+
+		           // Event delegation so lightbox also works for dynamically inserted items (e.g. React widgets).
+		           document.addEventListener("click", (event) => {
+		             const el = event.target.closest?.("[data-lightbox-item]");
+		             if (!el) return;
+		             event.preventDefault();
+		             activate(el);
+		           });
+
+		           document.addEventListener("keydown", (event) => {
+		             if (event.key !== "Enter" && event.key !== " ") return;
+		             const el = event.target.closest?.("[data-lightbox-item]");
+		             if (!el) return;
+		             event.preventDefault();
+		             activate(el);
+		           });
+
+		           closeBtn.addEventListener("click", close);
+		           backdrop?.addEventListener("click", close);
+		           prevBtn.addEventListener("click", () => move(-1));
+	           nextBtn.addEventListener("click", () => move(1));
+
+	           window.addEventListener("keydown", (event) => {
+	             if (modal.classList.contains("hidden")) return;
+	             if (event.key === "Escape") close();
+	             if (event.key === "ArrowLeft") move(-1);
+	             if (event.key === "ArrowRight") move(1);
+	           });
+	         })();
+
+	         (() => {
+	           const containers = Array.from(document.querySelectorAll("[data-tabs]"));
+	           if (!containers.length) return;
+
+	           const init = (container) => {
+	             const buttons = Array.from(container.querySelectorAll("[data-tabs-btn]"));
+	             const panels = Array.from(container.querySelectorAll("[data-tabs-panel]"));
+	             if (!buttons.length || !panels.length) return;
+
+	             const defaultKey =
+	               container.getAttribute("data-tabs-default") || buttons[0].getAttribute("data-tabs-btn");
+
+	             const setActive = (key) => {
+	               panels.forEach((panel) => {
+	                 panel.classList.toggle("hidden", panel.getAttribute("data-tabs-panel") !== key);
+	               });
+
+	               buttons.forEach((btn) => {
+	                 const active = btn.getAttribute("data-tabs-btn") === key;
+	                 btn.classList.toggle("border-primary", active);
+	                 btn.classList.toggle("text-primary", active);
+	                 btn.classList.toggle("border-transparent", !active);
+	                 btn.classList.toggle("text-gray-500", !active);
+	                 btn.classList.toggle("dark:text-gray-400", !active);
+	               });
+	             };
+
+	             buttons.forEach((btn) => {
+	               btn.addEventListener("click", () => setActive(btn.getAttribute("data-tabs-btn")));
+	             });
+
+	             setActive(defaultKey);
+	           };
+
+	           containers.forEach(init);
+	         })();
+
+	         (() => {
+	           const carousels = Array.from(document.querySelectorAll("[data-carousel]"));
+	           if (!carousels.length) return;
+
+	           const setSlide = (slides, dots, thumbs, index) => {
+	             slides.forEach((slide, i) => {
+	               const active = i === index;
+	               slide.classList.toggle("opacity-100", active);
+	               slide.classList.toggle("opacity-0", !active);
+	               slide.classList.toggle("pointer-events-none", !active);
+	               slide.setAttribute("aria-hidden", active ? "false" : "true");
+	               slide.tabIndex = active ? 0 : -1;
+	             });
+	             dots.forEach((dot, i) => {
+	               const active = i === index;
+	               dot.classList.toggle("bg-primary", active);
+	               dot.classList.toggle("bg-white/30", !active);
+	               dot.setAttribute("aria-current", active ? "true" : "false");
+	             });
+	             thumbs.forEach((thumb, i) => {
+	               const active = i === index;
+	               thumb.classList.toggle("ring-2", active);
+	               thumb.classList.toggle("ring-primary", active);
+	               thumb.classList.toggle("ring-transparent", !active);
+	               thumb.setAttribute("aria-current", active ? "true" : "false");
+	             });
+	           };
+
+	           const init = (root) => {
+	             const slides = Array.from(root.querySelectorAll("[data-carousel-slide]"));
+	             const prev = root.querySelector("[data-carousel-prev]");
+	             const next = root.querySelector("[data-carousel-next]");
+	             const dots = Array.from(root.querySelectorAll("[data-carousel-dot]"));
+	             const thumbs = Array.from(root.querySelectorAll("[data-carousel-thumb]"));
+	             if (!slides.length) return;
+
+	             let index = 0;
+	             const autoplayMs = parseInt(root.getAttribute("data-carousel-autoplay") || "", 10);
+	             const hasAutoplay = Number.isFinite(autoplayMs) && autoplayMs >= 1500;
+	             let timer = null;
+
+	             const move = (delta) => {
+	               if (slides.length <= 1) return;
+	               index = (index + delta + slides.length) % slides.length;
+	               setSlide(slides, dots, thumbs, index);
+	             };
+
+	             prev?.addEventListener("click", () => move(-1));
+	             next?.addEventListener("click", () => move(1));
+	             dots.forEach((dot, i) =>
+	               dot.addEventListener("click", () => {
+	                 index = i;
+	                 setSlide(slides, dots, thumbs, index);
+	               }),
+	             );
+	             thumbs.forEach((thumb, i) =>
+	               thumb.addEventListener("click", () => {
+	                 index = i;
+	                 setSlide(slides, dots, thumbs, index);
+	               }),
+	             );
+
+	             if (slides.length <= 1) {
+	               prev?.classList.add("hidden");
+	               next?.classList.add("hidden");
+	               root.querySelector("[data-carousel-dots]")?.classList.add("hidden");
+	               root.querySelector("[data-carousel-thumbs]")?.classList.add("hidden");
+	             }
+
+	             setSlide(slides, dots, thumbs, index);
+
+	             const stop = () => {
+	               if (!timer) return;
+	               window.clearInterval(timer);
+	               timer = null;
+	             };
+	             const start = () => {
+	               if (!hasAutoplay || timer || slides.length <= 1) return;
+	               timer = window.setInterval(() => move(1), autoplayMs);
+	             };
+
+	             if (hasAutoplay) {
+	               start();
+	               root.addEventListener("mouseenter", stop);
+	               root.addEventListener("mouseleave", start);
+	               root.addEventListener("focusin", stop);
+	               root.addEventListener("focusout", start);
+	               prev?.addEventListener("click", stop);
+	               next?.addEventListener("click", stop);
+	               dots.forEach((dot) => dot.addEventListener("click", stop));
+	               thumbs.forEach((thumb) => thumb.addEventListener("click", stop));
+	             }
+
+	             root.addEventListener("keydown", (event) => {
+	               if (slides.length <= 1) return;
+	               if (event.key === "ArrowLeft") {
+	                 event.preventDefault();
+	                 move(-1);
+	                 stop();
+	               }
+	               if (event.key === "ArrowRight") {
+	                 event.preventDefault();
+	                 move(1);
+	                 stop();
+	               }
+	             });
+	           };
+
+	           carousels.forEach(init);
+	         })();
+
+	         (() => {
+	           if (!document.documentElement.classList.contains("reveal-ready")) return;
+	           const sections = Array.from(document.querySelectorAll("section"));
+	           if (!sections.length) return;
+
+	           const reveal = (el) => el.classList.add("reveal-visible");
+
+	           if (!("IntersectionObserver" in window)) {
+	             sections.forEach(reveal);
+	             return;
+	           }
+
+	           const observer = new IntersectionObserver(
+	             (entries) => {
+	               entries.forEach((entry) => {
+	                 if (!entry.isIntersecting) return;
+	                 reveal(entry.target);
+	                 observer.unobserve(entry.target);
+	               });
+	             },
+	             { root: null, threshold: 0.08, rootMargin: "0px 0px -12% 0px" },
+	           );
+
+	           sections.forEach((section) => {
+	             try {
+	               const rect = section.getBoundingClientRect();
+	               if (rect.top < window.innerHeight * 0.9) {
+	                 reveal(section);
+	               } else {
+	                 observer.observe(section);
+	               }
+	             } catch (e) {
+	               reveal(section);
+	             }
+	           });
+		         })();
+		      </script>
+		      {% block extra_scripts %}{% endblock %}
+	   </body>
+	</html>

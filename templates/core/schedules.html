@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ block.super }}{% endblock %}
+
+{% block content %}
+
+<section class="bg-peach-light/40 dark:bg-[#2a2420] pt-16 pb-24 md:pt-24 md:pb-32 relative overflow-hidden">
+  <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto text-center relative z-10">
+    {% trans "Class Schedules" as default_page_title %}
+    {% with page_title=active_menu_item.title|default:default_page_title %}
+    <div class="flex items-center justify-center gap-2 text-sm font-medium opacity-80 mb-4 text-[#181411] dark:text-white">
+      <a class="hover:text-primary transition-colors" href="{% url 'index' %}">{% trans "Home" %}</a>
+      <span class="material-symbols-outlined text-xs">chevron_right</span>
+      <span class="text-primary">{{ page_title }}</span>
+    </div>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#181411] dark:text-white mb-6 font-display">{{ page_title }}</h1>
+    {% endwith %}
+  </div>
+</section>
+
+<div class="px-6 md:px-20 lg:px-40 -mt-16 relative z-20 mb-16">
+  <div class="max-w-[1440px] mx-auto bg-white dark:bg-[#1f1a16] p-4 md:p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800">
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div class="flex items-center gap-2 text-sm font-bold text-[#181411] dark:text-white">
+          <span class="material-symbols-outlined text-primary">school</span>
+          <span>{% trans "Grade" %}</span>
+        </div>
+        <div class="text-sm text-gray-600 dark:text-gray-300">
+          {% if classes_in_grade %}
+            <span class="font-bold text-primary">{{ weekdays_note }}</span>
+          {% else %}
+            <span class="text-gray-500">{% trans "No classes yet" %}</span>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-2">
+        {% for g in grades %}
+          <a class="px-4 py-2 rounded-full text-sm font-bold transition-all active:scale-95 {% if selected_grade == g %}bg-primary text-white hover:bg-primary-dark{% else %}bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:border-primary hover:text-primary hover:bg-peach-light/20{% endif %}"
+             href="?grade={{ g }}"
+             {% if selected_grade == g %}aria-current="page"{% endif %}>
+            {{ g }}
+          </a>
+        {% endfor %}
+      </div>
+
+      {% if classes_in_grade %}
+      <div class="flex flex-wrap gap-2 pt-1">
+        {% for c in classes_in_grade %}
+          <a class="px-3 py-1.5 rounded-full text-xs font-medium border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:border-primary hover:text-primary transition-colors"
+             href="#class-{{ c.pk }}">
+            {{ c.display_name }}
+          </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<section class="pb-16 bg-white dark:bg-background-dark min-h-screen">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+    {% if schedule_blocks and weekdays %}
+      <div class="space-y-10">
+        {% for block in schedule_blocks %}
+        <div class="bg-white dark:bg-[#1e1e1e] rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden scroll-mt-28" id="class-{{ block.school_class.pk }}">
+          <div class="p-6 border-b border-gray-200 dark:border-gray-800 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <h2 class="text-xl font-bold text-[#181411] dark:text-white flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary">schedule</span>
+              {% blocktrans with name=block.school_class.display_name grade=block.school_class.grade %}{{ name }} — Grade {{ grade }}{% endblocktrans %}
+            </h2>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[860px]">
+              <thead class="bg-gray-50 dark:bg-[#25201c]">
+                <tr>
+                  <th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider border-r border-gray-200 dark:border-gray-800">{% trans "Time" %}</th>
+                  {% for d in weekdays %}
+                  <th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">{{ d.label }}</th>
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
+                {% for row in block.table_rows %}
+                <tr class="hover:bg-gray-50/50 dark:hover:bg-[#25201c] transition-colors">
+                  <td class="px-6 py-4 border-r border-gray-200 dark:border-gray-800 bg-gray-50/30 dark:bg-[#2a2420]/30 font-medium text-sm text-gray-500 whitespace-nowrap">
+                    {{ row.slot.start_time|time:"H:i" }} - {{ row.slot.end_time|time:"H:i" }}
+                  </td>
+                  {% for lesson in row.cells %}
+                  <td class="px-6 py-4">
+                    {% if lesson %}
+                    <div class="flex flex-col">
+                      <span class="font-bold text-[#181411] dark:text-white">{{ lesson.subject.name }}</span>
+                      <span class="text-xs text-gray-500 dark:text-gray-400">
+                        {% if lesson.teacher %}{{ lesson.teacher.full_name }}{% else %}—{% endif %}
+                        {% if lesson.room %} • {{ lesson.room.name }}{% endif %}
+                      </span>
+                    </div>
+                    {% else %}
+                    <span class="text-sm text-gray-400">—</span>
+                    {% endif %}
+                  </td>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% else %}
+    <div class="py-16 text-center text-gray-600 dark:text-gray-300">
+      {% trans "No schedule data yet. Add it in Admin → Academics → Class lessons / Time slots." %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

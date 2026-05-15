@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ block.super }}{% endblock %}
+
+{% block content %}
+
+<section class="bg-peach-light/40 dark:bg-[#2a2420] pt-20 pb-32 px-6 md:px-20 lg:px-40 relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-white/40 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none"></div>
+  <div class="max-w-[1440px] mx-auto text-center relative z-10">
+    {% trans "Wall of Fame" as default_page_title %}
+    {% with page_title=active_menu_item.title|default:default_page_title %}
+    <div class="flex items-center justify-center gap-2 text-sm font-medium opacity-80 mb-4 text-[#181411] dark:text-white">
+      <a class="hover:text-primary transition-colors" href="{% url 'index' %}">{% trans "Home" %}</a>
+      <span class="material-symbols-outlined text-xs">chevron_right</span>
+      <span class="text-primary">{{ page_title }}</span>
+    </div>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#181411] dark:text-white mb-6">{{ page_title }}</h1>
+    {% endwith %}
+  </div>
+</section>
+
+<div class="px-6 md:px-20 lg:px-40 -mt-16 relative z-20 mb-20">
+  <div class="max-w-[1440px] mx-auto bg-white dark:bg-[#1f1a16] p-4 md:p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800">
+    <form class="flex flex-col md:flex-row gap-4 items-center" method="get">
+      <div class="relative flex-1 w-full">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">search</span>
+        <input class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none transition-all" name="q" placeholder="{% trans 'Search by student name or award...' %}" type="text" value="{{ search_query }}"/>
+      </div>
+      <div class="relative w-full md:w-1/3 lg:w-1/4">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">emoji_events</span>
+        <select class="w-full pl-12 pr-10 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none appearance-none cursor-pointer transition-all" name="type">
+          <option value="">{% trans "All Types" %}</option>
+          {% for t in type_counts %}
+          <option value="{{ t.id }}" {% if active_type == t.id|stringformat:"s" %}selected{% endif %}>{{ t.name }} ({{ t.count }})</option>
+          {% endfor %}
+        </select>
+        <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">expand_more</span>
+      </div>
+      <div class="relative w-full md:w-1/5">
+        <select class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none appearance-none cursor-pointer transition-all" name="year">
+          <option value="">{% trans "All Years" %}</option>
+          {% for y in years %}
+          <option value="{{ y }}" {% if active_year == y|stringformat:"s" %}selected{% endif %}>{{ y }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="relative w-full md:w-1/4">
+        <select class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-white/5 focus:ring-2 focus:ring-primary focus:border-primary dark:text-white outline-none appearance-none cursor-pointer transition-all" name="level">
+          <option value="">{% trans "All Levels" %}</option>
+          {% for l in levels %}
+          <option value="{{ l.level }}" {% if active_level == l.level %}selected{% endif %}>{{ l.label }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button class="w-full md:w-auto px-8 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl transition-colors shadow-md shadow-primary/20 flex items-center justify-center gap-2" type="submit">
+        <span>{% trans "Search" %}</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<section class="px-6 md:px-20 lg:px-40 mb-16">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="flex items-center justify-between mb-8">
+      <div class="flex items-center gap-4">
+        <div class="h-10 w-1 bg-primary rounded-full"></div>
+        <h2 class="text-3xl font-bold text-[#181411] dark:text-white">{% trans "School Trophies & Honors" %}</h2>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      {% for honor in school_honors|slice:":10" %}
+      <div class="group bg-white dark:bg-[#1f1a16] border border-gray-100 dark:border-gray-800 rounded-lg p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:border-primary/30 hover:-translate-y-1">
+        <div class="h-16 w-16 mb-4 flex items-center justify-center rounded-full bg-gray-50 dark:bg-white/5 group-hover:bg-primary/10 transition-colors duration-300 overflow-hidden">
+          {% if honor.image %}
+          <img alt="{{ honor.title }}" class="w-full h-full object-cover" src="{{ honor.image.url }}"/>
+          {% else %}
+          <span class="material-symbols-outlined text-3xl text-gray-400 group-hover:text-primary transition-colors duration-300">{{ honor.icon|default:"workspace_premium" }}</span>
+          {% endif %}
+        </div>
+        <h3 class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">{{ honor.year }}</h3>
+        <p class="text-sm font-bold text-[#181411] dark:text-white line-clamp-2">{{ honor.title }}</p>
+      </div>
+      {% empty %}
+      <div class="col-span-2 md:col-span-3 lg:col-span-5 text-center py-12 text-gray-600 dark:text-gray-300">
+        {% trans "No school trophies yet. Add them in Admin → Competitions → School honors." %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="px-6 md:px-20 lg:px-40 mb-20">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="flex items-center justify-between mb-8">
+      <div class="flex items-center gap-4">
+        <div class="h-10 w-1 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+        <h2 class="text-2xl font-bold text-[#181411] dark:text-white">{% trans "Student Awards" %}</h2>
+      </div>
+      {% if search_query or active_year or active_level or active_type %}
+      <a class="text-sm font-medium text-gray-500 hover:text-primary transition-colors" href="{% url 'achievments' %}">{% trans "Clear filters" %}</a>
+      {% endif %}
+    </div>
+
+    {% if page_obj.object_list %}
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+      {% for r in page_obj.object_list %}
+      <div class="bg-white dark:bg-[#1e1e1e] rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition-all group">
+        <div class="aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-white/5 relative flex items-center justify-center">
+          {% if r.student.image %}
+          <img alt="{{ r.student.full_name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ r.student.image.url }}"/>
+          {% else %}
+          <span class="material-symbols-outlined text-[72px] text-gray-400">school</span>
+          {% endif %}
+          <div class="absolute bottom-3 right-3">
+            <div class="bg-white dark:bg-[#1e1e1e] p-2 rounded-full shadow-md text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined text-[20px]">emoji_events</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-bold text-lg text-[#181411] dark:text-white mb-1">{{ r.student.full_name }}</h3>
+          <p class="text-primary text-sm font-medium mb-1">{{ r.title }}</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">
+            {{ r.year }} • {{ r.competition_type.name }} • {{ r.get_level_display }}
+            {% if r.subject %} • {{ r.subject.name }}{% endif %}
+            {% if r.result_place %} • {{ r.result_place }}{% endif %}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="py-16 text-center text-gray-600 dark:text-gray-300">
+      {% trans "No achievements found." %}
+    </div>
+    {% endif %}
+
+    {% if page_obj.paginator.num_pages > 1 %}
+    <div class="mt-16 flex justify-center gap-2 flex-wrap">
+      {% if page_obj.has_previous %}
+      <a class="w-10 h-10 rounded-lg border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-500" href="?page={{ page_obj.previous_page_number }}{{ querystring }}">
+        <span class="material-symbols-outlined">chevron_left</span>
+      </a>
+      {% endif %}
+      {% for n in page_obj.paginator.page_range %}
+        {% if n == page_obj.number %}
+        <span class="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center font-bold shadow-md shadow-primary/20">{{ n }}</span>
+        {% else %}
+        <a class="w-10 h-10 rounded-lg border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 font-medium" href="?page={{ n }}{{ querystring }}">{{ n }}</a>
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+      <a class="w-10 h-10 rounded-lg border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-500" href="?page={{ page_obj.next_page_number }}{{ querystring }}">
+        <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

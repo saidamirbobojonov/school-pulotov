@@ -1,0 +1,4357 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-30 15:51+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: academics/models.py:40
+msgctxt "weekday"
+msgid "Monday"
+msgstr "Monday"
+
+#: academics/models.py:41
+msgctxt "weekday"
+msgid "Tuesday"
+msgstr "Tuesday"
+
+#: academics/models.py:42
+msgctxt "weekday"
+msgid "Wednesday"
+msgstr "Wednesday"
+
+#: academics/models.py:43
+msgctxt "weekday"
+msgid "Thursday"
+msgstr "Thursday"
+
+#: academics/models.py:44
+msgctxt "weekday"
+msgid "Friday"
+msgstr "Friday"
+
+#: academics/models.py:45
+msgctxt "weekday"
+msgid "Saturday"
+msgstr "Saturday"
+
+#: academics/models.py:46
+msgctxt "weekday"
+msgid "Sunday"
+msgstr "Sunday"
+
+#: accounts/forms.py:13 templates/core/login.html:55
+msgid "Grade"
+msgstr "Grade"
+
+#: accounts/forms.py:27
+msgid "No portal account exists for this grade."
+msgstr "No portal account exists for this grade."
+
+#: accounts/models.py:8 navigation/models.py:16
+msgid "Student"
+msgstr "Student"
+
+#: accounts/models.py:9 navigation/models.py:17
+msgid "Teacher"
+msgstr "Teacher"
+
+#: competitions/models.py:25
+msgctxt "competition level"
+msgid "School"
+msgstr "School"
+
+#: competitions/models.py:26
+msgctxt "competition level"
+msgid "City"
+msgstr "City"
+
+#: competitions/models.py:27
+msgctxt "competition level"
+msgid "Regional"
+msgstr "Regional"
+
+#: competitions/models.py:28
+msgctxt "competition level"
+msgid "Republic"
+msgstr "Republic"
+
+#: competitions/models.py:29
+msgctxt "competition level"
+msgid "International"
+msgstr "International"
+
+#: contacts/models.py:53
+msgctxt "admission status"
+msgid "New"
+msgstr "New"
+
+#: contacts/models.py:54
+msgctxt "admission status"
+msgid "In progress"
+msgstr "In progress"
+
+#: contacts/models.py:55
+msgctxt "admission status"
+msgid "Done"
+msgstr "Done"
+
+#: core/views.py:528 core/views.py:562 templates/core/secure/plans.html:121
+msgid "YouTube"
+msgstr "YouTube"
+
+#: core/views.py:533 core/views.py:567 templates/core/secure/plans.html:121
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:27
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:98
+msgid "Link"
+msgstr "Link"
+
+#: core/views.py:537
+msgid "Lesson material"
+msgstr "Lesson material"
+
+#: core/views.py:571 templates/core/secure/material-manage.html:298
+msgid "Extra task"
+msgstr "Extra task"
+
+#: navigation/models.py:15
+msgid "Public"
+msgstr "Public"
+
+#: news/models.py:52
+msgctxt "news category"
+msgid "Events"
+msgstr "Events"
+
+#: news/models.py:53
+msgctxt "news category"
+msgid "Sports"
+msgstr "Sports"
+
+#: news/models.py:54
+msgctxt "news category"
+msgid "Academic"
+msgstr "Academic"
+
+#: people/models.py:52
+msgctxt "staff role"
+msgid "Founder"
+msgstr "Founder"
+
+#: people/models.py:53
+msgctxt "staff role"
+msgid "Administration"
+msgstr "Administration"
+
+#: people/models.py:54
+msgctxt "staff role"
+msgid "Teachers"
+msgstr "Teachers"
+
+#: people/models.py:55
+msgctxt "staff role"
+msgid "Staff"
+msgstr "Staff"
+
+#: site_content/models.py:118
+msgctxt "gallery category"
+msgid "School"
+msgstr "School"
+
+#: site_content/models.py:119
+msgctxt "gallery category"
+msgid "Sport"
+msgstr "Sport"
+
+#: site_content/models.py:120
+msgctxt "gallery category"
+msgid "Educational"
+msgstr "Educational"
+
+#: site_content/models.py:121
+msgctxt "gallery category"
+msgid "Academic"
+msgstr "Academic"
+
+#: templates/admin/auth/user/add_form.html:6
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/auth/user/add_form.html:6
+msgid "After you've created a user, you’ll be able to edit more user options."
+msgstr ""
+
+#: templates/admin/index.html:10
+msgid "Панель управления"
+msgstr ""
+
+#: templates/admin/index.html:18
+msgid "Главная"
+msgstr ""
+
+#: templates/admin/index.html:43
+msgid "Быстрые действия"
+msgstr ""
+
+#: templates/admin/index.html:55
+msgid "Последние изменения"
+msgstr ""
+
+#: templates/admin/index.html:79
+msgid "Нет активности."
+msgstr ""
+
+#: templates/core/404.html:20
+msgid "Friendly peach mascot dressed as a detective with a magnifying glass"
+msgstr "Friendly peach mascot dressed as a detective with a magnifying glass"
+
+#: templates/core/404.html:24
+msgid "Class Dismissed!"
+msgstr "Class Dismissed!"
+
+#: templates/core/404.html:25
+msgid "(But not in a good way)"
+msgstr "(But not in a good way)"
+
+#: templates/core/404.html:28
+msgid ""
+"The page you are looking for has skipped class. We've sent a hall pass to "
+"our web team to go find it."
+msgstr ""
+"The page you are looking for has skipped class. We've sent a hall pass to "
+"our web team to go find it."
+
+#: templates/core/404.html:33
+msgid "Go Back to Home"
+msgstr "Go Back to Home"
+
+#: templates/core/404.html:37
+msgid "Contact the Office"
+msgstr "Contact the Office"
+
+#: templates/core/500.html:10
+msgid ""
+"Science Lab Gone Wrong illustration with colorful peach-colored smoke coming "
+"out of beakers and a disheveled but smiling scientist character"
+msgstr ""
+"Science Lab Gone Wrong illustration with colorful peach-colored smoke coming "
+"out of beakers and a disheveled but smiling scientist character"
+
+#: templates/core/500.html:15
+msgid "Oops! Our Science Experiment Exploded"
+msgstr "Oops! Our Science Experiment Exploded"
+
+#: templates/core/500.html:18
+msgid ""
+"Our servers are currently having an unexpected chemistry reaction. We are "
+"working on the antidote! Please try refreshing or come back later."
+msgstr ""
+"Our servers are currently having an unexpected chemistry reaction. We are "
+"working on the antidote! Please try refreshing or come back later."
+
+#: templates/core/500.html:24
+msgid "Refresh Page"
+msgstr "Refresh Page"
+
+#: templates/core/500.html:27
+msgid "Status Page"
+msgstr "Status Page"
+
+#: templates/core/500.html:32
+msgid "Error Code: 500 Internal Server Error"
+msgstr "Error Code: 500 Internal Server Error"
+
+#: templates/core/about.html:16
+msgid "About school"
+msgstr "About school"
+
+#: templates/core/about.html:57
+msgid "No slogans yet."
+msgstr "No slogans yet."
+
+#: templates/core/about.html:303
+msgid "Campus Map"
+msgstr "Campus Map"
+
+#: templates/core/about.html:68
+msgid "Graduates Worldwide"
+msgstr "Graduates Worldwide"
+
+#: templates/core/about.html:69
+msgid ""
+"Explore where our graduates continue their studies in international "
+"universities."
+msgstr ""
+"Explore where our graduates continue their studies in international "
+"universities."
+
+#: templates/core/about.html:73
+#, fuzzy
+#| msgid "Featured"
+msgid "Featured Journey"
+msgstr "Featured"
+
+#: templates/core/about.html:74
+#, fuzzy
+#| msgid "See all news"
+msgid "Select a glowing pin"
+msgstr "See all news"
+
+#: templates/core/about.html:75
+msgid "to preview graduates and universities."
+msgstr ""
+
+#: templates/core/about.html:76
+msgid ""
+"Explore graduate destinations worldwide and see where alumni continue their "
+"studies."
+msgstr ""
+
+#: templates/core/about.html:77
+#, fuzzy
+#| msgid "Graduates Worldwide"
+msgid "Graduates here"
+msgstr "Graduates Worldwide"
+
+#: templates/core/about.html:78
+msgid "No graduates have been added for this destination yet."
+msgstr ""
+
+#: templates/core/about.html:79
+msgid "Could not load destinations."
+msgstr ""
+
+#: templates/core/about.html:80 templates/core/about.html:108
+msgid "Loading..."
+msgstr ""
+
+#: templates/core/about.html:81
+msgid "Tap a pin to preview"
+msgstr ""
+
+#: templates/core/about.html:82
+#, fuzzy
+#| msgid "Description (RU)"
+msgid "Destinations: "
+msgstr "Description (RU)"
+
+#: templates/core/about.html:83
+msgid "Pupils: "
+msgstr "Pupils: "
+
+#: templates/core/about.html:84
+msgid "Pupils"
+msgstr "Pupils"
+
+#: templates/core/about.html:85
+msgid "Information"
+msgstr "Information"
+
+#: templates/core/about.html:86 templates/core/base.html:333
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/submit_line.html:19
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/submit_line.html:52
+msgid "Close"
+msgstr "Close"
+
+#: templates/core/admissions.html:80 templates/core/admissions.html:269
+#: templates/core/admissions.html:288
+msgid "Our regulations"
+msgstr "Our regulations"
+
+#: templates/core/admissions.html:276
+msgid "Open in new tab"
+msgstr "Open in new tab"
+
+#: templates/core/about.html:87 templates/core/base.html:346
+#: templates/core/club-detail.html:72 templates/core/event-detail.html:111
+#: templates/core/gallery.html:79 templates/core/news-detail.html:75
+#: templates/core/news.html:155 templates/core/secure/material-manage.html:403
+#: templates/core/secure/plans.html:169
+#: templates/core/secure/resources.html:154
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/pagination_infinite.html:9
+msgid "Next"
+msgstr "Next"
+
+#: templates/core/about.html:88 templates/core/base.html:337
+#: templates/core/club-detail.html:69 templates/core/event-detail.html:108
+#: templates/core/news-detail.html:72
+#: templates/core/secure/material-manage.html:400
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/pagination_infinite.html:5
+msgid "Previous"
+msgstr "Previous"
+
+#: templates/core/about.html:89
+msgid "Zoom in"
+msgstr "Zoom in"
+
+#: templates/core/about.html:90
+msgid "Zoom out"
+msgstr "Zoom out"
+
+#: templates/core/about.html:91
+msgid "Class of "
+msgstr "Class of "
+
+#: templates/core/about.html:92
+#, fuzzy
+#| msgid "Grade"
+msgid "Graduate"
+msgstr "Grade"
+
+#: templates/core/about.html:93
+msgid "Unknown location"
+msgstr ""
+
+#: templates/core/about.html:94
+msgid "Open assistant for "
+msgstr ""
+
+#: templates/core/about.html:95
+#, fuzzy
+#| msgid "View All"
+msgid "View on globe"
+msgstr "View All"
+
+#: templates/core/about.html:96
+msgid "3D globe showing graduate destinations"
+msgstr ""
+
+#: templates/core/about.html:120
+msgid "World-Class Infrastructure"
+msgstr "Our Infrastructure"
+
+#: templates/core/about.html:192
+msgid "Clubs & Extracurriculars"
+msgstr "Clubs activities"
+
+#: templates/core/about.html:195
+msgid "View All Clubs"
+msgstr "All Clubs"
+
+#: templates/core/about.html:214
+msgid "Club"
+msgstr "Club"
+
+#: templates/core/about.html:221 templates/core/clubs.html:60
+msgid "View Details"
+msgstr "View Details"
+
+#: templates/core/about.html:226
+msgid "No clubs yet."
+msgstr "No clubs yet."
+
+#: templates/core/about.html:235 templates/core/achievments.html:15
+msgid "Wall of Fame"
+msgstr "Our pride"
+
+#: templates/core/about.html:260
+msgid "No competition results yet."
+msgstr "No competition results yet."
+
+#: templates/core/achievments.html:13 templates/core/admissions.html:12
+#: templates/core/clubs.html:13 templates/core/contact.html:11
+#: templates/core/employees.html:13
+#: templates/core/extracurricular-events.html:13 templates/core/gallery.html:12
+#: templates/core/news.html:12 templates/core/schedules.html:12
+#: templates/core/school-events.html:13
+#: templates/core/secure/extracurricular-schedules.html:12
+#: templates/core/secure/material-manage.html:12
+#: templates/core/secure/parents-committee.html:14
+#: templates/core/secure/plans.html:12 templates/core/secure/resources.html:12
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/site_icon.html:7
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/site_icon.html:9
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/site_icon.html:11
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/site_logo.html:5
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/site_logo.html:7
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/site_logo.html:9
+msgid "Home"
+msgstr "Home"
+
+#: templates/core/achievments.html:17
+msgid "Student Excellence"
+msgstr "Student Excellence"
+
+#: templates/core/achievments.html:26
+msgid "Search by student name or award..."
+msgstr "Search by student name or award..."
+
+#: templates/core/achievments.html:31 templates/core/secure/resources.html:58
+msgid "All Types"
+msgstr "All Types"
+
+#: templates/core/achievments.html:40
+#: templates/core/extracurricular-events.html:41 templates/core/news.html:40
+#: templates/core/school-events.html:41
+msgid "All Years"
+msgstr "All Years"
+
+#: templates/core/achievments.html:48
+msgid "All Levels"
+msgstr "All Levels"
+
+#: templates/core/achievments.html:55 templates/core/clubs.html:29
+#: templates/core/extracurricular-events.html:49 templates/core/news.html:48
+#: templates/core/school-events.html:49
+#: templates/core/secure/extracurricular-schedules.html:45
+#: templates/core/secure/plans.html:56 templates/core/secure/resources.html:66
+msgid "Search"
+msgstr "Search"
+
+#: templates/core/achievments.html:66
+msgid "School Trophies & Honors"
+msgstr "Institutional achievements"
+
+#: templates/core/achievments.html:84
+msgid ""
+"No school trophies yet. Add them in Admin → Competitions → School honors."
+msgstr ""
+"No school trophies yet. Add them in Admin → Competitions → School honors."
+
+#: templates/core/achievments.html:96
+msgid "Student Awards"
+msgstr "Student Awards"
+
+#: templates/core/achievments.html:99 templates/core/news.html:98
+msgid "Clear filters"
+msgstr "Clear filters"
+
+#: templates/core/achievments.html:133
+msgid "No achievements found."
+msgstr "No achievements found."
+
+#: templates/core/admissions.html:14 templates/core/admissions.html:17
+#: templates/core/contact.html:119
+msgid "Admissions"
+msgstr "Admissions"
+
+#: templates/core/admissions.html:26
+msgid "Admissions Process"
+msgstr "Admissions Process"
+
+#: templates/core/admissions.html:30
+msgid "Your journey to becoming a student starts here with three simple steps."
+msgstr ""
+"Your journey to becoming a student starts here with three simple steps."
+
+#: templates/core/admissions.html:55
+msgid "1. Apply"
+msgstr "1. Apply"
+
+#: templates/core/admissions.html:56
+msgid "Complete the application form and submit necessary documents."
+msgstr "Complete the application form and submit necessary documents."
+
+#: templates/core/admissions.html:62
+msgid "2. Interview"
+msgstr "2. Interview"
+
+#: templates/core/admissions.html:63
+msgid ""
+"Meet with our admissions counselors for a friendly conversation about your "
+"goals."
+msgstr ""
+"Meet with our admissions counselors for a friendly conversation about your "
+"goals."
+
+#: templates/core/admissions.html:69
+msgid "3. Enrollment"
+msgstr "3. Enrollment"
+
+#: templates/core/admissions.html:70
+msgid "Receive your acceptance letter and join us for orientation week."
+msgstr "Receive your acceptance letter and join us for orientation week."
+
+#: templates/core/admissions.html:87
+msgid "Application Form"
+msgstr "Application Form"
+
+#: templates/core/admissions.html:93
+msgid "Thank you! Your application has been submitted."
+msgstr "Thank you! Your application has been submitted."
+
+#: templates/core/admissions.html:108
+msgid "Student Name"
+msgstr "Student Name"
+
+#: templates/core/admissions.html:109 templates/core/admissions.html:114
+msgid "Full name"
+msgstr "Full name"
+
+#: templates/core/admissions.html:113
+msgid "Parent/Guardian Name"
+msgstr "Parent/Guardian Name"
+
+#: templates/core/admissions.html:120 templates/core/contact.html:51
+#: templates/core/contact.html:103
+msgid "Email Address"
+msgstr "Email Address"
+
+#: templates/core/admissions.html:121
+msgid "name@example.com"
+msgstr "name@example.com"
+
+#: templates/core/admissions.html:125 templates/core/contact.html:38
+#: templates/core/contact.html:109
+msgid "Phone Number"
+msgstr "Phone Number"
+
+#: templates/core/admissions.html:131
+msgid "Applying for Grade"
+msgstr "Applying for Grade"
+
+#: templates/core/admissions.html:133
+msgid "Select grade"
+msgstr "Select grade"
+
+#: templates/core/admissions.html:151
+msgid "Message (optional)"
+msgstr "Message (optional)"
+
+#: templates/core/admissions.html:152
+msgid "Anything we should know?"
+msgstr "Anything we should know?"
+
+#: templates/core/admissions.html:156
+msgid "Documents"
+msgstr "Documents"
+
+#: templates/core/admissions.html:160
+msgid "Upload files (PDF/DOC up to 10MB)"
+msgstr "Upload files (PDF/DOC up to 10MB)"
+
+#: templates/core/admissions.html:170
+msgid "Submit Application"
+msgstr "Submit Application"
+
+#: templates/core/admissions.html:182
+msgid "Important Dates"
+msgstr "Important Dates"
+
+#: templates/core/admissions.html:199
+msgid "Applications Open"
+msgstr "Applications Open"
+
+#: templates/core/admissions.html:200
+msgid "September 1st"
+msgstr "September 1st"
+
+#: templates/core/admissions.html:204
+msgid "Deadline"
+msgstr "Deadline"
+
+#: templates/core/admissions.html:205
+msgid "January 31st"
+msgstr "January 31st"
+
+#: templates/core/admissions.html:213
+msgid "Have Questions?"
+msgstr "Have Questions?"
+
+#: templates/core/admissions.html:217
+msgid "Contact our admissions office or check the FAQ for quick answers."
+msgstr "Contact our admissions office or check the FAQ for quick answers."
+
+#: templates/core/admissions.html:221
+msgid "Admissions Office"
+msgstr "Admissions Office"
+
+#: templates/core/base.html:6 templates/core/base.html:325
+msgid "School"
+msgstr "School"
+
+#: templates/core/base.html:103 templates/core/contact.html:66
+msgid "Mon - Fri: 8:00 AM - 4:00 PM"
+msgstr "Mon - Fri: 8:00 AM - 4:00 PM"
+
+#: templates/core/base.html:135
+msgid "Signed in as"
+msgstr "Signed in as"
+
+#: templates/core/base.html:153
+msgid "Portal"
+msgstr "Portal"
+
+#: templates/core/base.html:156
+msgid "Admin"
+msgstr "Admin"
+
+#: templates/core/base.html:160
+msgid "Logout"
+msgstr "Logout"
+
+#: templates/core/base.html:167
+msgid "Login"
+msgstr "Login"
+
+#: templates/core/base.html:243
+msgid "Mobile navigation"
+msgstr "Mobile navigation"
+
+#: templates/core/base.html:247
+msgid "Menu"
+msgstr "Menu"
+
+#: templates/core/base.html:249
+msgid "Close menu"
+msgstr "Close menu"
+
+#: templates/core/base.html:305
+msgid "Quick Links"
+msgstr "Quick Links"
+
+#: templates/core/base.html:313
+msgid "Stay Connected"
+msgstr "Stay Connected"
+
+#: templates/core/base.html:325
+msgid "2026. All rights reserved."
+msgstr "2026. All rights reserved."
+
+#: templates/core/club-detail.html:22
+msgid "Leader:"
+msgstr "Leader:"
+
+#: templates/core/club-detail.html:42 templates/core/event-detail.html:64
+msgid "Schedule"
+msgstr "Schedule"
+
+#: templates/core/club-detail.html:52 templates/core/event-detail.html:90
+#: templates/core/gallery.html:14 templates/core/gallery.html:16
+#: templates/core/index.html:235 templates/core/news-detail.html:54
+msgid "Gallery"
+msgstr "Gallery"
+
+#: templates/core/club-detail.html:92
+msgid "More Clubs"
+msgstr "More Clubs"
+
+#: templates/core/club-detail.html:94 templates/core/event-detail.html:134
+#: templates/core/news-detail.html:97
+msgid "View All"
+msgstr "View All"
+
+#: templates/core/club-detail.html:110
+msgid "No more clubs."
+msgstr "No more clubs."
+
+#: templates/core/clubs.html:15 templates/core/clubs.html:17
+msgid "Clubs & Extracurricular Activities"
+msgstr "Club activities"
+
+#: templates/core/clubs.html:26
+msgid "Search by club name, teacher, schedule..."
+msgstr "Search by club name, teacher, schedule..."
+
+#: templates/core/clubs.html:33 templates/core/extracurricular-events.html:53
+#: templates/core/news.html:52 templates/core/school-events.html:53
+#: templates/core/secure/extracurricular-schedules.html:171
+#: templates/core/secure/plans.html:212
+#: templates/core/secure/resources.html:200
+#: venv/lib/python3.10/site-packages/django/forms/widgets.py:527
+msgid "Clear"
+msgstr "Clear"
+
+#: templates/core/clubs.html:68
+msgid "No clubs found."
+msgstr "No clubs found."
+
+#: templates/core/clubs.html:103
+msgid "Don't see a club you like?"
+msgstr "Don't see a club you like?"
+
+#: templates/core/clubs.html:105
+msgid ""
+"We encourage student initiative. If you have a passion you want to share, "
+"start your own club today!"
+msgstr ""
+"We encourage student initiative. If you have a passion you want to share, "
+"start your own club today!"
+
+#: templates/core/clubs.html:109
+msgid "Start Your Own Club"
+msgstr "Start Your Own Club"
+
+#: templates/core/contact.html:13 templates/core/contact.html:15
+msgid "Contact Us"
+msgstr "Contact Us"
+
+#: templates/core/contact.html:26
+msgid "Our Address"
+msgstr "Our Address"
+
+#: templates/core/contact.html:64
+msgid "Working Hours"
+msgstr "Working Hours"
+
+#: templates/core/contact.html:78
+msgid "Send Us a Message"
+msgstr "Send Us a Message"
+
+#: templates/core/contact.html:79
+msgid ""
+"Have a question? Fill out the form below and we'll get back to you shortly."
+msgstr ""
+"Have a question? Fill out the form below and we'll get back to you shortly."
+
+#: templates/core/contact.html:83
+msgid "Thank you! Your message has been sent."
+msgstr "Thank you! Your message has been sent."
+
+#: templates/core/contact.html:98
+msgid "Full Name"
+msgstr "Full Name"
+
+#: templates/core/contact.html:114
+#: templates/core/secure/material-manage.html:85
+#: templates/core/secure/material-manage.html:351
+msgid "Subject"
+msgstr "Subject"
+
+#: templates/core/contact.html:117
+msgid "Select subject"
+msgstr "Select subject"
+
+#: templates/core/contact.html:118
+msgid "General Inquiry"
+msgstr "General Inquiry"
+
+#: templates/core/contact.html:120
+msgid "Academics"
+msgstr "Academics"
+
+#: templates/core/contact.html:121
+msgid "Student Support"
+msgstr "Student Support"
+
+#: templates/core/contact.html:122
+msgid "Other"
+msgstr "Other"
+
+#: templates/core/contact.html:128
+msgid "Message"
+msgstr "Message"
+
+#: templates/core/contact.html:129
+msgid "How can we help you?"
+msgstr "How can we help you?"
+
+#: templates/core/contact.html:133
+msgid "Send Message"
+msgstr "Send Message"
+
+#: templates/core/contact.html:140
+msgid "Connect With Us"
+msgstr "Connect With Us"
+
+#: templates/core/employees.html:15
+msgid "Staff Directory"
+msgstr "Staff Directory"
+
+#: templates/core/employees.html:17
+msgid "Our Faculty & Staff"
+msgstr "Our Faculty & Staff"
+
+#: templates/core/employees.html:90
+msgid "No employees have been added yet."
+msgstr "No employees have been added yet."
+
+#: templates/core/event-detail.html:18
+msgid "Event"
+msgstr "Event"
+
+#: templates/core/event-detail.html:131
+msgid "More Events"
+msgstr "More Events"
+
+#: templates/core/event-detail.html:158
+msgid "No more events."
+msgstr "No more events."
+
+#: templates/core/extracurricular-events.html:15
+#: templates/core/extracurricular-events.html:17
+msgid "Extracurricular Events"
+msgstr "Extracurricular Events"
+
+#: templates/core/extracurricular-events.html:26
+#: templates/core/school-events.html:26
+#: templates/core/secure/extracurricular-schedules.html:28
+msgid "Search events..."
+msgstr "Search events..."
+
+#: templates/core/extracurricular-events.html:31 templates/core/news.html:30
+#: templates/core/school-events.html:31
+msgid "All Categories"
+msgstr "All Categories"
+
+#: templates/core/extracurricular-events.html:73 templates/core/news.html:66
+#: templates/core/school-events.html:73
+msgid "Featured"
+msgstr "Featured"
+
+#: templates/core/extracurricular-events.html:131
+msgid "No extracurricular events found."
+msgstr "No extracurricular events found."
+
+#: templates/core/gallery.html:24
+msgid "All Photos"
+msgstr "All Photos"
+
+#: templates/core/gallery.html:41
+msgid "Gallery image"
+msgstr "Gallery image"
+
+#: templates/core/gallery.html:58
+msgid "No gallery images yet."
+msgstr "No gallery images yet."
+
+#: templates/core/gallery.html:65 templates/core/news.html:141
+#: templates/core/secure/material-manage.html:397
+#: templates/core/secure/plans.html:156
+#: templates/core/secure/resources.html:141
+#, python-format
+msgid "Page %(page)s of %(site_content)s"
+msgstr "Page %(page)s of %(site_content)s"
+
+#: templates/core/gallery.html:69 templates/core/news.html:145
+#: templates/core/secure/plans.html:159
+#: templates/core/secure/resources.html:144
+msgid "Prev"
+msgstr "Prev"
+
+#: templates/core/index.html:30
+msgid "Contact us"
+msgstr "Contact us"
+
+#: templates/core/index.html:43
+msgid "Students studying together on a sunny campus lawn"
+msgstr "Students studying together on a sunny campus lawn"
+
+#: templates/core/index.html:47
+msgid "Admissions Open 2024"
+msgstr "Admissions Open 2024"
+
+#: templates/core/index.html:49
+msgid "Empowering"
+msgstr "Empowering"
+
+#: templates/core/index.html:49
+msgid "Future Leaders"
+msgstr "Future Leaders"
+
+#: templates/core/index.html:52
+msgid ""
+"Discover a supportive community dedicated to your child's growth, curiosity, "
+"and academic excellence."
+msgstr ""
+"Discover a supportive community dedicated to your child's growth, curiosity, "
+"and academic excellence."
+
+#: templates/core/index.html:68
+msgid "Important:"
+msgstr "Important:"
+
+#: templates/core/index.html:71 templates/core/index.html:109
+msgid "No announcements yet."
+msgstr "No announcements yet."
+
+#: templates/core/index.html:77
+msgid "View All Announcements"
+msgstr "View All Announcements"
+
+#: templates/core/index.html:88
+msgid "Announcements"
+msgstr "Announcements"
+
+#: templates/core/index.html:146
+msgid "Latest News & Events"
+msgstr "News"
+
+#: templates/core/index.html:148
+msgid "See all news"
+msgstr "See all news"
+
+#: templates/core/index.html:170 templates/core/index.html:189
+#: templates/core/index.html:206 templates/core/index.html:223
+#: templates/core/news.html:126
+msgid "Read More"
+msgstr "Read More"
+
+#: templates/core/index.html:178
+msgid "Science fair students presenting a project"
+msgstr "Science fair students presenting a project"
+
+#: templates/core/index.html:181
+msgid "Academic"
+msgstr "Academic"
+
+#: templates/core/index.html:182
+msgid "Oct 24, 2023"
+msgstr "Oct 24, 2023"
+
+#: templates/core/index.html:184
+msgid "Science Fair Winners Announced"
+msgstr "Science Fair Winners Announced"
+
+#: templates/core/index.html:186
+msgid ""
+"Our students showcased incredible innovation at the annual district science "
+"fair, taking home three gold medals."
+msgstr ""
+"Our students showcased incredible innovation at the annual district science "
+"fair, taking home three gold medals."
+
+#: templates/core/index.html:195
+msgid "Art students painting on canvas in a bright studio"
+msgstr "Art students painting on canvas in a bright studio"
+
+#: templates/core/index.html:198
+msgid "Arts"
+msgstr "Arts"
+
+#: templates/core/index.html:199
+msgid "Nov 02, 2023"
+msgstr "Nov 02, 2023"
+
+#: templates/core/index.html:201
+msgid "Spring Art Exhibition"
+msgstr "Spring Art Exhibition"
+
+#: templates/core/index.html:203
+msgid ""
+"Join us for an evening of creativity and expression as our senior art "
+"students display their final portfolios."
+msgstr ""
+"Join us for an evening of creativity and expression as our senior art "
+"students display their final portfolios."
+
+#: templates/core/index.html:212
+msgid "Students playing soccer on a green field"
+msgstr "Students playing soccer on a green field"
+
+#: templates/core/index.html:215
+msgid "Athletics"
+msgstr "Athletics"
+
+#: templates/core/index.html:216
+msgid "Nov 15, 2023"
+msgstr "Nov 15, 2023"
+
+#: templates/core/index.html:218
+msgid "Championship Finals this Weekend"
+msgstr "Championship Finals this Weekend"
+
+#: templates/core/index.html:220
+msgid ""
+"Come support the Peach Grove Tigers as they face off against Riverside in "
+"the state championship final."
+msgstr ""
+"Come support the Peach Grove Tigers as they face off against Riverside in "
+"the state championship final."
+
+#: templates/core/index.html:241
+msgid "Gallery photo"
+msgstr "Gallery photo"
+
+#: templates/core/index.html:252
+msgid "Students studying in group"
+msgstr "Students studying in group"
+
+#: templates/core/index.html:252 templates/core/index.html:256
+msgid "Group of diverse students laughing while studying in the library"
+msgstr "Group of diverse students laughing while studying in the library"
+
+#: templates/core/index.html:260
+msgid "Teacher in classroom"
+msgstr "Teacher in classroom"
+
+#: templates/core/index.html:260 templates/core/index.html:264
+msgid "Teacher helping a young student with a tablet in a colorful classroom"
+msgstr "Teacher helping a young student with a tablet in a colorful classroom"
+
+#: templates/core/index.html:268
+msgid "Basketball game"
+msgstr "Basketball game"
+
+#: templates/core/index.html:268 templates/core/index.html:272
+msgid "Action shot of a basketball game in the school gymnasium"
+msgstr "Action shot of a basketball game in the school gymnasium"
+
+#: templates/core/index.html:276
+msgid "Social gathering"
+msgstr "Social gathering"
+
+#: templates/core/index.html:276 templates/core/index.html:280
+msgid "Students talking and eating lunch outdoors"
+msgstr "Students talking and eating lunch outdoors"
+
+#: templates/core/index.html:284
+msgid "Girl reading"
+msgstr "Girl reading"
+
+#: templates/core/index.html:284 templates/core/index.html:288
+msgid "Close up of a student reading a book intently"
+msgstr "Close up of a student reading a book intently"
+
+#: templates/core/index.html:292
+msgid "Science lab"
+msgstr "Science lab"
+
+#: templates/core/index.html:292 templates/core/index.html:296
+msgid "Students looking through microscopes in a science lab"
+msgstr "Students looking through microscopes in a science lab"
+
+#: templates/core/index.html:305
+msgid "Frequently Asked Questions"
+msgstr "Frequently Asked Questions"
+
+#: templates/core/index.html:328
+msgid "How do I apply for the upcoming school year?"
+msgstr "How do I apply for the upcoming school year?"
+
+#: templates/core/index.html:334
+msgid ""
+"Applications can be submitted through our online Parent Portal. Visit the "
+"Admissions page for a step-by-step guide and list of required documents."
+msgstr ""
+"Applications can be submitted through our online Parent Portal. Visit the "
+"Admissions page for a step-by-step guide and list of required documents."
+
+#: templates/core/index.html:342
+msgid "Is transportation provided for students?"
+msgstr "Is transportation provided for students?"
+
+#: templates/core/index.html:348
+msgid ""
+"Yes, we offer bus services covering most of the greater Peach Grove area. "
+"You can view the route map and schedule on the Transportation page."
+msgstr ""
+"Yes, we offer bus services covering most of the greater Peach Grove area. "
+"You can view the route map and schedule on the Transportation page."
+
+#: templates/core/index.html:356
+msgid "What extracurricular activities are available?"
+msgstr "What extracurricular activities are available?"
+
+#: templates/core/index.html:362
+msgid ""
+"We offer over 40 clubs and sports teams, including Robotics, Debate, Varsity "
+"Soccer, and Theater Arts. There is something for everyone!"
+msgstr ""
+"We offer over 40 clubs and sports teams, including Robotics, Debate, Varsity "
+"Soccer, and Theater Arts. There is something for everyone!"
+
+#: templates/core/login.html:17
+msgid "\"Unlocking a world of knowledge.\""
+msgstr "«Unlocking a world of knowledge.»"
+
+#: templates/core/login.html:28
+msgid "Welcome Back"
+msgstr "Welcome Back"
+
+#: templates/core/login.html:29
+msgid "Please access your portal below"
+msgstr "Please access your portal below"
+
+#: templates/core/login.html:34
+msgid "Students"
+msgstr "Students"
+
+#: templates/core/login.html:37
+msgid "Staff"
+msgstr "Staff"
+
+#: templates/core/login.html:49
+msgid "Invalid username or password."
+msgstr "Invalid username or password."
+
+#: templates/core/login.html:62
+msgid "Select your grade"
+msgstr "Select your grade"
+
+#: templates/core/login.html:65
+#, python-format
+msgid "Grade %(grade)s"
+msgstr "Grade %(grade)s"
+
+#: templates/core/login.html:73
+msgid "Username"
+msgstr "Username"
+
+#: templates/core/login.html:78
+msgid "Enter your username"
+msgstr "Enter your username"
+
+#: templates/core/login.html:82
+msgid "Password"
+msgstr "Password"
+
+#: templates/core/login.html:87
+msgid "Enter your password"
+msgstr "Enter your password"
+
+#: templates/core/login.html:96
+msgid "Sign In"
+msgstr "Sign In"
+
+#: templates/core/news-detail.html:95
+msgid "More Stories"
+msgstr "More Stories"
+
+#: templates/core/news-detail.html:115
+msgid "No more posts."
+msgstr "No more posts."
+
+#: templates/core/news.html:14 templates/core/news.html:16
+msgid "News & Announcements"
+msgstr "News & Announcements"
+
+#: templates/core/news.html:25
+msgid "Search news..."
+msgstr "Search news..."
+
+#: templates/core/news.html:85
+msgid "Read Full Story"
+msgstr "Read Full Story"
+
+#: templates/core/news.html:95
+msgid "Recent Stories"
+msgstr "Recent Stories"
+
+#: templates/core/news.html:119
+#, python-format
+msgid "%(views)s view"
+msgid_plural "%(views)s views"
+msgstr[0] "%(views)s view"
+msgstr[1] "%(views)s views"
+
+#: templates/core/news.html:134
+msgid "No news posts yet."
+msgstr "No news posts yet."
+
+#: templates/core/schedules.html:14 templates/core/schedules.html:16
+msgid "Class Schedules"
+msgstr "Class Schedules"
+
+#: templates/core/schedules.html:38
+msgid "No classes yet"
+msgstr "No classes yet"
+
+#: templates/core/schedules.html:42
+msgid "Show"
+msgstr "Show"
+
+#: templates/core/schedules.html:55
+#, python-format
+msgid "%(name)s — Grade %(grade)s"
+msgstr "%(name)s — Grade %(grade)s"
+
+#: templates/core/schedules.html:63
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2534
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/forms.py:291
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/forms.py:307
+#: venv/lib/python3.10/site-packages/unfold/widgets.py:606
+#: venv/lib/python3.10/site-packages/unfold/widgets.py:651
+msgid "Time"
+msgstr "Time"
+
+#: templates/core/schedules.html:98
+msgid ""
+"No schedule data yet. Add it in Admin → Academics → Class lessons / Time "
+"slots."
+msgstr ""
+"No schedule data yet. Add it in Admin → Academics → Class lessons / Time "
+"slots."
+
+#: templates/core/school-event-posts.html:53
+msgid "Read"
+msgstr "Read"
+
+#: templates/core/school-event-posts.html:60
+msgid "No posts yet."
+msgstr "No posts yet."
+
+#: templates/core/school-events.html:15 templates/core/school-events.html:17
+msgid "School Events"
+msgstr "Non-standard lessons"
+
+#: templates/core/school-events.html:131
+msgid "No school events found."
+msgstr "No school events found."
+
+#: templates/core/secure/extracurricular-schedules.html:14
+#: templates/core/secure/extracurricular-schedules.html:16
+msgid "Extracurricular Schedules"
+msgstr "Extracurricular Schedules"
+
+#: templates/core/secure/extracurricular-schedules.html:18
+msgid "Upcoming extracurricular events for your class."
+msgstr "Upcoming extracurricular events for your class."
+
+#: templates/core/secure/extracurricular-schedules.html:35
+#: templates/core/secure/plans.html:35 templates/core/secure/resources.html:35
+msgid "All Classes"
+msgstr "All Classes"
+
+#: templates/core/secure/extracurricular-schedules.html:37
+#: templates/core/secure/plans.html:37 templates/core/secure/resources.html:37
+#, python-format
+msgid "Grade %(grade)s — %(name)s"
+msgstr "Grade %(grade)s — %(name)s"
+
+#: templates/core/secure/extracurricular-schedules.html:51
+#: templates/core/secure/plans.html:62 templates/core/secure/resources.html:72
+msgid ""
+"Your account is not linked to a student profile. Ask admin to connect your "
+"user to a Student (class) record."
+msgstr ""
+"Your account is not linked to a student profile. Ask admin to connect your "
+"user to a Student (class) record."
+
+#: templates/core/secure/extracurricular-schedules.html:64
+msgid "Upcoming Events"
+msgstr "Upcoming Events"
+
+#: templates/core/secure/extracurricular-schedules.html:68
+#: templates/core/secure/plans.html:79 templates/core/secure/resources.html:89
+#, python-format
+msgid "Showing %(start)s–%(end)s of %(total)s"
+msgstr "Showing %(start)s–%(end)s of %(total)s"
+
+#: templates/core/secure/extracurricular-schedules.html:109
+msgid "No upcoming extracurricular events found."
+msgstr "No upcoming extracurricular events found."
+
+#: templates/core/secure/extracurricular-schedules.html:142
+msgid "Notes"
+msgstr "Notes"
+
+#: templates/core/secure/extracurricular-schedules.html:145
+msgid "Dates and times are in local school time."
+msgstr "Dates and times are in local school time."
+
+#: templates/core/secure/extracurricular-schedules.html:146
+msgid "Use search to find an activity by title/place."
+msgstr "Use search to find an activity by title/place."
+
+#: templates/core/secure/extracurricular-schedules.html:147
+msgid "If you are a student, only your class is shown."
+msgstr "If you are a student, only your class is shown."
+
+#: templates/core/secure/extracurricular-schedules.html:154
+#: templates/core/secure/plans.html:192
+#: templates/core/secure/resources.html:177
+msgid "Active Filters"
+msgstr "Active Filters"
+
+#: templates/core/secure/extracurricular-schedules.html:158
+#: templates/core/secure/plans.html:196
+#: templates/core/secure/resources.html:181
+#, python-format
+msgid "q: %(q)s"
+msgstr "q: %(q)s"
+
+#: templates/core/secure/extracurricular-schedules.html:161
+#: templates/core/secure/plans.html:202
+#: templates/core/secure/resources.html:190
+#, python-format
+msgid "class: %(class_name)s"
+msgstr "class: %(class_name)s"
+
+#: templates/core/secure/extracurricular-schedules.html:164
+#: templates/core/secure/plans.html:205
+#: templates/core/secure/resources.html:193
+msgid "No filters applied."
+msgstr "No filters applied."
+
+#: templates/core/secure/material-manage.html:14
+#: templates/core/secure/material-manage.html:16
+msgid "Manage Materials"
+msgstr "Manage Materials"
+
+#: templates/core/secure/material-manage.html:18
+msgid "Add teacher plans and extra materials for students."
+msgstr "Add teacher plans and extra materials for students."
+
+#: templates/core/secure/material-manage.html:28
+msgid "Saved successfully."
+msgstr "Saved successfully."
+
+#: templates/core/secure/material-manage.html:34
+msgid ""
+"Your user is not linked to a Staff profile. Ask admin to connect your "
+"account to a teacher profile."
+msgstr ""
+"Your user is not linked to a Staff profile. Ask admin to connect your "
+"account to a teacher profile."
+
+#: templates/core/secure/material-manage.html:42
+msgid "Upload Center"
+msgstr "Upload Center"
+
+#: templates/core/secure/material-manage.html:45
+msgid ""
+"Create plans/tasks and attach files or links. Published items appear for "
+"students in the portal."
+msgstr ""
+"Create plans/tasks and attach files or links. Published items appear for "
+"students in the portal."
+
+#: templates/core/secure/material-manage.html:52
+#: templates/core/secure/plans.html:75
+msgid "Lesson Plans"
+msgstr "Lesson Plans"
+
+#: templates/core/secure/material-manage.html:55
+msgid "Extra Tasks"
+msgstr "Extra Tasks"
+
+#: templates/core/secure/material-manage.html:58
+msgid "My Uploads"
+msgstr "My Uploads"
+
+#: templates/core/secure/material-manage.html:69
+msgid "Create Lesson Plan"
+msgstr "Create Lesson Plan"
+
+#: templates/core/secure/material-manage.html:71
+msgid "Visible on the Plans page when published."
+msgstr "Visible on the Plans page when published."
+
+#: templates/core/secure/material-manage.html:80
+#: templates/core/secure/material-manage.html:218
+msgid "Class"
+msgstr "Class"
+
+#: templates/core/secure/material-manage.html:91
+#: templates/core/secure/material-manage.html:229
+msgid "Title (RU)"
+msgstr "Title (RU)"
+
+#: templates/core/secure/material-manage.html:96
+#: templates/core/secure/material-manage.html:234
+msgid "Title (TG)"
+msgstr "Title (TG)"
+
+#: templates/core/secure/material-manage.html:101
+#: templates/core/secure/material-manage.html:239
+msgid "Title (EN)"
+msgstr "Title (EN)"
+
+#: templates/core/secure/material-manage.html:107
+#: venv/lib/python3.10/site-packages/unfold/widgets.py:605
+#: venv/lib/python3.10/site-packages/unfold/widgets.py:646
+msgid "Date"
+msgstr "Date"
+
+#: templates/core/secure/material-manage.html:113
+#: templates/core/secure/material-manage.html:257
+msgid "Published"
+msgstr "Published"
+
+#: templates/core/secure/material-manage.html:118
+#: templates/core/secure/material-manage.html:261
+msgid "Description (RU)"
+msgstr "Description (RU)"
+
+#: templates/core/secure/material-manage.html:123
+#: templates/core/secure/material-manage.html:266
+msgid "Description (TG)"
+msgstr "Description (TG)"
+
+#: templates/core/secure/material-manage.html:128
+#: templates/core/secure/material-manage.html:271
+msgid "Description (EN)"
+msgstr "Description (EN)"
+
+#: templates/core/secure/material-manage.html:137
+msgid "Save Plan"
+msgstr "Save Plan"
+
+#: templates/core/secure/material-manage.html:145
+msgid "Add Material to Plan"
+msgstr "Add Material to Plan"
+
+#: templates/core/secure/material-manage.html:147
+#: templates/core/secure/material-manage.html:290
+msgid "Upload a file or paste a link."
+msgstr "Upload a file or paste a link."
+
+#: templates/core/secure/material-manage.html:155
+msgid "Lesson plan"
+msgstr "Lesson plan"
+
+#: templates/core/secure/material-manage.html:160
+#: templates/core/secure/material-manage.html:303
+msgid "Title (RU, optional)"
+msgstr "Title (RU, optional)"
+
+#: templates/core/secure/material-manage.html:166
+#: templates/core/secure/material-manage.html:309
+msgid "Title (TG, optional)"
+msgstr "Title (TG, optional)"
+
+#: templates/core/secure/material-manage.html:171
+#: templates/core/secure/material-manage.html:314
+msgid "Title (EN, optional)"
+msgstr "Title (EN, optional)"
+
+#: templates/core/secure/material-manage.html:177
+#: templates/core/secure/material-manage.html:320
+msgid "File (optional)"
+msgstr "File (optional)"
+
+#: templates/core/secure/material-manage.html:182
+#: templates/core/secure/material-manage.html:325
+msgid "YouTube link (optional)"
+msgstr "YouTube link (optional)"
+
+#: templates/core/secure/material-manage.html:187
+#: templates/core/secure/material-manage.html:330
+msgid "External link (optional)"
+msgstr "External link (optional)"
+
+#: templates/core/secure/material-manage.html:195
+#: templates/core/secure/material-manage.html:338
+msgid "Upload"
+msgstr "Upload"
+
+#: templates/core/secure/material-manage.html:207
+msgid "Create Extra Task"
+msgstr "Create Extra Task"
+
+#: templates/core/secure/material-manage.html:209
+msgid "Visible in Resources when published."
+msgstr "Visible in Resources when published."
+
+#: templates/core/secure/material-manage.html:223
+msgid "Subject (optional)"
+msgstr "Subject (optional)"
+
+#: templates/core/secure/material-manage.html:245
+msgid "Assigned at"
+msgstr "Assigned at"
+
+#: templates/core/secure/material-manage.html:250
+msgid "Due at"
+msgstr "Due at"
+
+#: templates/core/secure/material-manage.html:280
+msgid "Save Task"
+msgstr "Save Task"
+
+#: templates/core/secure/material-manage.html:288
+msgid "Add Material to Task"
+msgstr "Add Material to Task"
+
+#: templates/core/secure/material-manage.html:350
+msgid "File / Link"
+msgstr "File / Link"
+
+#: templates/core/secure/material-manage.html:352
+msgid "Type"
+msgstr "Type"
+
+#: templates/core/secure/material-manage.html:353
+msgid "Target Class"
+msgstr "Target Class"
+
+#: templates/core/secure/material-manage.html:354
+msgid "Uploaded"
+msgstr "Uploaded"
+
+#: templates/core/secure/material-manage.html:355
+msgid "Actions"
+msgstr "Actions"
+
+#: templates/core/secure/material-manage.html:369
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/tab_items.html:16
+msgid "General"
+msgstr "General"
+
+#: templates/core/secure/material-manage.html:377
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/unfold/guardian/group_form.html:51
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/unfold/guardian/user_form.html:51
+msgid "Edit"
+msgstr "Edit"
+
+#: templates/core/secure/material-manage.html:380
+#: venv/lib/python3.10/site-packages/django/forms/formsets.py:499
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/import_preview.html:26
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/submit_line.html:60
+msgid "Delete"
+msgstr "Delete"
+
+#: templates/core/secure/material-manage.html:388
+msgid "No uploads yet."
+msgstr "No uploads yet."
+
+#: templates/core/secure/parents-committee.html:7
+msgid "Parents Committee"
+msgstr "Parents Committee"
+
+#: templates/core/secure/parents-committee.html:8
+msgid "Working together for our students."
+msgstr "Working together for our students."
+
+#: templates/core/secure/parents-committee.html:31
+msgid "Our Mission"
+msgstr "Our Mission"
+
+#: templates/core/secure/parents-committee.html:33
+msgid "Empowering Our Students Together"
+msgstr "Empowering Our Students Together"
+
+#: templates/core/secure/parents-committee.html:52
+msgid "Meet the Team"
+msgstr "Meet the Team"
+
+#: templates/core/secure/parents-committee.html:53
+msgid "Committee Members"
+msgstr "Committee Members"
+
+#: templates/core/secure/parents-committee.html:80
+msgid "No committee members yet."
+msgstr "No committee members yet."
+
+#: templates/core/secure/parents-committee.html:90
+msgid "Stay Updated"
+msgstr "Stay Updated"
+
+#: templates/core/secure/parents-committee.html:91
+msgid "Upcoming Meetings"
+msgstr "Upcoming Meetings"
+
+#: templates/core/secure/parents-committee.html:105
+msgid "Date & Time"
+msgstr "Date & Time"
+
+#: templates/core/secure/parents-committee.html:106
+msgid "Location"
+msgstr "Location"
+
+#: templates/core/secure/parents-committee.html:107
+msgid "Agenda Topic"
+msgstr "Agenda Topic"
+
+#: templates/core/secure/parents-committee.html:108
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/unfold/guardian/group_form.html:25
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/unfold/guardian/group_form.html:49
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/unfold/guardian/user_form.html:25
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/unfold/guardian/user_form.html:49
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/object_history.html:18
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/object_history.html:34
+msgid "Action"
+msgstr "Action"
+
+#: templates/core/secure/parents-committee.html:138
+msgid "RSVP"
+msgstr "RSVP"
+
+#: templates/core/secure/parents-committee.html:147
+msgid "No upcoming meetings."
+msgstr "No upcoming meetings."
+
+#: templates/core/secure/plans.html:14 templates/core/secure/plans.html:16
+msgid "Plans"
+msgstr "Plans"
+
+#: templates/core/secure/plans.html:18
+msgid "Review lesson plans and download supporting materials."
+msgstr "Review lesson plans and download supporting materials."
+
+#: templates/core/secure/plans.html:28
+msgid "Search plans..."
+msgstr "Search plans..."
+
+#: templates/core/secure/plans.html:47 templates/core/secure/resources.html:47
+msgid "All Subjects"
+msgstr "All Subjects"
+
+#: templates/core/secure/plans.html:108
+#, python-format
+msgid "%(count)s material"
+msgid_plural "%(count)s materials"
+msgstr[0] "%(count)s material"
+msgstr[1] "%(count)s materials"
+
+#: templates/core/secure/plans.html:118
+msgid "Material"
+msgstr "Material"
+
+#: templates/core/secure/plans.html:121
+#: venv/lib/python3.10/site-packages/django/db/models/fields/files.py:244
+msgid "File"
+msgstr "File"
+
+#: templates/core/secure/plans.html:127
+#: templates/core/secure/resources.html:126
+msgid "Download"
+msgstr "Download"
+
+#: templates/core/secure/plans.html:132 templates/core/secure/plans.html:137
+#: templates/core/secure/resources.html:126
+msgid "Open"
+msgstr "Open"
+
+#: templates/core/secure/plans.html:150
+msgid "No plans found."
+msgstr "No plans found."
+
+#: templates/core/secure/plans.html:180
+#: templates/core/secure/resources.html:165
+msgid "Tips"
+msgstr "Tips"
+
+#: templates/core/secure/plans.html:183
+msgid "Use search to find a topic fast."
+msgstr "Use search to find a topic fast."
+
+#: templates/core/secure/plans.html:184
+msgid "Materials may be files or links."
+msgstr "Materials may be files or links."
+
+#: templates/core/secure/plans.html:185
+msgid "If you are a student, only your class plans are shown."
+msgstr "If you are a student, only your class plans are shown."
+
+#: templates/core/secure/plans.html:199
+#: templates/core/secure/resources.html:187
+msgid "subject"
+msgstr "subject"
+
+#: templates/core/secure/resources.html:14
+#: templates/core/secure/resources.html:16
+msgid "Learning Resources"
+msgstr "Learning Resources"
+
+#: templates/core/secure/resources.html:18
+msgid "Download lesson materials and extra tasks uploaded by your teachers."
+msgstr "Download lesson materials and extra tasks uploaded by your teachers."
+
+#: templates/core/secure/resources.html:28
+msgid "Search for files, tasks, or topics..."
+msgstr "Search for files, tasks, or topics..."
+
+#: templates/core/secure/resources.html:59
+msgid "Lesson materials"
+msgstr "Lesson materials"
+
+#: templates/core/secure/resources.html:60
+msgid "Extra tasks"
+msgstr "Extra tasks"
+
+#: templates/core/secure/resources.html:85
+msgid "Recent Uploads"
+msgstr "Recent Uploads"
+
+#: templates/core/secure/resources.html:135
+msgid "No resources found."
+msgstr "No resources found."
+
+#: templates/core/secure/resources.html:168
+msgid "Use the filters to quickly find your subject."
+msgstr "Use the filters to quickly find your subject."
+
+#: templates/core/secure/resources.html:169
+msgid "Lesson materials and tasks can be files or links."
+msgstr "Lesson materials and tasks can be files or links."
+
+#: templates/core/secure/resources.html:170
+msgid "If you are a student, only your class content is shown."
+msgstr "If you are a student, only your class content is shown."
+
+#: templates/core/secure/resources.html:184
+#, python-format
+msgid "type: %(kind)s"
+msgstr "type: %(kind)s"
+
+#: venv/lib/python3.10/site-packages/django/contrib/messages/apps.py:16
+#, fuzzy
+#| msgid "Message"
+msgid "Messages"
+msgstr "Message"
+
+#: venv/lib/python3.10/site-packages/django/contrib/sitemaps/apps.py:8
+msgid "Site Maps"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/contrib/staticfiles/apps.py:9
+#, fuzzy
+#| msgid "Active Filters"
+msgid "Static Files"
+msgstr "Active Filters"
+
+#: venv/lib/python3.10/site-packages/django/contrib/syndication/apps.py:7
+msgid "Syndication"
+msgstr ""
+
+#. Translators: String used to replace omitted page numbers in elided page
+#. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
+#: venv/lib/python3.10/site-packages/django/core/paginator.py:30
+msgid "…"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/paginator.py:32
+msgid "That page number is not an integer"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/paginator.py:33
+msgid "That page number is less than 1"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/paginator.py:34
+msgid "That page contains no results"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:22
+#, fuzzy
+#| msgid "Email Address"
+msgid "Enter a valid value."
+msgstr "Email Address"
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:70
+#, fuzzy
+#| msgid "Email Address"
+msgid "Enter a valid domain name."
+msgstr "Email Address"
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:153
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:775
+#, fuzzy
+#| msgid "Email Address"
+msgid "Enter a valid URL."
+msgstr "Email Address"
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:200
+#, fuzzy
+#| msgid "Email Address"
+msgid "Enter a valid integer."
+msgstr "Email Address"
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:211
+#, fuzzy
+#| msgid "Email Address"
+msgid "Enter a valid email address."
+msgstr "Email Address"
+
+#. Translators: "letters" means latin letters: a-z and A-Z.
+#: venv/lib/python3.10/site-packages/django/core/validators.py:289
+msgid ""
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:297
+msgid ""
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:309
+#: venv/lib/python3.10/site-packages/django/core/validators.py:318
+#: venv/lib/python3.10/site-packages/django/core/validators.py:332
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2220
+#, fuzzy, python-format
+#| msgid "Email Address"
+msgid "Enter a valid %(protocol)s address."
+msgstr "Email Address"
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:311
+msgid "IPv4"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:320
+#: venv/lib/python3.10/site-packages/django/utils/ipv6.py:43
+msgid "IPv6"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:334
+msgid "IPv4 or IPv6"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:375
+msgid "Enter only digits separated by commas."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:381
+#, python-format
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:416
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:425
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:434
+#, python-format
+msgid "Ensure this value is a multiple of step size %(limit_value)s."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:441
+#, python-format
+msgid ""
+"Ensure this value is a multiple of step size %(limit_value)s, starting from "
+"%(offset)s, e.g. %(offset)s, %(valid_value1)s, %(valid_value2)s, and so on."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:473
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:491
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:514
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:366
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:405
+#, fuzzy
+#| msgid "Phone Number"
+msgid "Enter a number."
+msgstr "Phone Number"
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:516
+#, python-format
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:521
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:526
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:597
+#, python-format
+msgid ""
+"File extension “%(extension)s” is not allowed. Allowed extensions are: "
+"%(allowed_extensions)s."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/core/validators.py:659
+msgid "Null characters are not allowed."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/base.py:1600
+#: venv/lib/python3.10/site-packages/django/forms/models.py:908
+#: venv/lib/python3.10/site-packages/unfold/contrib/inlines/admin.py:108
+msgid "and"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/base.py:1602
+#, python-format
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/constraints.py:22
+#, python-format
+msgid "Constraint “%(name)s” is violated."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:134
+#, python-format
+msgid "Value %(value)r is not a valid choice."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:135
+msgid "This field cannot be null."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:136
+msgid "This field cannot be blank."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:137
+#, python-format
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr ""
+
+#. Translators: The 'lookup_type' is one of 'date', 'year' or
+#. 'month'. Eg: "Title must be unique for pub_date year"
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:141
+#, python-format
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:180
+#, python-format
+msgid "Field of type: %(field_type)s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1162
+#, python-format
+msgid "“%(value)s” value must be either True or False."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1163
+#, python-format
+msgid "“%(value)s” value must be either True, False, or None."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1165
+msgid "Boolean (Either True or False)"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1215
+#, python-format
+msgid "String (up to %(max_length)s)"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1217
+msgid "String (unlimited)"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1326
+#, fuzzy
+#| msgid "Active Filters"
+msgid "Comma-separated integers"
+msgstr "Active Filters"
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1427
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1431
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1566
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1435
+#, fuzzy
+#| msgid "Date"
+msgid "Date (without time)"
+msgstr "Date"
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1562
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
+"uuuuuu]][TZ] format."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1570
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1575
+#, fuzzy
+#| msgid "Date"
+msgid "Date (with time)"
+msgstr "Date"
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1702
+#, python-format
+msgid "“%(value)s” value must be a decimal number."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1704
+#, fuzzy
+#| msgid "Phone Number"
+msgid "Decimal number"
+msgstr "Phone Number"
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1864
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in [DD] [[HH:]MM:]ss[."
+"uuuuuu] format."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1868
+#, fuzzy
+#| msgid "More Stories"
+msgid "Duration"
+msgstr "More Stories"
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1920
+#, fuzzy
+#| msgid "Email Address"
+msgid "Email address"
+msgstr "Email Address"
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1945
+#, fuzzy
+#| msgid "File"
+msgid "File path"
+msgstr "File"
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2023
+#, python-format
+msgid "“%(value)s” value must be a float."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2025
+msgid "Floating point number"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2065
+#, python-format
+msgid "“%(value)s” value must be an integer."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2067
+msgid "Integer"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2163
+#, fuzzy
+#| msgid "Active Filters"
+msgid "Big (8 byte) integer"
+msgstr "Active Filters"
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2180
+#, fuzzy
+#| msgid "Active Filters"
+msgid "Small integer"
+msgstr "Active Filters"
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2188
+#, fuzzy
+#| msgid "Our Address"
+msgid "IPv4 address"
+msgstr "Our Address"
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2219
+#, fuzzy
+#| msgid "Our Address"
+msgid "IP address"
+msgstr "Our Address"
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2310
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2311
+#, python-format
+msgid "“%(value)s” value must be either None, True or False."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2313
+msgid "Boolean (Either True, False or None)"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2364
+#, fuzzy
+#| msgid "Active Filters"
+msgid "Positive big integer"
+msgstr "Active Filters"
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2379
+#, fuzzy
+#| msgid "Active Filters"
+msgid "Positive integer"
+msgstr "Active Filters"
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2394
+#, fuzzy
+#| msgid "Active Filters"
+msgid "Positive small integer"
+msgstr "Active Filters"
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2410
+#, python-format
+msgid "Slug (up to %(max_length)s)"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2446
+msgid "Text"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2526
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2530
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2642
+msgid "URL"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2666
+msgid "Raw binary data"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2731
+#, python-format
+msgid "“%(value)s” is not a valid UUID."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2733
+msgid "Universally unique identifier"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/files.py:420
+msgid "Image"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/json.py:24
+#, fuzzy
+#| msgid "All Subjects"
+msgid "A JSON object"
+msgstr "All Subjects"
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/json.py:26
+msgid "Value must be valid JSON."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/related.py:979
+#, python-format
+msgid "%(model)s instance with %(field)s %(value)r is not a valid choice."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/related.py:982
+msgid "Foreign Key (type determined by related field)"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/related.py:1276
+msgid "One-to-one relationship"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/related.py:1333
+#, python-format
+msgid "%(from)s-%(to)s relationship"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/related.py:1335
+#, python-format
+msgid "%(from)s-%(to)s relationships"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/db/models/fields/related.py:1383
+msgid "Many-to-many relationship"
+msgstr ""
+
+#. Translators: If found as last label character, these punctuation
+#. characters will prevent the default label_suffix to be appended to the label
+#: venv/lib/python3.10/site-packages/django/forms/boundfield.py:185
+msgid ":?.!"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:95
+msgid "This field is required."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:315
+#, fuzzy
+#| msgid "Phone Number"
+msgid "Enter a whole number."
+msgstr "Phone Number"
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:486
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:1267
+#, fuzzy
+#| msgid "Email Address"
+msgid "Enter a valid date."
+msgstr "Email Address"
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:509
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:1268
+#, fuzzy
+#| msgid "Email Address"
+msgid "Enter a valid time."
+msgstr "Email Address"
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:536
+#, fuzzy
+#| msgid "Email Address"
+msgid "Enter a valid date/time."
+msgstr "Email Address"
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:570
+#, fuzzy
+#| msgid "Email Address"
+msgid "Enter a valid duration."
+msgstr "Email Address"
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:571
+#, python-brace-format
+msgid "The number of days must be between {min_days} and {max_days}."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:640
+msgid "No file was submitted. Check the encoding type on the form."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:641
+#, fuzzy
+#| msgid "No filters applied."
+msgid "No file was submitted."
+msgstr "No filters applied."
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:642
+msgid "The submitted file is empty."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:644
+#, python-format
+msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid_plural ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:649
+msgid "Please either submit a file or check the clear checkbox, not both."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:717
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:889
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:975
+#: venv/lib/python3.10/site-packages/django/forms/models.py:1592
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:977
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:1096
+#: venv/lib/python3.10/site-packages/django/forms/models.py:1590
+#, fuzzy
+#| msgid "Email Address"
+msgid "Enter a list of values."
+msgstr "Email Address"
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:1097
+msgid "Enter a complete value."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:1339
+#, fuzzy
+#| msgid "Email Address"
+msgid "Enter a valid UUID."
+msgstr "Email Address"
+
+#: venv/lib/python3.10/site-packages/django/forms/fields.py:1369
+#, fuzzy
+#| msgid "Email Address"
+msgid "Enter a valid JSON."
+msgstr "Email Address"
+
+#. Translators: This is the default suffix added to form field labels
+#: venv/lib/python3.10/site-packages/django/forms/forms.py:97
+msgid ":"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/forms.py:239
+#, python-format
+msgid "(Hidden field %(name)s) %(error)s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/formsets.py:61
+#, python-format
+msgid ""
+"ManagementForm data is missing or has been tampered with. Missing fields: "
+"%(field_names)s. You may need to file a bug report if the issue persists."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/formsets.py:65
+#, python-format
+msgid "Please submit at most %(num)d form."
+msgid_plural "Please submit at most %(num)d forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/django/forms/formsets.py:70
+#, python-format
+msgid "Please submit at least %(num)d form."
+msgid_plural "Please submit at least %(num)d forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/django/forms/formsets.py:484
+#: venv/lib/python3.10/site-packages/django/forms/formsets.py:491
+msgid "Order"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/models.py:901
+#, fuzzy, python-format
+#| msgid "Please access your portal below"
+msgid "Please correct the duplicate data for %(field)s."
+msgstr "Please access your portal below"
+
+#: venv/lib/python3.10/site-packages/django/forms/models.py:906
+#, fuzzy, python-format
+#| msgid "Please access your portal below"
+msgid "Please correct the duplicate data for %(field)s, which must be unique."
+msgstr "Please access your portal below"
+
+#: venv/lib/python3.10/site-packages/django/forms/models.py:913
+#, fuzzy, python-format
+#| msgid "Please access your portal below"
+msgid ""
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
+msgstr "Please access your portal below"
+
+#: venv/lib/python3.10/site-packages/django/forms/models.py:922
+#, fuzzy
+#| msgid "Please access your portal below"
+msgid "Please correct the duplicate values below."
+msgstr "Please access your portal below"
+
+#: venv/lib/python3.10/site-packages/django/forms/models.py:1359
+msgid "The inline value did not match the parent instance."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/models.py:1450
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/models.py:1594
+#, python-format
+msgid "“%(pk)s” is not a valid value."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/utils.py:229
+#, python-format
+msgid ""
+"%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/widgets.py:528
+msgid "Currently"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/widgets.py:529
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/edit_inline/stacked.html:57
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/app_list_default.html:42
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/edit_inline/tabular_title.html:23
+#, fuzzy
+#| msgid "Enter your password"
+msgid "Change"
+msgstr "Enter your password"
+
+#: venv/lib/python3.10/site-packages/django/forms/widgets.py:866
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/boolean.html:4
+msgid "Unknown"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/widgets.py:867
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/choice_filters.py:103
+msgid "Yes"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/forms/widgets.py:868
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/choice_filters.py:104
+msgid "No"
+msgstr ""
+
+#. Translators: Please do not add spaces around commas.
+#: venv/lib/python3.10/site-packages/django/template/defaultfilters.py:873
+msgid "yes,no,maybe"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/template/defaultfilters.py:903
+#: venv/lib/python3.10/site-packages/django/template/defaultfilters.py:920
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/django/template/defaultfilters.py:922
+#, python-format
+msgid "%s KB"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/template/defaultfilters.py:924
+#, python-format
+msgid "%s MB"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/template/defaultfilters.py:926
+#, python-format
+msgid "%s GB"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/template/defaultfilters.py:928
+#, python-format
+msgid "%s TB"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/template/defaultfilters.py:930
+#, python-format
+msgid "%s PB"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dateformat.py:74
+msgid "p.m."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dateformat.py:75
+msgid "a.m."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dateformat.py:80
+msgid "PM"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dateformat.py:81
+msgid "AM"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dateformat.py:153
+msgid "midnight"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dateformat.py:155
+msgid "noon"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:7
+#, fuzzy
+#| msgctxt "weekday"
+#| msgid "Monday"
+msgid "Monday"
+msgstr "Monday"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:8
+#, fuzzy
+#| msgctxt "weekday"
+#| msgid "Tuesday"
+msgid "Tuesday"
+msgstr "Tuesday"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:9
+#, fuzzy
+#| msgctxt "weekday"
+#| msgid "Wednesday"
+msgid "Wednesday"
+msgstr "Wednesday"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:10
+#, fuzzy
+#| msgctxt "weekday"
+#| msgid "Thursday"
+msgid "Thursday"
+msgstr "Thursday"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:11
+#, fuzzy
+#| msgctxt "weekday"
+#| msgid "Friday"
+msgid "Friday"
+msgstr "Friday"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:12
+#, fuzzy
+#| msgctxt "weekday"
+#| msgid "Saturday"
+msgid "Saturday"
+msgstr "Saturday"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:13
+#, fuzzy
+#| msgctxt "weekday"
+#| msgid "Sunday"
+msgid "Sunday"
+msgstr "Sunday"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:16
+#, fuzzy
+#| msgctxt "weekday"
+#| msgid "Monday"
+msgid "Mon"
+msgstr "Monday"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:17
+#, fuzzy
+#| msgid "YouTube"
+msgid "Tue"
+msgstr "YouTube"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:18
+msgid "Wed"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:19
+#, fuzzy
+#| msgid "YouTube"
+msgid "Thu"
+msgstr "YouTube"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:20
+#, fuzzy
+#| msgctxt "weekday"
+#| msgid "Friday"
+msgid "Fri"
+msgstr "Friday"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:21
+msgid "Sat"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:22
+#, fuzzy
+#| msgctxt "weekday"
+#| msgid "Sunday"
+msgid "Sun"
+msgstr "Sunday"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:25
+#, fuzzy
+#| msgid "January 31st"
+msgid "January"
+msgstr "January 31st"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:26
+msgid "February"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:27
+#, fuzzy
+#| msgid "Search"
+msgid "March"
+msgstr "Search"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:28
+msgid "April"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:29
+#, fuzzy
+#| msgctxt "weekday"
+#| msgid "Monday"
+msgid "May"
+msgstr "Monday"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:30
+msgid "June"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:31
+msgid "July"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:32
+msgid "August"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:33
+#, fuzzy
+#| msgid "September 1st"
+msgid "September"
+msgstr "September 1st"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:34
+msgid "October"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:35
+#, fuzzy
+#| msgid "Phone Number"
+msgid "November"
+msgstr "Phone Number"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:36
+#, fuzzy
+#| msgid "September 1st"
+msgid "December"
+msgstr "September 1st"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:39
+msgid "jan"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:40
+msgid "feb"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:41
+msgid "mar"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:42
+msgid "apr"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:43
+msgid "may"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:44
+msgid "jun"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:45
+msgid "jul"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:46
+msgid "aug"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:47
+msgid "sep"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:48
+msgid "oct"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:49
+msgid "nov"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:50
+msgid "dec"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:53
+msgctxt "abbrev. month"
+msgid "Jan."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:54
+msgctxt "abbrev. month"
+msgid "Feb."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:55
+#, fuzzy
+#| msgid "Search"
+msgctxt "abbrev. month"
+msgid "March"
+msgstr "Search"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:56
+msgctxt "abbrev. month"
+msgid "April"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:57
+#, fuzzy
+#| msgctxt "weekday"
+#| msgid "Monday"
+msgctxt "abbrev. month"
+msgid "May"
+msgstr "Monday"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:58
+msgctxt "abbrev. month"
+msgid "June"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:59
+msgctxt "abbrev. month"
+msgid "July"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:60
+msgctxt "abbrev. month"
+msgid "Aug."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:61
+msgctxt "abbrev. month"
+msgid "Sept."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:62
+msgctxt "abbrev. month"
+msgid "Oct."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:63
+msgctxt "abbrev. month"
+msgid "Nov."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:64
+msgctxt "abbrev. month"
+msgid "Dec."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:67
+#, fuzzy
+#| msgid "January 31st"
+msgctxt "alt. month"
+msgid "January"
+msgstr "January 31st"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:68
+msgctxt "alt. month"
+msgid "February"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:69
+#, fuzzy
+#| msgid "Search"
+msgctxt "alt. month"
+msgid "March"
+msgstr "Search"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:70
+msgctxt "alt. month"
+msgid "April"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:71
+#, fuzzy
+#| msgctxt "weekday"
+#| msgid "Monday"
+msgctxt "alt. month"
+msgid "May"
+msgstr "Monday"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:72
+msgctxt "alt. month"
+msgid "June"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:73
+msgctxt "alt. month"
+msgid "July"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:74
+msgctxt "alt. month"
+msgid "August"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:75
+#, fuzzy
+#| msgid "September 1st"
+msgctxt "alt. month"
+msgid "September"
+msgstr "September 1st"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:76
+msgctxt "alt. month"
+msgid "October"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:77
+#, fuzzy
+#| msgid "Phone Number"
+msgctxt "alt. month"
+msgid "November"
+msgstr "Phone Number"
+
+#: venv/lib/python3.10/site-packages/django/utils/dates.py:78
+#, fuzzy
+#| msgid "September 1st"
+msgctxt "alt. month"
+msgid "December"
+msgstr "September 1st"
+
+#: venv/lib/python3.10/site-packages/django/utils/ipv6.py:20
+#, fuzzy
+#| msgid "Email Address"
+msgid "This is not a valid IPv6 address."
+msgstr "Email Address"
+
+#: venv/lib/python3.10/site-packages/django/utils/text.py:76
+#, python-format
+msgctxt "String to return when truncating text"
+msgid "%(truncated_text)s…"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/text.py:287
+msgid "or"
+msgstr ""
+
+#. Translators: This string is used as a separator between list elements
+#: venv/lib/python3.10/site-packages/django/utils/text.py:306
+#: venv/lib/python3.10/site-packages/django/utils/timesince.py:135
+msgid ", "
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/utils/timesince.py:8
+#, python-format
+msgid "%(num)d year"
+msgid_plural "%(num)d years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/django/utils/timesince.py:9
+#, python-format
+msgid "%(num)d month"
+msgid_plural "%(num)d months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/django/utils/timesince.py:10
+#, python-format
+msgid "%(num)d week"
+msgid_plural "%(num)d weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/django/utils/timesince.py:11
+#, python-format
+msgid "%(num)d day"
+msgid_plural "%(num)d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/django/utils/timesince.py:12
+#, python-format
+msgid "%(num)d hour"
+msgid_plural "%(num)d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/django/utils/timesince.py:13
+#, python-format
+msgid "%(num)d minute"
+msgid_plural "%(num)d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/django/views/csrf.py:29
+msgid "Forbidden"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/csrf.py:30
+msgid "CSRF verification failed. Request aborted."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/csrf.py:34
+msgid ""
+"You are seeing this message because this HTTPS site requires a “Referer "
+"header” to be sent by your web browser, but none was sent. This header is "
+"required for security reasons, to ensure that your browser is not being "
+"hijacked by third parties."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/csrf.py:40
+msgid ""
+"If you have configured your browser to disable “Referer” headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for “same-"
+"origin” requests."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/csrf.py:45
+msgid ""
+"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
+"including the “Referrer-Policy: no-referrer” header, please remove them. The "
+"CSRF protection requires the “Referer” header to do strict referer checking. "
+"If you’re concerned about privacy, use alternatives like <a "
+"rel=\"noreferrer\" …> for links to third-party sites."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/csrf.py:54
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/csrf.py:60
+msgid ""
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for “same-origin” requests."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/csrf.py:66
+msgid "More information is available with DEBUG=True."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/generic/dates.py:44
+msgid "No year specified"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/generic/dates.py:64
+#: venv/lib/python3.10/site-packages/django/views/generic/dates.py:115
+#: venv/lib/python3.10/site-packages/django/views/generic/dates.py:214
+msgid "Date out of range"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/generic/dates.py:94
+msgid "No month specified"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/generic/dates.py:147
+msgid "No day specified"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/generic/dates.py:194
+msgid "No week specified"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/generic/dates.py:353
+#: venv/lib/python3.10/site-packages/django/views/generic/dates.py:384
+#, python-format
+msgid "No %(verbose_name_plural)s available"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/generic/dates.py:680
+#, python-format
+msgid ""
+"Future %(verbose_name_plural)s not available because %(class_name)s."
+"allow_future is False."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/generic/dates.py:720
+#, python-format
+msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/generic/detail.py:56
+#, python-format
+msgid "No %(verbose_name)s found matching the query"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/generic/list.py:70
+msgid "Page is not “last”, nor can it be converted to an int."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/generic/list.py:77
+#, python-format
+msgid "Invalid page (%(page_number)s): %(message)s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/generic/list.py:173
+#, python-format
+msgid "Empty list and “%(class_name)s.allow_empty” is False."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/static.py:49
+msgid "Directory indexes are not allowed here."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/static.py:51
+#, python-format
+msgid "“%(path)s” does not exist"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/static.py:68
+#: venv/lib/python3.10/site-packages/django/views/templates/directory_index.html:8
+#: venv/lib/python3.10/site-packages/django/views/templates/directory_index.html:11
+#, python-format
+msgid "Index of %(directory)s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:7
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:204
+msgid "The install worked successfully! Congratulations!"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:206
+#, python-format
+msgid ""
+"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
+"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:208
+#, python-format
+msgid ""
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
+"%(version)s/ref/settings/#debug\" target=\"_blank\" "
+"rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not "
+"configured any URLs."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:217
+#, fuzzy
+#| msgid "Join Our Community"
+msgid "Django Documentation"
+msgstr "Join Our Community"
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:218
+msgid "Topics, references, &amp; how-to’s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:226
+msgid "Tutorial: A Polling App"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:227
+msgid "Get started with Django"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:235
+#, fuzzy
+#| msgid "Join Our Community"
+msgid "Django Community"
+msgstr "Join Our Community"
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:236
+msgid "Connect, get help, or contribute"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:14
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:54
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:62
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:72
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:82
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:86
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:118
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:137
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:364
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:369
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:379
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:399
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:416
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:435
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:441
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:458
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:470
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:478
+msgid "title"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:18
+#, fuzzy
+#| msgid "Password"
+msgid "password"
+msgstr "Password"
+
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:245
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:264
+msgid "title a"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:249
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:275
+msgid "title b"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:253
+msgid "title c"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:257
+msgid "title d"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/models.py:380
+msgid "visits"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/modeltranslation/tests/translation.py:62
+msgid "Sorry, translation is not available."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/modeltranslation/widgets.py:32
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history_list.html:73
+msgid "None"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/admin.py:45
+#: venv/lib/python3.10/site-packages/unfold/templatetags/unfold_list.py:361
+#, fuzzy
+#| msgid "Select grade"
+msgid "Select record"
+msgstr "Select grade"
+
+#: venv/lib/python3.10/site-packages/unfold/admin.py:194
+#, fuzzy
+#| msgid "Select subject"
+msgid "Select action"
+msgstr "Select subject"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/constance/templates/admin/constance/change_list.html:41
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/admin/guardian/model/obj_perms_manage_group.html:23
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/admin/guardian/model/obj_perms_manage_user.html:24
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/pagination.html:19
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/submit_line.html:9
+#, fuzzy
+#| msgid "Save Plan"
+msgid "Save"
+msgstr "Save Plan"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/constance/templates/admin/constance/includes/results_list.html:10
+msgid "Collapse"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/constance/templates/admin/constance/includes/results_list.html:19
+#, fuzzy
+#| msgid "Full Name"
+msgid "Name"
+msgstr "Full Name"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/constance/templates/admin/constance/includes/results_list.html:20
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/forms.py:178
+msgid "Value"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/constance/templates/admin/constance/includes/results_list.html:21
+msgid "Default"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/constance/templates/admin/constance/includes/results_list.html:22
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:59
+msgid "Code"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/constance/templates/admin/constance/includes/results_list.html:65
+#, fuzzy
+#| msgid "Clear filters"
+msgid "Reset to default"
+msgstr "Clear filters"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/choice_filters.py:22
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/choice_filters.py:72
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/choice_filters.py:85
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/dropdown_filters.py:23
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/mixins.py:47
+msgid "All"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/choice_filters.py:42
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/choice_filters.py:110
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/choice_filters.py:138
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/choice_filters.py:166
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/dropdown_filters.py:39
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/dropdown_filters.py:93
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/dropdown_filters.py:142
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/mixins.py:70
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/mixins.py:171
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/text_filters.py:28
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/admin/text_filters.py:57
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/templates/unfold/filters/filters_date_range.html:5
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/templates/unfold/filters/filters_datetime_range.html:5
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/templates/unfold/filters/filters_numeric_range.html:5
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/templates/unfold/filters/filters_numeric_single.html:5
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/templates/unfold/filters/filters_numeric_slider.html:7
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/filter.html:5
+#, python-format
+msgid " By %(filter_title)s "
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/forms.py:207
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/forms.py:252
+msgid "From"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/forms.py:218
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/forms.py:262
+msgid "To"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/forms.py:286
+#, fuzzy
+#| msgid "Date"
+msgid "Date from"
+msgstr "Date"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/forms.py:302
+#, fuzzy
+#| msgid "Date"
+msgid "Date to"
+msgstr "Date"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/filters/templates/unfold/filters/filters_numeric_slider.html:21
+msgid "Not enough data."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/array.html:30
+msgid "Add new item"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:7
+msgid "Paragraph"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:11
+msgid "Underlined"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:15
+msgid "Bold"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:19
+msgid "Italic"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:23
+msgid "Strike"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:35
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:39
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:43
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:47
+#, fuzzy
+#| msgid "Girl reading"
+msgid "Heading"
+msgstr "Girl reading"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:55
+msgid "Quote"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:63
+msgid "Unordered list"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:67
+msgid "Ordered list"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:71
+msgid "Indent increase"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:75
+msgid "Indent decrease"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:83
+msgid "Undo"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:87
+msgid "Redo"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:95
+msgid "Enter an URL"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/forms/templates/unfold/forms/helpers/toolbar.html:102
+msgid "Unlink"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/admin/guardian/model/change_form.html:8
+#, fuzzy
+#| msgid "Admissions"
+msgid "Object permissions"
+msgstr "Admissions"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/admin/guardian/model/obj_perms_manage_group.html:13
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/admin/guardian/model/obj_perms_manage_user.html:14
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history_list.html:9
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history_list.html:43
+#, fuzzy
+#| msgid "Subject"
+msgid "Object"
+msgstr "Subject"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/admin/guardian/model/obj_perms_manage_group.html:16
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/unfold/guardian/group_form.html:15
+msgid "Group"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/admin/guardian/model/obj_perms_manage_user.html:17
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/unfold/guardian/group_form.html:33
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/unfold/guardian/user_form.html:15
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/unfold/guardian/user_form.html:33
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/object_history.html:14
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/object_history.html:30
+#, fuzzy
+#| msgid "Username"
+msgid "User"
+msgstr "Username"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/unfold/guardian/group_form.html:7
+#, fuzzy
+#| msgid "Admissions"
+msgid "Group permissions"
+msgstr "Admissions"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/unfold/guardian/group_form.html:67
+#, fuzzy
+#| msgid "Manage Materials"
+msgid "Manage group"
+msgstr "Manage Materials"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/unfold/guardian/user_form.html:7
+#, fuzzy
+#| msgid "Admissions"
+msgid "User permissions"
+msgstr "Admissions"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/guardian/templates/unfold/guardian/user_form.html:67
+#, fuzzy
+#| msgid "Manage Materials"
+msgid "Manage user"
+msgstr "Manage Materials"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/change_form.html:8
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/change_list_export_item.html:4
+#, fuzzy
+#| msgid "Important:"
+msgid "Export"
+msgstr "Important:"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/change_list_import_item.html:4
+#, fuzzy
+#| msgid "Important:"
+msgid "Import"
+msgstr "Important:"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/export.html:18
+#, python-format
+msgid ""
+"\n"
+"                    Export %(len)s selected item.\n"
+"                "
+msgid_plural ""
+"\n"
+"                    Export %(len)s selected items.\n"
+"                "
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/export.html:37
+msgid "This exporter will export the following fields"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/export.html:56
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/import_form.html:21
+msgid "Submit"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/import_confirm.html:10
+msgid ""
+"Below is a preview of data to be imported. If you are satisfied with the "
+"results, click 'Confirm import'"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/import_confirm.html:15
+msgid "Confirm import"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/import_errors.html:20
+#, fuzzy
+#| msgid "Phone Number"
+msgid "Line number"
+msgstr "Phone Number"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/import_preview.html:22
+#, fuzzy
+#| msgctxt "admission status"
+#| msgid "New"
+msgid "New"
+msgstr "New"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/import_preview.html:24
+msgid "Skipped"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/import_preview.html:28
+msgid "Update"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/import_validation.html:6
+msgid "Some rows failed to validate"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/import_validation.html:10
+msgid ""
+"Please correct these errors in your data where possible, then reupload it "
+"using the form above."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/import_validation.html:22
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/import_validation.html:40
+msgid "Row"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/import_validation.html:26
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/import_validation.html:44
+msgid "Errors"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/import_validation.html:70
+msgid "Non field specific"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/resource_fields_list.html:6
+msgid "This exporter will export the following fields: "
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/import_export/templates/admin/import_export/resource_fields_list.html:8
+msgid "This importer will import the following fields: "
+msgstr ""
+
+#. Translators: Model verbose name and instance representation,
+#. suitable to be an item in a list.
+#: venv/lib/python3.10/site-packages/unfold/contrib/inlines/admin.py:99
+#, python-format
+msgid "%(class_name)s %(instance)s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/inlines/admin.py:111
+#, python-format
+msgid ""
+"Deleting %(class_name)s %(instance)s would require deleting the following "
+"protected related objects: %(related_objects)s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history.html:8
+msgid ""
+"Choose a date from the list below to revert to a previous version of this "
+"object."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history.html:28
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/object_history.html:57
+msgid "entry"
+msgid_plural "entries"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history.html:32
+msgid "This object doesn't have a change history."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history_form.html:16
+msgid ""
+"Press the 'Revert' button below to revert to this version of the object."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history_form.html:20
+msgid "Press the 'Change History' button below to edit the history."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history_list.html:19
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history_list.html:55
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/object_history.html:10
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/object_history.html:26
+#, fuzzy
+#| msgid "Date"
+msgid "Date/time"
+msgstr "Date"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history_list.html:23
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history_list.html:59
+#, fuzzy
+#| msgid "Documents"
+msgid "Comment"
+msgstr "Documents"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history_list.html:27
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history_list.html:63
+#, fuzzy
+#| msgid "Enter your password"
+msgid "Changed by"
+msgstr "Enter your password"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history_list.html:31
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history_list.html:77
+#, fuzzy
+#| msgid "Enter your password"
+msgid "Change reason"
+msgstr "Enter your password"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history_list.html:35
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/object_history_list.html:81
+#, fuzzy
+#| msgid "Enter your password"
+msgid "Changes"
+msgstr "Enter your password"
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/submit_line.html:8
+msgid "Revert"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/contrib/simple_history/templates/simple_history/submit_line.html:14
+#, fuzzy
+#| msgid "Enter your password"
+msgid "Change History"
+msgstr "Enter your password"
+
+#: venv/lib/python3.10/site-packages/unfold/forms.py:72
+#, fuzzy
+#| msgid "Select subject"
+msgid "Select action to run"
+msgstr "Select subject"
+
+#: venv/lib/python3.10/site-packages/unfold/forms.py:137
+msgid ""
+"Raw passwords are not stored, so there is no way to see this user’s "
+"password, but you can change the password using <a href=\"{}\" class=\"text-"
+"primary-600 dark:text-primary-500\">this form</a>."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/mixins/base_model_admin.py:57
+#: venv/lib/python3.10/site-packages/unfold/mixins/base_model_admin.py:78
+#, fuzzy
+#| msgid "Select grade"
+msgid "Select value"
+msgstr "Select grade"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/actions.html:23
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/dataset_actions.html:46
+#, fuzzy
+#| msgid "Select subject"
+msgid "Run the selected action"
+msgstr "Select subject"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/actions.html:24
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/dataset_actions.html:47
+msgid "Run"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/actions.html:44
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/dataset_actions.html:17
+msgid "Click here to select the objects across all site_content"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/actions.html:45
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/dataset_actions.html:18
+#, python-format
+msgid "Select all %(total_count)s %(module_name)s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/actions.html:51
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/dataset_actions.html:24
+msgid "Clear selection"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/app_index.html:5
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/base_site.html:3
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/index.html:5
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/login.html:15
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/layouts/base.html:7
+msgid "Django site admin"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/app_list.html:12
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/app_list_default.html:9
+#, python-format
+msgid "Models in the %(name)s application"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/app_list.html:48
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/app_list.html:91
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/app_list_default.html:59
+msgid "You don’t have permission to view or edit anything."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/auth/user/change_password.html:19
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/auth/user/change_password.html:30
+#: venv/lib/python3.10/site-packages/unfold/templates/registration/password_change_form.html:32
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/account_links.html:19
+#, fuzzy
+#| msgid "Enter your password"
+msgid "Change password"
+msgstr "Enter your password"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/change_form_object_tools.html:6
+#, fuzzy
+#| msgid "Enter your password"
+msgid "History"
+msgstr "Enter your password"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/change_form_object_tools.html:12
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/edit_inline/stacked.html:71
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/edit_inline/tabular_title.html:33
+#, fuzzy
+#| msgid "View All"
+msgid "View on site"
+msgstr "View All"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/change_list.html:69
+#, fuzzy
+#| msgid "Active Filters"
+msgid "Filters"
+msgstr "Active Filters"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/change_list_results.html:33
+msgid "Expand row"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/delete_confirmation.html:16
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/delete_confirmation.html:32
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/delete_confirmation.html:48
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/delete_confirmation.html:55
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/delete_selected_confirmation.html:49
+#, fuzzy
+#| msgid "Subject"
+msgid "Objects"
+msgstr "Subject"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/delete_selected_confirmation.html:15
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/delete_selected_confirmation.html:28
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/delete_selected_confirmation.html:42
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/edit_inline/stacked.html:59
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/app_list_default.html:38
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/edit_inline/tabular_title.html:25
+#, fuzzy
+#| msgid "View All"
+msgid "View"
+msgstr "View All"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/includes/object_delete_summary.html:5
+msgid "Summary"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/login.html:15
+#, fuzzy
+#| msgid "Welcome Back"
+msgid "Welcome back to"
+msgstr "Welcome Back"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/login.html:26
+#, python-format
+msgid ""
+"You are authenticated as %(username)s, but are not authorized to access this "
+"page. Would you like to login to a different account?"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/login.html:47
+msgid "Log in"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/login.html:55
+#, fuzzy
+#| msgid "Forgot your password?"
+msgid "Forgotten your password or username?"
+msgstr "Forgot your password?"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/object_history.html:60
+msgid ""
+"This object doesn’t have a change history. It probably wasn’t added via this "
+"admin site."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/pagination.html:12
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/popup_header.html:14
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/welcomemsg.html:25
+#, fuzzy
+#| msgid "Show"
+msgid "Show all"
+msgstr "Show"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/search_form.html:18
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/command.html:24
+#, fuzzy
+#| msgid "Recent Stories"
+msgid "Type to search"
+msgstr "Recent Stories"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/submit_line.html:28
+msgid "Save and continue editing"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/submit_line.html:30
+#, fuzzy
+#| msgid "Save Plan"
+msgid "Save and view"
+msgstr "Save Plan"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/submit_line.html:37
+#, fuzzy
+#| msgid "Save Plan"
+msgid "Save and add another"
+msgstr "Save Plan"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/admin/submit_line.html:43
+#, fuzzy
+#| msgid "Save Plan"
+msgid "Save as new"
+msgstr "Save Plan"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/registration/logged_out.html:14
+msgid "You have been successfully logged out from the administration"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/registration/logged_out.html:18
+msgid "Thanks for spending some quality time with the web site today."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/registration/logged_out.html:23
+msgid "Log in again"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/registration/password_change_done.html:8
+msgid "Your password was changed."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/registration/password_change_form.html:18
+msgid ""
+"Please enter your old password, for security’s sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/components/table.html:93
+msgid "No data"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/account_links.html:6
+#, fuzzy
+#| msgid "View All"
+msgid "View site"
+msgstr "View All"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/account_links.html:29
+msgid "Log out"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/actions_row.html:4
+#, fuzzy
+#| msgid "More Stories"
+msgid "More actions"
+msgstr "More Stories"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/add_link.html:5
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/add_link.html:8
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/empty_results.html:4
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/app_list.html:60
+#, fuzzy
+#| msgid "Applications Open"
+msgid "All applications"
+msgstr "Applications Open"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/app_list_default.html:31
+msgid "Add"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/boolean.html:4
+msgid "True"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/boolean.html:4
+msgid "False"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/change_list_filter_actions.html:7
+#, fuzzy
+#| msgid "Active Filters"
+msgid "Apply Filters"
+msgstr "Active Filters"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/change_list_filter_actions.html:16
+msgid "Hide counts"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/change_list_filter_actions.html:20
+msgid "Show counts"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/change_list_filter_actions.html:27
+#, fuzzy
+#| msgid "Clear filters"
+msgid "Clear all filters"
+msgstr "Clear filters"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/change_list_headers.html:27
+#, fuzzy
+#| msgid "See all news"
+msgid "Select all rows"
+msgstr "See all news"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/change_list_headers.html:41
+msgid "Toggle sorting"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/change_list_headers.html:49
+msgid "Remove from sorting"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/change_list_headers.html:55
+#, python-format
+msgid "Sorting priority: %(priority_number)s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/command_history.html:7
+#, fuzzy
+#| msgid "Recent Stories"
+msgid "Recent searches"
+msgstr "Recent Stories"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/command_history.html:49
+#, fuzzy
+#| msgid "Recent Stories"
+msgid "No recent searches"
+msgstr "Recent Stories"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/command_results.html:44
+msgid "No results matching your query"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/command_results.html:57
+msgid "Loading more results..."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/command_results.html:62
+#, python-format
+msgid ""
+"\n"
+"                Found %(counter)s result in %(time)s seconds\n"
+"            "
+msgid_plural ""
+"\n"
+"                Found %(counter)s results in %(time)s seconds\n"
+"            "
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/delete_submit_line.html:5
+msgid "No, take me back"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/delete_submit_line.html:9
+msgid "Yes, I’m sure"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/display_header.html:10
+msgid "Record picture"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/edit_inline/tabular_delete.html:4
+msgid "Remove"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/edit_inline/tabular_heading.html:21
+#, fuzzy
+#| msgid "Delete"
+msgid "Delete?"
+msgstr "Delete"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/empty_results.html:14
+#, fuzzy
+#| msgid "No resources found."
+msgid "No results found"
+msgstr "No resources found."
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/empty_results.html:18
+msgid ""
+"This page yielded into no results. Create a new item or reset your filters."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/empty_results.html:32
+#, fuzzy
+#| msgid "Clear filters"
+msgid "Reset filters"
+msgstr "Clear filters"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/field_readonly_value_file.html:8
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/widgets/clearable_file_input.html:6
+msgid "Image preview"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/field_readonly_value_file.html:13
+msgid "Click to download"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/header_back_button.html:7
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/header_back_button.html:15
+msgid "Go back"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/history.html:9
+#, fuzzy
+#| msgid "Recent Stories"
+msgid "Recent actions"
+msgstr "Recent Stories"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/history.html:28
+msgid "Unknown content"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/messages/errornote.html:5
+#, fuzzy
+#| msgid "Please access your portal below"
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Please access your portal below"
+msgstr[1] "Please access your portal below"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/popup_header.html:14
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/welcomemsg.html:25
+#, fuzzy, python-format
+#| msgid "%(count)s material"
+#| msgid_plural "%(count)s materials"
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] "%(count)s material"
+msgstr[1] "%(count)s materials"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/popup_header.html:14
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/welcomemsg.html:25
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/search.html:10
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/search.html:40
+#, fuzzy
+#| msgid "Search plans..."
+msgid "Search apps and models..."
+msgstr "Search plans..."
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/search.html:41
+#, fuzzy
+#| msgid "Mobile navigation"
+msgid "Filter navigation items"
+msgstr "Mobile navigation"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/site_branding.html:3
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/site_branding.html:6
+#, fuzzy
+#| msgctxt "staff role"
+#| msgid "Administration"
+msgid "Django administration"
+msgstr "Administration"
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/theme_switch.html:9
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/theme_switch_dropdown.html:16
+msgid "Light"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/theme_switch.html:16
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/theme_switch_dropdown.html:23
+msgid "Dark"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/theme_switch.html:23
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/theme_switch_dropdown.html:30
+msgid "System"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/helpers/unauthenticated_header.html:6
+msgid "Return to site"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/widgets/clearable_file_input.html:25
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/widgets/clearable_file_input_small.html:18
+msgid "Choose file to upload"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/widgets/related_widget_wrapper.html:16
+#, python-format
+msgid "Change selected %(model)s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/widgets/related_widget_wrapper.html:26
+#, python-format
+msgid "Add another %(model)s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/widgets/related_widget_wrapper.html:35
+#, python-format
+msgid "View selected %(model)s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold/widgets/related_widget_wrapper.html:45
+#, python-format
+msgid "Delete selected %(model)s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templates/unfold_crispy/layout/table_inline_formset.html:65
+msgid "Add row"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/templatetags/unfold_list.py:132
+msgid "Select all objects on this page for an action"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/unfold/widgets.py:844
+#, fuzzy
+#| msgid "Select subject"
+msgid "Select currency"
+msgstr "Select subject"
+
+#~ msgid "Institution's Infrastructure"
+#~ msgstr "Institution's Infrastructure"
+
+#~ msgid "No infrastructure items yet."
+#~ msgstr "No infrastructure items yet."
+
+#~ msgid ""
+#~ "Celebrating the extraordinary accomplishments of our students in "
+#~ "Olympiads, arts, athletics, and competitions."
+#~ msgstr ""
+#~ "Celebrating the extraordinary accomplishments of our students in "
+#~ "Olympiads, arts, athletics, and competitions."
+
+#~ msgid "Join Our Community"
+#~ msgstr "Join Our Community"
+
+#~ msgid ""
+#~ "We are thrilled you're considering our school for your educational "
+#~ "journey. Discover our streamlined admissions process designed to welcome "
+#~ "new talent."
+#~ msgstr ""
+#~ "We are thrilled you're considering our school for your educational "
+#~ "journey. Discover our streamlined admissions process designed to welcome "
+#~ "new talent."
+
+#~ msgid ""
+#~ "Discover your passions, build friendships, and develop leadership skills "
+#~ "through our student clubs."
+#~ msgstr ""
+#~ "Discover your passions, build friendships, and develop leadership skills "
+#~ "through our student clubs."
+
+#~ msgid ""
+#~ "We'd love to hear from you. Reach out to us for any questions, concerns, "
+#~ "or feedback."
+#~ msgstr ""
+#~ "We'd love to hear from you. Reach out to us for any questions, concerns, "
+#~ "or feedback."
+
+#~ msgid "Facebook"
+#~ msgstr "Facebook"
+
+#~ msgid "LinkedIn"
+#~ msgstr "LinkedIn"
+
+#~ msgid "Instagram"
+#~ msgstr "Instagram"
+
+#~ msgid ""
+#~ "Explore extracurricular activities with schedules, photos, and details."
+#~ msgstr ""
+#~ "Explore extracurricular activities with schedules, photos, and details."
+
+#~ msgid ""
+#~ "Explore the vibrant moments, creative spaces, and daily life that make "
+#~ "our community special."
+#~ msgstr ""
+#~ "Explore the vibrant moments, creative spaces, and daily life that make "
+#~ "our community special."
+
+#~ msgid ""
+#~ "Stay connected with the latest stories, upcoming events, and important "
+#~ "updates."
+#~ msgstr ""
+#~ "Stay connected with the latest stories, upcoming events, and important "
+#~ "updates."
+
+#~ msgid ""
+#~ "View the current class timetables. Grades 1–4 study Mon–Fri, and grades 5–"
+#~ "11 study Mon–Sat."
+#~ msgstr ""
+#~ "View the current class timetables. Grades 1–4 study Mon–Fri, and grades 5–"
+#~ "11 study Mon–Sat."
+
+#~ msgid ""
+#~ "Explore school events and activities, with photos, schedules, and details."
+#~ msgstr ""
+#~ "Explore school events and activities, with photos, schedules, and details."
+
+#, fuzzy
+#~| msgid "Welcome Back"
+#~ msgid "Welcome"
+#~ msgstr "Welcome Back"
+
+#~ msgid "Life at School"
+#~ msgstr "Life at School"
+
+#~ msgid "Details"
+#~ msgstr "Details"
+
+#~ msgid "No description yet."
+#~ msgstr "No description yet."
+
+#~ msgid "Story"
+#~ msgstr "Story"
+
+#~ msgid "Video"
+#~ msgstr "Video"
+
+#~ msgid "View Club"
+#~ msgstr "View Club"
+
+#~ msgid ""
+#~ "Fall enrollment deadline extended to August 31st.  —  School closed this "
+#~ "Friday for Teacher Development Day."
+#~ msgstr ""
+#~ "Fall enrollment deadline extended to August 31st.  —  School closed this "
+#~ "Friday for Teacher Development Day."
+
+#~ msgid ""
+#~ "Nurturing minds and building character since 1952. Join our vibrant "
+#~ "community of learners."
+#~ msgstr ""
+#~ "Nurturing minds and building character since 1952. Join our vibrant "
+#~ "community of learners."
+
+#~ msgid "Academic Calendar"
+#~ msgstr "Academic Calendar"
+
+#~ msgid "Careers"
+#~ msgstr "Careers"
+
+#~ msgid "Resources"
+#~ msgstr "Resources"
+
+#~ msgid "Parent Portal"
+#~ msgstr "Parent Portal"
+
+#~ msgid "Student Library"
+#~ msgstr "Student Library"
+
+#~ msgid "Alumni Network"
+#~ msgstr "Alumni Network"
+
+#~ msgid "Subscribe to our weekly newsletter for updates."
+#~ msgstr "Subscribe to our weekly newsletter for updates."
+
+#~ msgid "Enter your email"
+#~ msgstr "Enter your email"
+
+#~ msgid "Subscribe"
+#~ msgstr "Subscribe"
+
+#~ msgid "Student Portal"
+#~ msgstr "Student Portal"
+
+#~ msgid "Staff Area"
+#~ msgstr "Staff Area"
+
+#~ msgid "Privacy Policy"
+#~ msgstr "Privacy Policy"
+
+#~ msgid "Terms of Use"
+#~ msgstr "Terms of Use"
+
+#~ msgid "Accessibility"
+#~ msgstr "Accessibility"
+
+#~ msgid "Pulatov School"
+#~ msgstr "Pulatov School"
+
+#~ msgid "Peach Grove High"
+#~ msgstr "Peach Grove High"
+
+#~ msgid "Grade 1"
+#~ msgstr "Grade 1"
+
+#~ msgid "Grade 2"
+#~ msgstr "Grade 2"
+
+#~ msgid "Grade 3"
+#~ msgstr "Grade 3"
+
+#~ msgid "Grade 4"
+#~ msgstr "Grade 4"
+
+#~ msgid "Grade 5"
+#~ msgstr "Grade 5"
+
+#~ msgid "Grade 6"
+#~ msgstr "Grade 6"
+
+#~ msgid "Grade 7"
+#~ msgstr "Grade 7"
+
+#~ msgid "Grade 8"
+#~ msgstr "Grade 8"
+
+#~ msgid "Grade 9"
+#~ msgstr "Grade 9"
+
+#~ msgid "Grade 10"
+#~ msgstr "Grade 10"
+
+#~ msgid "Grade 11"
+#~ msgstr "Grade 11"
+
+#~ msgid "Forgot your password?"
+#~ msgstr "Forgot your password?"
+
+#~ msgid "New to Peach Grove?"
+#~ msgstr "New to Peach Grove?"
+
+#~ msgid "Apply Now"
+#~ msgstr "Apply Now"
+
+#: templates/core/secure/teachers-committee.html:6
+msgid "Teachers Committee"
+msgstr "Teachers Committee"

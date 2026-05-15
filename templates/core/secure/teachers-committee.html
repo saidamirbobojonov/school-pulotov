@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ block.super }}{% endblock %}
+
+{% block content %}
+{% trans "Teachers Committee" as default_page_title %}
+{% with hero=heroes.0 %}
+{% with page_title=active_menu_item.title|default:hero.title|default:default_page_title %}
+<section class="bg-peach-light/40 dark:bg-[#2a2420] pt-16 pb-24 md:pt-24 md:pb-32 relative overflow-hidden">
+  <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto text-center relative z-10">
+    <div class="flex items-center justify-center gap-2 text-sm font-medium opacity-80 mb-4 text-[#181411] dark:text-white">
+      <a class="hover:text-primary transition-colors" href="{% url 'index' %}">{% trans "Home" %}</a>
+      <span class="material-symbols-outlined text-xs">chevron_right</span>
+      <span class="text-primary">{{ page_title }}</span>
+    </div>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#181411] dark:text-white mb-6 font-display">{{ page_title }}</h1>
+  </div>
+</section>
+{% endwith %}
+{% endwith %}
+
+<section class="py-16 bg-white dark:bg-background-dark">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+    <div class="flex flex-col md:flex-row items-center gap-12">
+      <div class="w-full md:w-1/2">
+        <div class="inline-flex items-center gap-3 mb-6">
+          <span class="h-px w-8 bg-primary"></span>
+          <span class="text-primary font-bold uppercase tracking-wider text-sm">{% trans "Our Mission" %}</span>
+        </div>
+        {% trans "Advancing teaching excellence together" as default_mission_title %}
+        <h2 class="text-3xl font-bold text-[#181411] dark:text-white mb-6 leading-tight">{{ committee_page.mission_title|default:default_mission_title }}</h2>
+        <div class="space-y-4 text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+          {% if committee_page and committee_page.mission_text %}
+            <p>{{ committee_page.mission_text|linebreaksbr }}</p>
+          {% endif %}
+          {% if committee_page and committee_page.mission_text_2 %}
+            <p>{{ committee_page.mission_text_2|linebreaksbr }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-background-light dark:bg-[#251e19]">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-[#181411] dark:text-white text-3xl md:text-4xl font-bold mt-2">{% trans "Committee Members" %}</h2>
+      <p class="text-gray-500 dark:text-gray-400 mt-4 max-w-2xl mx-auto">
+        {% if committee_page and committee_page.members_intro %}
+          {{ committee_page.members_intro }}
+        {% endif %}
+      </p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {% for member in committee_members %}
+      {% with staff=member.staff %}
+      <div class="bg-white dark:bg-[#1e1e1e] rounded-xl overflow-hidden shadow-sm group hover:shadow-lg transition-all duration-300 border border-primary/5">
+        <div class="aspect-square overflow-hidden">
+          {% if staff.photo %}
+            <img alt="{{ staff.full_name }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="{{ staff.photo.url }}"/>
+          {% else %}
+            <div class="w-full h-full bg-gradient-to-br from-primary/20 to-peach-light flex items-center justify-center">
+              <span class="text-primary font-bold text-5xl">{{ staff.full_name|slice:":1" }}</span>
+            </div>
+          {% endif %}
+        </div>
+        <div class="p-6 text-center">
+          <h3 class="font-bold text-lg text-[#181411] dark:text-white">{{ staff.full_name }}</h3>
+          {% if member.role_title %}
+            <p class="text-primary font-medium text-sm">{{ member.role_title }}</p>
+          {% elif staff.position %}
+            <p class="text-primary font-medium text-sm">{{ staff.position }}</p>
+          {% endif %}
+        </div>
+      </div>
+      {% endwith %}
+      {% empty %}
+      <div class="col-span-full bg-white dark:bg-[#1e1e1e] rounded-xl p-8 border border-primary/5 text-center">
+        <p class="text-gray-500 dark:text-gray-400">{% trans "No committee members yet." %}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="py-16 md:py-24 bg-white dark:bg-background-dark">
+  <div class="px-6 md:px-20 lg:px-40 max-w-[1440px] mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+      <div>
+        <h2 class="text-[#181411] dark:text-white text-3xl font-bold mt-2">{% trans "Upcoming Meetings" %}</h2>
+        <p class="text-gray-500 dark:text-gray-400 mt-2">
+          {% if committee_page and committee_page.meetings_intro %}
+            {{ committee_page.meetings_intro }}
+          {% endif %}
+        </p>
+      </div>
+    </div>
+    <div class="overflow-hidden rounded-2xl border border-[#f4f2f0] dark:border-[#332e2b] bg-white dark:bg-[#1a1614] shadow-sm">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-peach-light/20 dark:bg-[#2a2420] border-b border-[#f4f2f0] dark:border-[#332e2b]">
+              <th class="px-6 py-4 text-sm font-bold text-primary uppercase tracking-wider">{% trans "Date & Time" %}</th>
+              <th class="px-6 py-4 text-sm font-bold text-primary uppercase tracking-wider">{% trans "Location" %}</th>
+              <th class="px-6 py-4 text-sm font-bold text-primary uppercase tracking-wider">{% trans "Agenda Topic" %}</th>
+              <th class="px-6 py-4 text-sm font-bold text-primary uppercase tracking-wider">{% trans "Action" %}</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#f4f2f0] dark:divide-[#332e2b]">
+            {% for meeting in committee_meetings %}
+            <tr>
+              <td class="px-6 py-6">
+                <div class="flex flex-col">
+                  <span class="font-bold text-[#181411] dark:text-white">{{ meeting.start_at|date:"DATE_FORMAT" }}</span>
+                  <span class="text-xs text-gray-500">
+                    {{ meeting.start_at|date:"H:i" }}{% if meeting.end_at %} - {{ meeting.end_at|date:"H:i" }}{% endif %}
+                  </span>
+                </div>
+              </td>
+              <td class="px-6 py-6 text-gray-700 dark:text-gray-300">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-lg">{{ meeting.location_icon|default:"meeting_room" }}</span>
+                  {% if meeting.location_url %}
+                    <a class="hover:text-primary transition-colors underline" href="{{ meeting.location_url }}">{{ meeting.location|default:meeting.location_url }}</a>
+                  {% else %}
+                    <span>{{ meeting.location|default:"-" }}</span>
+                  {% endif %}
+                </div>
+              </td>
+              <td class="px-6 py-6">
+                <span class="font-medium text-[#181411] dark:text-white">{{ meeting.agenda_topic|default:"-" }}</span>
+              </td>
+              <td class="px-6 py-6">
+                {% if meeting.rsvp_url %}
+                <a class="text-primary hover:underline text-sm font-bold flex items-center gap-1" href="{{ meeting.rsvp_url }}">
+                  {% trans "RSVP" %} <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                {% else %}
+                <span class="text-gray-500 dark:text-gray-400">—</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td class="px-6 py-8 text-center text-gray-500 dark:text-gray-400" colspan="4">{% trans "No upcoming meetings." %}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
